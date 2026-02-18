@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Vcpkg Manifest Parser
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file vcpkg_parser.hpp
+ * @brief Parses vcpkg.json manifests to identify dependencies.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include "semver.hpp" // cleanup versions
 #include "types.hpp"  // Dependency struct
@@ -12,6 +29,12 @@ namespace depdiscover {
 // ENTFERNT: void to_json(...) { ... }
 // Beide sind jetzt in types.hpp definiert.
 
+/**
+ * @brief Parses a vcpkg.json manifest file.
+ *
+ * @param path The path to the vcpkg.json file.
+ * @return std::vector<Dependency> A list of dependencies from the manifest.
+ */
 inline std::vector<Dependency> parse_vcpkg_manifest(const std::string &path) {
   std::vector<Dependency> deps;
   std::ifstream f(path);

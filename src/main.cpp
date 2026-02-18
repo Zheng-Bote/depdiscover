@@ -1,3 +1,21 @@
+/**
+ * SPDX-FileComment: Main entry point for the Dependency Tracker application
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file main.cpp
+ * @brief Main entry point for the Dependency Tracker application.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
+
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
@@ -41,6 +59,13 @@ constexpr auto SCHEMA_VERSION = "1.2";
 
 // --- Hilfsfunktionen für Matching ---
 
+/**
+ * @brief Checks if a string contains another string (case-insensitive).
+ *
+ * @param haystack The string to search in.
+ * @param needle The substring to search for.
+ * @return true if haystack contains needle, false otherwise.
+ */
 bool string_contains(const std::string &haystack, const std::string &needle) {
   auto it = std::search(haystack.begin(), haystack.end(), needle.begin(),
                         needle.end(), [](char ch1, char ch2) {
@@ -49,6 +74,13 @@ bool string_contains(const std::string &haystack, const std::string &needle) {
   return it != haystack.end();
 }
 
+/**
+ * @brief Checks if a path starts with a given prefix.
+ *
+ * @param path The path to check.
+ * @param prefix The prefix to look for.
+ * @return true if path starts with prefix, false otherwise.
+ */
 bool path_starts_with(const std::string &path, const std::string &prefix) {
   if (path.rfind(prefix, 0) == 0)
     return true;
@@ -58,6 +90,13 @@ bool path_starts_with(const std::string &path, const std::string &prefix) {
   return false;
 }
 
+/**
+ * @brief Fuzzy matches a header path against a package name.
+ *
+ * @param header_path The path to the header file.
+ * @param pkg_name The name of the package.
+ * @return true if the header path likely belongs to the package.
+ */
 bool fuzzy_match_header(const std::string &header_path,
                         const std::string &pkg_name) {
   if (string_contains(header_path, "/" + pkg_name + "/"))
@@ -84,6 +123,13 @@ bool fuzzy_match_header(const std::string &header_path,
   return false;
 }
 
+/**
+ * @brief Fuzzy matches a library filename against a package name.
+ *
+ * @param lib_filename The filename of the library.
+ * @param pkg_name The name of the package.
+ * @return true if the library filename likely belongs to the package.
+ */
 bool fuzzy_match_lib(const std::string &lib_filename,
                      const std::string &pkg_name) {
   std::string clean_filename = lib_filename;
@@ -95,6 +141,11 @@ bool fuzzy_match_lib(const std::string &lib_filename,
   return (clean_filename.rfind(clean_pkg, 0) == 0);
 }
 
+/**
+ * @brief Prints the help message to stderr.
+ *
+ * @param program_name The name of the program (argv[0]).
+ */
 void print_help(const char *program_name) {
   std::cerr
       << "Verwendung: " << program_name << " [OPTIONEN]\n\n"
@@ -116,6 +167,17 @@ void print_help(const char *program_name) {
 
 // --- Main ---
 
+/**
+ * @brief Main function of the application.
+ *
+ * Parses command line arguments, loads dependencies from various sources
+ * (vcpkg, conan, CMake), scans build artifacts (compile_commands.json,
+ * binaries), resolves metadata (licenses, CVEs), and generates a JSON report.
+ *
+ * @param argc Number of arguments.
+ * @param argv Argument strings.
+ * @return int Exit code (0 for success, 1 for error).
+ */
 int main(int argc, char **argv) {
   // Standardpfade & Werte
   std::string cc_path = "compile_commands.json";

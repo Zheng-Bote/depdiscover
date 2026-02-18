@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: License Resolver
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file license_resolver.hpp
+ * @brief Resolves licenses for dependencies using heuristics and file scanning.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include <algorithm>
 #include <filesystem>
@@ -14,6 +31,15 @@ namespace fs = std::filesystem;
 // --- Hilfsfunktionen für Text-Analyse ---
 
 // Liest eine Datei und sucht nach Lizenz-Schlüsselwörtern
+/**
+ * @brief Guesses the license type from a file's content.
+ *
+ * Reads the first 20 lines and checks for common license keywords.
+ *
+ * @param path The path to the file (e.g., LICENSE).
+ * @return std::string The matched license (e.g., "MIT"), or "See file: ..." if
+ * ambiguous.
+ */
 inline std::string guess_license_from_content(const fs::path &path) {
   std::ifstream f(path);
   if (!f)
@@ -63,6 +89,17 @@ inline std::string guess_license_from_content(const fs::path &path) {
 
 // --- Hauptfunktion ---
 
+/**
+ * @brief Resolves licenses for a package.
+ *
+ * Uses a static database, name heuristics, and file system scanning of header
+ * directories.
+ *
+ * @param package_name The name of the package.
+ * @param header_files A list of associated header files (used for locating
+ * license files).
+ * @return std::vector<std::string> A list of resolved licenses.
+ */
 inline std::vector<std::string>
 resolve_licenses(const std::string &package_name,
                  const std::vector<std::string> &header_files = {}) {

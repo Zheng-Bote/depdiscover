@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: CVE Resolver and OSV Query Tool
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file cve_resolver.hpp
+ * @brief Queries OSV.dev for CVEs associated with packages.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include "types.hpp" // Für struct CVE
 #include <array>
@@ -18,6 +35,11 @@ namespace depdiscover {
 using json = nlohmann::json;
 
 // --- Hilfsfunktion: Datum holen ---
+/**
+ * @brief Gets the current date in YYYY-MM-DD format.
+ *
+ * @return std::string The current date.
+ */
 inline std::string get_current_date() {
   auto now = std::chrono::system_clock::now();
   auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -30,12 +52,24 @@ inline std::string get_current_date() {
 
 // --- Strategie-Auswahl für OSV ---
 
+/**
+ * @brief Represents a strategy for querying OSV.
+ */
 struct QueryStrategy {
   std::string name;
   std::string param; // Ecosystem oder PURL-Type
   bool use_purl;
 };
 
+/**
+ * @brief Determines the best query strategy for a package.
+ *
+ * Decides whether to use PURL or Ecosystem/Package Name based on known projects
+ * (e.g. OSS-Fuzz).
+ *
+ * @param pkg_name The package name.
+ * @return QueryStrategy The determined strategy.
+ */
 inline QueryStrategy determine_strategy(const std::string &pkg_name) {
   static const std::set<std::string> oss_fuzz_projects = {
       "openssl",     "zlib",     "curl",    "libcurl",   "ffmpeg",
@@ -55,6 +89,13 @@ inline QueryStrategy determine_strategy(const std::string &pkg_name) {
 
 // --- Curl Wrapper ---
 
+/**
+ * @brief Executes a curl POST request.
+ *
+ * @param url The URL to target.
+ * @param json_payload The JSON payload to send.
+ * @return std::string The response body.
+ */
 inline std::string perform_curl_post(const std::string &url,
                                      const std::string &json_payload) {
   std::string response;
@@ -90,6 +131,15 @@ inline std::string perform_curl_post(const std::string &url,
 
 // --- Hauptfunktion ---
 
+/**
+ * @brief Queries CVEs for a given package and version.
+ *
+ * Uses OSV.dev API to find vulnerabilities.
+ *
+ * @param name The package name.
+ * @param version The package version.
+ * @return std::vector<CVE> A list of found CVEs.
+ */
 inline std::vector<CVE> query_cves(const std::string &name,
                                    const std::string &version) {
   std::vector<CVE> results;

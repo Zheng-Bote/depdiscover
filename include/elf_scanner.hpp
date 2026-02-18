@@ -1,3 +1,21 @@
+/**
+ * SPDX-FileComment: Minimal ELF64 Scanner
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file elf_scanner.hpp
+ * @brief Scans ELF binaries for dependencies (DT_NEEDED) without external
+ * libelf dependency.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include <algorithm>
 #include <cstdint>
@@ -19,6 +37,9 @@ using Elf64_Word = uint32_t;
 using Elf64_Xword = uint64_t;
 
 // ELF Datei-Header
+/**
+ * @brief ELF64 File Header structure.
+ */
 struct Elf64_Ehdr {
   unsigned char e_ident[16]; // Magic number und andere Infos
   Elf64_Half e_type;
@@ -37,6 +58,9 @@ struct Elf64_Ehdr {
 };
 
 // Program Header
+/**
+ * @brief ELF64 Program Header structure.
+ */
 struct Elf64_Phdr {
   Elf64_Word p_type;
   Elf64_Word p_flags;
@@ -49,6 +73,9 @@ struct Elf64_Phdr {
 };
 
 // Dynamischer Eintrag (in .dynamic Sektion)
+/**
+ * @brief ELF64 Dynamic Entry structure.
+ */
 struct Elf64_Dyn {
   Elf64_Xword d_tag; // Typ des Eintrags (z.B. DT_NEEDED)
   union {
@@ -67,6 +94,13 @@ constexpr uint64_t DT_STRSZ = 10;
 // --- Helper Funktion ---
 
 // Wandelt eine virtuelle Adresse (VMA) in einen Datei-Offset um
+/**
+ * @brief Converts a virtual memory address to a file offset.
+ *
+ * @param vaddr The virtual address.
+ * @param phdrs A list of program headers to search in.
+ * @return uint64_t The calculated file offset, or 0 if not found.
+ */
 inline uint64_t vaddr_to_offset(Elf64_Addr vaddr,
                                 const std::vector<Elf64_Phdr> &phdrs) {
   for (const auto &ph : phdrs) {
@@ -82,6 +116,15 @@ inline uint64_t vaddr_to_offset(Elf64_Addr vaddr,
 
 // --- Hauptfunktion ---
 
+/**
+ * @brief Scans an ELF binary for shared library dependencies.
+ *
+ * Reads the ELF header, program headers, and dynamic section to find DT_NEEDED
+ * entries.
+ *
+ * @param binary_path The path to the binary file.
+ * @return std::vector<std::string> A list of required shared libraries.
+ */
 inline std::vector<std::string>
 scan_elf_dependencies(const std::string &binary_path) {
   std::vector<std::string> dependencies;

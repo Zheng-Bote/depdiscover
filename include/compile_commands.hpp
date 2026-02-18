@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Compile Commands JSON Parser
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file compile_commands.hpp
+ * @brief Parses compile_commands.json files to extract build information.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include <fstream>
 #include <iostream>
@@ -8,12 +25,22 @@
 
 namespace depdiscover {
 
+/**
+ * @brief Represents a single entry in a compile_commands.json file.
+ */
 struct CompileCommand {
   std::string file;
   std::string command;
   std::string directory; // NEU: Arbeitsverzeichnis
 };
 
+/**
+ * @brief Loads and parses a compile_commands.json file.
+ *
+ * @param path The path to the compile_commands.json file.
+ * @return std::vector<CompileCommand> A list of compile commands.
+ * @throws std::runtime_error If the file cannot be opened or parsed.
+ */
 inline std::vector<CompileCommand>
 load_compile_commands(const std::string &path) {
   std::ifstream f(path);

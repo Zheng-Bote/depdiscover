@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Vcpkg Manifest Parser (Misnamed?)
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file pkg‑config_parser.hpp
+ * @brief Parses vcpkg.json manifests (appears to be a duplicate/misnamed file).
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include "types.hpp" // WICHTIG: Include statt struct Definition
 #include <fstream>
@@ -9,6 +26,13 @@ namespace depdiscover {
 
 // struct Dependency wurde nach types.hpp verschoben!
 
+/**
+ * @brief Parses a vcpkg.json manifest file.
+ *
+ * @param path The path to the vcpkg.json file.
+ * @return std::vector<Dependency> A list of dependencies suitable for
+ * pkg-config (?).
+ */
 inline std::vector<Dependency> parse_vcpkg_manifest(const std::string &path) {
   std::vector<Dependency> deps;
   std::ifstream f(path);

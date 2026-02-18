@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Pkg-Config Wrapper
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file pkg_config.hpp
+ * @brief Wrapper class for querying pkg-config.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include <array>
 #include <cstdio>
@@ -9,6 +26,9 @@
 
 namespace depdiscover {
 
+/**
+ * @brief Holds information returned by pkg-config.
+ */
 struct PkgInfo {
   bool found = false;
   std::string version;
@@ -16,8 +36,17 @@ struct PkgInfo {
   std::vector<std::string> lib_names;
 };
 
+/**
+ * @brief Static class for querying pkg-config.
+ */
 class PkgConfig {
 public:
+  /**
+   * @brief Queries pkg-config for a specific package.
+   *
+   * @param package_name The name of the package.
+   * @return PkgInfo The result of the query.
+   */
   static PkgInfo query(const std::string &package_name) {
     PkgInfo info;
 

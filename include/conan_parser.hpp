@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Conan Parser for Dependency Tracker
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file conan_parser.hpp
+ * @brief Parses conanfile.txt to identify dependencies.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include "semver.hpp" // cleanup versions
 #include "types.hpp"  // Dependency struct
@@ -8,6 +25,12 @@
 
 namespace depdiscover {
 
+/**
+ * @brief Parses a conanfile.txt to extract dependencies.
+ *
+ * @param path The path to the conanfile.txt.
+ * @return std::vector<Dependency> A list of extracted dependencies.
+ */
 inline std::vector<Dependency>
 parse_conan_dependencies(const std::string &path) {
   std::vector<Dependency> deps;

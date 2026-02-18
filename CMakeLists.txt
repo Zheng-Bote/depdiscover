@@ -31,15 +31,11 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(json)
 
 
-# --- 2. Executable ---
 add_executable(depdiscover src/main.cpp)
-target_include_directories(depdiscover PRIVATE "${CMAKE_SOURCE_DIR}/include")
 
-# WICHTIG: Die Library linken, damit die Header gefunden werden
+target_include_directories(depdiscover PRIVATE "${CMAKE_SOURCE_DIR}/include")
 target_link_libraries(depdiscover PRIVATE nlohmann_json::nlohmann_json)
 
-
-# Optional: Compiler Warnings einschalten (für sauberen Code)
 if(MSVC)
     target_compile_options(depdiscover PRIVATE /W4)
 else()

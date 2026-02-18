@@ -1,3 +1,20 @@
+/**
+ * SPDX-FileComment: Header File Resolver
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
+ * @file header_resolver.hpp
+ * @brief Scans include directives and resolves them to absolute paths.
+ * @version 1.0.0
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
+ */
 #pragma once
 #include <filesystem>
 #include <fstream>
@@ -10,6 +27,12 @@ namespace depdiscover {
 
 namespace fs = std::filesystem;
 
+/**
+ * @brief Scans a source file for `#include` directives.
+ *
+ * @param source_file The path to the source file.
+ * @return std::vector<std::string> A list of included header names.
+ */
 inline std::vector<std::string> scan_includes(const std::string &source_file) {
   std::vector<std::string> included_headers;
   if (!fs::exists(source_file))
@@ -31,6 +54,17 @@ inline std::vector<std::string> scan_includes(const std::string &source_file) {
 }
 
 // work_dir: Das Verzeichnis, in dem der Compiler ausgeführt wurde
+/**
+ * @brief Resolves a header filename to an absolute path.
+ *
+ * Checks absolute paths, explicit include paths, and system paths.
+ *
+ * @param header_name The name of the header file.
+ * @param include_paths A list of include directories.
+ * @param work_dir The compiler's working directory (for relative include
+ * paths).
+ * @return std::string The absolute path to the header, or empty if not found.
+ */
 inline std::string resolve_header(const std::string &header_name,
                                   const std::vector<std::string> &include_paths,
                                   const std::string &work_dir = "") {
