@@ -1,0 +1,47 @@
+#pragma once
+#include <array>
+#include <cstdio> // Für popen, pclose, fgets
+#include <memory>
+#include <string>
+#include <vector>
+
+namespace depdiscover {
+
+inline std::vector<std::string>
+scan_elf_dependencies(const std::string &binary) {
+  std::vector<std::string> out;
+
+  std::string cmd = "ldd " + binary + " 2>/dev/null";
+  std::array<char, 512> buffer{};
+
+  // decltype hilft hier, den korrekten Typ für den Deleter zu finden
+  std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"),
+                                                pclose);
+
+  if (!pipe)
+    return out;
+
+  while (fgets(buffer.data(), static_cast<int>(buffer.size()), pipe.get())) {
+    std::string line = buffer.data();
+    auto pos = line.find("=>");
+
+    // FIX: Sicherstellen, dass pos > 0 ist, bevor wir subtrahieren
+    if (pos != std::string::npos && pos > 1) {
+      // Trimmen wäre hier eigentlich auch gut, aber wir lassen es simpel:
+      auto lib = line.substr(0, pos - 1);
+
+      // Optional: Whitespace entfernen, da ldd oft tabs nutzt
+      size_t first = lib.find_first_not_of(" \t");
+      size_t last = lib.find_last_not_of(" \t");
+      if (first != std::string::npos && last != std::string::npos) {
+        out.push_back(lib.substr(first, (last - first + 1)));
+      } else {
+        out.push_back(lib);
+      }
+    }
+  }
+
+  return out;
+}
+
+} // namespace depdiscover

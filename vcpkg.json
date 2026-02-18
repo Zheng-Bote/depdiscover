@@ -1,0 +1,10 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "dependencies": [
+    "fmt",
+    { "name": "openssl", "version>=": "3.0.0" },
+    { "name": "libcurl", "version>=": "8.7.0-DEV" },
+    { "name": "exiv2", "version>=": "1.00.0.8" }
+  ]
+}

@@ -1,0 +1,27 @@
+[requires]
+# Einfache Abhängigkeiten
+fmt/10.1.1
+nlohmann_json/3.11.2
+libcurl/8.7.0-DEV
+
+# Abhängigkeit mit User und Channel (altes Conan v1 Format, aber noch möglich)
+my-lib/1.2.0@mycompany/stable
+
+# Abhängigkeit mit Version Range (erlaubt Updates innerhalb v1.x)
+spdlog/[>=1.12.0 <2.0]
+
+# Abhängigkeit mit expliziter Revision (für exakte Reproduzierbarkeit)
+zlib/1.3#88df7e632b724492de496a7516801980
+
+[generators]
+# Generatoren für CMake Integration
+CMakeDeps
+CMakeToolchain
+
+[options]
+# Optionen für spezifische Pakete
+fmt:shared=True
+spdlog:header_only=False
+
+# Globale Optionen (Wildcards)
+*:shared=False

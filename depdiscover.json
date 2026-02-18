@@ -1,0 +1,267 @@
+{
+  "dependencies": [
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "NOT-CHECKED",
+          "severity": "UNKNOWN",
+          "summary": "Version unknown or latest, cannot query OSV"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "MIT"
+      ],
+      "name": "fmt",
+      "source": "manifest",
+      "type": "vcpkg",
+      "version": "latest"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (Ecosystem: OSS-Fuzz)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "Apache-2.0"
+      ],
+      "name": "openssl",
+      "source": "pkgconfig",
+      "type": "vcpkg",
+      "version": "3.5.3"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (Ecosystem: OSS-Fuzz)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "curl"
+      ],
+      "name": "libcurl",
+      "source": "pkgconfig",
+      "type": "vcpkg",
+      "version": "8.7.0-DEV"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (PURL: pkg:generic/exiv2@1.00.0.9)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "exiv2",
+      "source": "pkgconfig",
+      "type": "vcpkg",
+      "version": "1.00.0.9"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (PURL: pkg:generic/fmt@10.1.1)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "MIT"
+      ],
+      "name": "fmt",
+      "source": "manifest",
+      "type": "conan",
+      "version": "10.1.1"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (PURL: pkg:generic/nlohmann_json@3.11.2)"
+        }
+      ],
+      "headers": [
+        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/json-src/include/nlohmann/json.hpp"
+      ],
+      "libraries": [],
+      "licenses": [
+        "MIT"
+      ],
+      "name": "nlohmann_json",
+      "source": "manifest",
+      "type": "conan",
+      "version": "3.11.2"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (Ecosystem: OSS-Fuzz)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "curl"
+      ],
+      "name": "libcurl",
+      "source": "pkgconfig",
+      "type": "conan",
+      "version": "8.7.0-DEV"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (PURL: pkg:generic/my-lib@1.2.0)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "my-lib",
+      "source": "manifest",
+      "type": "conan",
+      "version": "1.2.0"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (PURL: pkg:generic/spdlog@1.12.0)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "MIT"
+      ],
+      "name": "spdlog",
+      "source": "manifest",
+      "type": "conan",
+      "version": "1.12.0"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev (Ecosystem: OSS-Fuzz)"
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "Zlib"
+      ],
+      "name": "zlib",
+      "source": "pkgconfig",
+      "type": "conan",
+      "version": "1.3.1"
+    },
+    {
+      "cves": [],
+      "headers": [],
+      "libraries": [
+        "libc.so.6"
+      ],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "libc.so.6",
+      "source": "elf_scan",
+      "type": "system",
+      "version": ""
+    },
+    {
+      "cves": [],
+      "headers": [],
+      "libraries": [
+        "libgcc_s.so.1"
+      ],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "libgcc_s.so.1",
+      "source": "elf_scan",
+      "type": "system",
+      "version": ""
+    },
+    {
+      "cves": [],
+      "headers": [],
+      "libraries": [
+        "libm.so.6"
+      ],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "libm.so.6",
+      "source": "elf_scan",
+      "type": "system",
+      "version": ""
+    },
+    {
+      "cves": [],
+      "headers": [],
+      "libraries": [
+        "libstdc++.so.6"
+      ],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "libstdc++.so.6",
+      "source": "elf_scan",
+      "type": "system",
+      "version": ""
+    }
+  ],
+  "header": {
+    "project": {
+      "name": "Unknown Project",
+      "workspace_root": "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover"
+    },
+    "scan_date": "2026-02-18",
+    "schema_version": "1.2",
+    "tool": {
+      "author": "ZHENG Bote",
+      "description": "Native C++ Dependency Scanner & SBOM Generator",
+      "homepage": "https://github.com/zb-bamboo/Dependency_Tracker_2",
+      "name": "depdiscover",
+      "version": "1.0.0"
+    }
+  }
+}

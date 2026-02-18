@@ -1,0 +1,54 @@
+{
+  "project": {
+    "root": "/path/to/workspace",
+    "build_dir": "/path/to/build",
+    "generator": "Ninja",
+    "compiler": "g++"
+  },
+  "compile_commands": [
+    {
+      "file": "src/main.cpp",
+      "command": "g++ -Iinclude -Isrc ... -c src/main.cpp",
+      "directory": "/path/to/build"
+    }
+  ],
+  "include_paths": [
+    "/path/to/project/include",
+    "/usr/include",
+    "/usr/local/include"
+  ],
+  "headers": ["/path/to/project/include/foo.hpp", "/usr/include/openssl/ssl.h"],
+  "libraries": ["fmt", "ssl", "crypto"],
+  "runtime_libraries": ["libfmt.so.10", "libssl.so.3", "libcrypto.so.3"],
+  "package_managers": {
+    "vcpkg": {
+      "manifest": "vcpkg.json",
+      "lockfile": "vcpkg-lock.json",
+      "packages": [
+        {
+          "name": "fmt",
+          "version": null
+        }
+      ]
+    },
+    "conan": {
+      "lockfile": "conan.lock",
+      "packages": [
+        {
+          "ref": "openssl/3.0.14",
+          "name": "openssl",
+          "version": "3.0.14"
+        }
+      ]
+    },
+    "pkg_config": {
+      "modules": [
+        {
+          "name": "openssl",
+          "version": "3.0.14",
+          "license": "Apache-2.0"
+        }
+      ]
+    }
+  }
+}

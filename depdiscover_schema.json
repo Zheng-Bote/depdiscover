@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "root": "/absolute/path/to/workspace",
+    "source_dirs": ["src", "include"],
+    "language": "C++",
+    "detected_build_system": "cmake"
+  },
+  "build": {
+    "directory": "/absolute/path/to/build",
+    "generator": "Ninja",
+    "compiler": {
+      "cxx": "g++",
+      "version": "13.2.0"
+    }
+  },
+  "compile_commands": [
+    {
+      "file": "src/main.cpp",
+      "command": "g++ -Iinclude -O2 -c src/main.cpp",
+      "directory": "/absolute/path/to/build"
+    }
+  ],
+  "include_paths": [
+    "/path/to/project/include",
+    "/usr/include",
+    "/usr/local/include"
+  ],
+  "headers": [
+    "/path/to/project/include/foo.hpp",
+    "/usr/include/openssl/ssl.h",
+    "/usr/include/fmt/core.h"
+  ],
+  "libraries": ["fmt", "ssl", "crypto"],
+  "runtime_libraries": ["libfmt.so.10", "libssl.so.3", "libcrypto.so.3"],
+  "package_managers": {
+    "vcpkg": {
+      "manifest": "vcpkg.json",
+      "lockfile": "vcpkg-lock.json",
+      "packages": [
+        {
+          "name": "fmt",
+          "version": null
+        },
+        {
+          "name": "openssl",
+          "version": null
+        }
+      ]
+    },
+    "conan": {
+      "lockfile": "conan.lock",
+      "packages": [
+        {
+          "ref": "openssl/3.0.14",
+          "name": "openssl",
+          "version": "3.0.14"
+        }
+      ]
+    },
+    "pkg_config": {
+      "modules": [
+        {
+          "name": "openssl",
+          "version": "3.0.14",
+          "license": "Apache-2.0"
+        },
+        {
+          "name": "libfmt",
+          "version": "10.2.1",
+          "license": null
+        }
+      ]
+    }
+  }
+}

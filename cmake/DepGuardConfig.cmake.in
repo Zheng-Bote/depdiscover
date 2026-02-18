@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+set(DepGuard_DEPDiscover_EXECUTABLE "@CMAKE_INSTALL_PREFIX@/bin/depdiscover")
+#set(DepGuard_SBOMGen_EXECUTABLE "@CMAKE_INSTALL_PREFIX@/bin/sbomgen")

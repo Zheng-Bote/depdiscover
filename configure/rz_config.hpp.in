@@ -1,0 +1,40 @@
+/**
+ * @file rz_config.hpp.in
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @brief configuration
+ * @version 2.1.0
+ * @date 2026-01-01
+ *
+ * @copyright Copyright (c) 2025 ZHENG Robert
+ *
+ * SPDX-License-Identifier: MIT
+ */
+#pragma once
+
+#include <string_view>
+
+namespace rz {
+namespace config {
+constexpr std::string_view PROJECT_NAME = "@PROJECT_NAME@";
+constexpr std::string_view PROG_LONGNAME = "@PROG_LONGNAME@";
+constexpr std::string_view PROJECT_DESCRIPTION = "@PROJECT_DESCRIPTION@";
+
+constexpr std::string_view EXECUTABLE_NAME = "@EXECUTABLE_NAME@";
+
+constexpr std::string_view VERSION = "@PROJECT_VERSION@";
+constexpr std::int32_t PROJECT_VERSION_MAJOR { @PROJECT_VERSION_MAJOR@ };
+constexpr std::int32_t PROJECT_VERSION_MINOR { @PROJECT_VERSION_MINOR@ };
+constexpr std::int32_t PROJECT_VERSION_PATCH { @PROJECT_VERSION_PATCH@ };
+
+constexpr std::string_view PROJECT_HOMEPAGE_URL = "@PROJECT_HOMEPAGE_URL@";
+constexpr std::string_view AUTHOR = "${PROG_AUTHOR}";
+constexpr std::string_view CREATED_YEAR = "${PROG_CREATED}";
+constexpr std::string_view ORGANIZATION = "${PROG_ORGANIZATION_NAME}";
+constexpr std::string_view DOMAIN = "${PROG_ORGANIZATION_DOMAIN}";
+
+constexpr std::string_view CMAKE_CXX_STANDARD = "c++${CMAKE_CXX_STANDARD}";
+constexpr std::string_view CMAKE_CXX_COMPILER =
+    "${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}";
+constexpr std::string_view QT_VERSION_BUILD = "${CMAKE_QTV}";
+} // namespace config
+} // namespace rz
