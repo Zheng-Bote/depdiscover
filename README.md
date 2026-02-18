@@ -107,15 +107,12 @@ git clone https://github.com/your-org/depdiscover.git
 cd depdiscover
 
 # 2. Create build directory
-
 mkdir build && cd build
 
 # 3. Configure (ensure nlohmann_json is found)
-
 cmake ..
 
 # 4. Build
-
 cmake --build .
 ```
 
@@ -145,15 +142,16 @@ To get the most comprehensive report, provide as many inputs as possible:
 
 ### Options
 
-| Flag | Long | Description |
-| -c | --compile-commands | Path to compile_commands.json (Input). |
-| -l | --libs | Path to CMake generated libs.txt (Input). |
-| -b | --binary | Path to the executable binary for ELF analysis (Input). |
-| -v | --vcpkg | Path to vcpkg.json manifest (Input). |
-| -C | --conan | Path to conanfile.txt (Input). |
-| -o | --output | Path for the generated JSON file (Output). |
-| -n | --name | Project name to appear in the report header. |
-| -h | --help | Show help message. |
+| Flag | Long               | Description                                             |
+| ---- | ------------------ | ------------------------------------------------------- |
+| -c   | --compile-commands | Path to compile_commands.json (Input).                  |
+| -l   | --libs             | Path to CMake generated libs.txt (Input).               |
+| -b   | --binary           | Path to the executable binary for ELF analysis (Input). |
+| -v   | --vcpkg            | Path to vcpkg.json manifest (Input).                    |
+| -C   | --conan            | Path to conanfile.txt (Input).                          |
+| -o   | --output           | Path for the generated JSON file (Output).              |
+| -n   | --name             | Project name to appear in the report header.            |
+| -h   | --help             | Show help message.                                      |
 
 ### 💡 Generating libs.txt (CMake Integration)
 
