@@ -36,6 +36,13 @@
   - Security (CVE): Live vulnerability check via OSV.dev API (using curl).
 - **Structured Output**: Generates a detailed JSON report including metadata, file paths, licenses, and security status.
 
+## Screenshots
+
+![html_report](docs/img/html_report.png)
+
+> [!TIP]
+> see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
+
 ## 🏗 Architecture
 
 The tool operates in three stages: **Input Parsing**, **Physical Scanning**, and **Metadata Enrichment**.
@@ -66,6 +73,7 @@ graph TD
 
     subgraph Output
         JSON["depdiscover.json <br> (SBOM)"]
+        HTML["report.html <br> (Interactive)"]
     end
 
     CC --> P_CC
@@ -83,6 +91,7 @@ graph TD
     R_PKG --> R_CVE
 
     P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
+    JSON --> HTML
 ```
 
 ## 🛠 Prerequisites
@@ -151,6 +160,8 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -C   | --conan            | Path to conanfile.txt (Input).                          |
 | -o   | --output           | Path for the generated JSON file (Output).              |
 | -n   | --name             | Project name to appear in the report header.            |
+| -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).         |
+| -H   | --html             | Path for the generated HTML report (Optional).          |
 | -h   | --help             | Show help message.                                      |
 
 ### 💡 Generating libs.txt (CMake Integration)

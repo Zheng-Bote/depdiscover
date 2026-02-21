@@ -1,0 +1,44 @@
+graph TD
+    subgraph Inputs
+        CC[compile_commands.json]
+        LIBS[libs.txt]
+        MAN[vcpkg.json / conanfile]
+        BIN[Binary ELF]
+    end
+
+    subgraph Core
+        P_CC[Compile DB Parser]
+        P_CMAKE[CMake Libs Parser]
+        P_MAN[Manifest Parser]
+        S_ELF[ELF Scanner]
+        S_INC[Include Scanner]
+    end
+
+    subgraph Resolvers
+        R_HEAD[Header Resolver]
+        R_PKG[Pkg-Config]
+        R_LIC[License Resolver]
+        R_CVE["CVE Resolver<br>(OSV.dev via curl)"]
+    end
+
+    subgraph Output
+        JSON["depdiscover.json <br> (SBOM)"]
+        HTML["report.html <br> (Interactive)"]
+    end
+
+    CC --> P_CC
+    LIBS --> P_CMAKE
+    MAN --> P_MAN
+    BIN --> S_ELF
+
+    P_CC --> S_INC
+    S_INC --> R_HEAD
+
+    P_MAN --> R_PKG
+    P_CMAKE --> R_PKG
+
+    R_HEAD --> R_LIC
+    R_PKG --> R_CVE
+
+    P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
+    JSON --> HTML

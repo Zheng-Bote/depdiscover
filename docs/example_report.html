@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBOM Security Report</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 2rem; color: #333; }
+  h1 { border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+  .metadata { background: #f8f9fa; padding: 1rem; border-radius: 5px; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  th, td { text-align: left; padding: 12px 15px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  th { background-color: #343a40; color: white; }
+  .safe { background-color: #d4edda; }
+  .vuln { background-color: #f8d7da; }
+  .warn { background-color: #fff3cd; }
+  .vuln-title { font-weight: bold; color: #721c24; margin-bottom: 5px; display: inline-block; }
+  .badge { display: inline-block; padding: 0.25em 0.4em; font-size: 75%; font-weight: 700; border-radius: 0.25rem; background: #6c757d; color: white; margin-right: 4px; }
+  details { margin-top: 8px; font-size: 0.9em; }
+  summary { cursor: pointer; font-weight: bold; color: #495057; }
+  summary:hover { color: #000; }
+  ul.clean-list { margin-top: 5px; padding-left: 20px; }
+  ul.clean-list li { margin-bottom: 4px; }
+  a.cve-link { color: #0056b3; text-decoration: none; font-weight: bold; }
+  a.cve-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<h1>SBOM Security Report: Unknown Project</h1>
+<div class="metadata">
+  <strong>Scan Date:</strong> 2026-02-21<br>
+  <strong>Generator Tool:</strong> depdiscover v1.0.0
+</div>
+<table>
+  <thead><tr>
+    <th>Package Name</th>
+    <th>Version</th>
+    <th>Fixed Version</th>
+    <th>Type</th>
+    <th>Licenses</th>
+    <th>Security Status</th>
+  </tr></thead>
+  <tbody>
+    <tr class="warn">
+      <td><strong>fmt</strong></td>
+      <td>latest</td>
+      <td>-</td>
+      <td>vcpkg</td>
+      <td><span class="badge">MIT</span></td>
+      <td>⚠️ NOT-CHECKED</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>openssl</strong></td>
+      <td>3.5.3</td>
+      <td><details><summary>4 Versionen</summary><ul class="clean-list"><li><strong>v3.5.0-1</strong></li><li><strong>v3.5.4-1</strong></li><li><strong>v3.5.4-1~deb13u2</strong></li><li><strong>v3.5.5-1</strong></li></ul></details></td>
+      <td>vcpkg</td>
+      <td><span class="badge">Apache-2.0</span></td>
+      <td><span class="vuln-title">❌ 17 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-11187" target="_blank">DEBIAN-CVE-2025-11187</a>: Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation whic...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15467" target="_blank">DEBIAN-CVE-2025-15467</a>: Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15468" target="_blank">DEBIAN-CVE-2025-15468</a>: Issue summary: If an application using the SSL_CIPHER_find() function in a QU...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15469" target="_blank">DEBIAN-CVE-2025-15469</a>: Issue summary: The 'openssl dgst' command-line tool silently truncates input ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-27587" target="_blank">DEBIAN-CVE-2025-27587</a>: OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Mi...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-66199" target="_blank">DEBIAN-CVE-2025-66199</a>: Issue summary: A TLS 1.3 connection using certificate compression can be forc...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-68160" target="_blank">DEBIAN-CVE-2025-68160</a>: Issue summary: Writing large, newline-free data into a BIO chain using the li...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69418" target="_blank">DEBIAN-CVE-2025-69418</a>: Issue summary: When using the low-level OCB API directly with AES-NI or<br>ot...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69419" target="_blank">DEBIAN-CVE-2025-69419</a>: Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously cr...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69420" target="_blank">DEBIAN-CVE-2025-69420</a>: Issue summary: A type confusion vulnerability exists in the TimeStamp Respons...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69421" target="_blank">DEBIAN-CVE-2025-69421</a>: Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9230" target="_blank">DEBIAN-CVE-2025-9230</a>: Issue summary: An application trying to decrypt CMS messages encrypted using ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9231" target="_blank">DEBIAN-CVE-2025-9231</a>: Issue summary: A timing side-channel which could potentially allow remote rec...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9232" target="_blank">DEBIAN-CVE-2025-9232</a>: Issue summary: An application using the OpenSSL HTTP client API functions may...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-22795" target="_blank">DEBIAN-CVE-2026-22795</a>: Issue summary: An invalid or NULL pointer dereference can happen in an applic...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-22796" target="_blank">DEBIAN-CVE-2026-22796</a>: Issue summary: A type confusion vulnerability exists in the signature verific...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-6113-1" target="_blank">DSA-6113-1</a>: openssl - security update</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>libcurl</strong></td>
+      <td>8.7.0-DEV</td>
+      <td><details><summary>22 Versionen</summary><ul class="clean-list"><li><strong>v7.79.1-1</strong></li><li><strong>v7.86.0-1</strong></li><li><strong>v7.86.0-3</strong></li><li><strong>v7.88.1-1</strong></li><li><strong>v7.88.1-10</strong></li><li><strong>v8.10.0-1</strong></li><li><strong>v8.11.0-1</strong></li><li><strong>v8.11.1-1</strong></li><li><strong>v8.12.0+git20250209.89ed161+ds-1</strong></li><li><strong>v8.14.0-1</strong></li><li><strong>v8.14.1-1</strong></li><li><strong>v8.16.0-1</strong></li><li><strong>v8.16.0~rc2-1</strong></li><li><strong>v8.17.0-2</strong></li><li><strong>v8.17.0~rc2-1</strong></li><li><strong>v8.18.0-1</strong></li><li><strong>v8.18.0~rc2-1</strong></li><li><strong>v8.18.0~rc3-1</strong></li><li><strong>v8.5.0-1</strong></li><li><strong>v8.7.1-1</strong></li><li><strong>v8.9.0-1</strong></li><li><strong>v8.9.1-1</strong></li></ul></details></td>
+      <td>vcpkg</td>
+      <td><span class="badge">curl</span></td>
+      <td><span class="vuln-title">❌ 34 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922" target="_blank">DEBIAN-CVE-2021-22922</a>: When curl is instructed to download content using the metalink feature, theco...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923" target="_blank">DEBIAN-CVE-2021-22923</a>: When curl is instructed to get content using the metalink feature, and a user...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916" target="_blank">DEBIAN-CVE-2022-42916</a>: In curl before 7.86.0, the HSTS check could be bypassed to trick it into stay...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551" target="_blank">DEBIAN-CVE-2022-43551</a>: A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to t...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914" target="_blank">DEBIAN-CVE-2023-23914</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915" target="_blank">DEBIAN-CVE-2023-23915</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320" target="_blank">DEBIAN-CVE-2023-28320</a>: A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl p...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219" target="_blank">DEBIAN-CVE-2023-46219</a>: When saving HSTS data to an excessively long file name, curl could end up rem...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-11053" target="_blank">DEBIAN-CVE-2024-11053</a>: When asked to both use a `.netrc` file for credentials and to follow HTTP red...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2004" target="_blank">DEBIAN-CVE-2024-2004</a>: When a protocol selection parameter option disables all protocols without add...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379" target="_blank">DEBIAN-CVE-2024-2379</a>: libcurl skips the certificate verification for a QUIC connection under certai...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2398" target="_blank">DEBIAN-CVE-2024-2398</a>: When an application tells libcurl it wants to allow HTTP/2 server push, and t...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2466" target="_blank">DEBIAN-CVE-2024-2466</a>: libcurl did not check the server certificate of TLS connections done to a hos...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-6197" target="_blank">DEBIAN-CVE-2024-6197</a>: libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-6874" target="_blank">DEBIAN-CVE-2024-6874</a>: libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_ur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-7264" target="_blank">DEBIAN-CVE-2024-7264</a>: libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing a...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-8096" target="_blank">DEBIAN-CVE-2024-8096</a>: When curl is told to use the Certificate Status Request TLS extension, often ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681" target="_blank">DEBIAN-CVE-2024-9681</a>: When curl is asked to use HSTS, the expiry time for a subdomain might overwri...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0167" target="_blank">DEBIAN-CVE-2025-0167</a>: When asked to use a `.netrc` file for credentials **and** to follow HTTP redi...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0665" target="_blank">DEBIAN-CVE-2025-0665</a>: libcurl would wrongly close the same eventfd file descriptor twice when takin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725" target="_blank">DEBIAN-CVE-2025-0725</a>: When libcurl is asked to perform automatic gzip decompression of content-enco...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148" target="_blank">DEBIAN-CVE-2025-10148</a>: curl's websocket code did not update the 32 bit mask pattern for each new  ou...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966" target="_blank">DEBIAN-CVE-2025-10966</a>: curl's code for managing SSH connections when SFTP was done using the wolfSSH...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563" target="_blank">DEBIAN-CVE-2025-11563</a>: No summary available</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034" target="_blank">DEBIAN-CVE-2025-13034</a>: When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017" target="_blank">DEBIAN-CVE-2025-14017</a>: When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, chang...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524" target="_blank">DEBIAN-CVE-2025-14524</a>: When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfe...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819" target="_blank">DEBIAN-CVE-2025-14819</a>: When doing TLS related transfers with reused easy or multi handles and alteri...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079" target="_blank">DEBIAN-CVE-2025-15079</a>: When doing SSH-based transfers using either SCP or SFTP, and setting the know...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224" target="_blank">DEBIAN-CVE-2025-15224</a>: When doing SSH-based transfers using either SCP or SFTP, and asked to do publ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-4947" target="_blank">DEBIAN-CVE-2025-4947</a>: libcurl accidentally skips the certificate verification for QUIC connections ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-5025" target="_blank">DEBIAN-CVE-2025-5025</a>: libcurl supports *pinning* of the server certificate public key for HTTPS tra...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399" target="_blank">DEBIAN-CVE-2025-5399</a>: Due to a mistake in libcurl's WebSocket code, a malicious server can send a p...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086" target="_blank">DEBIAN-CVE-2025-9086</a>: 1. A cookie is set using the `secure` keyword for `https://target`   2. curl ...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>exiv2</strong></td>
+      <td>1.00.0.9</td>
+      <td><details><summary>3 Versionen</summary><ul class="clean-list"><li><strong>v0.27.5-1</strong></li><li><strong>v0.28.3+dfsg-2</strong></li><li><strong>v0.28.7+dfsg-2</strong></li></ul></details></td>
+      <td>vcpkg</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td><span class="vuln-title">❌ 9 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2018-14338" target="_blank">DEBIAN-CVE-2018-14338</a>: samples/geotag.cpp in the example code of Exiv2 0.26 misuses the realpath fun...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2020-18773" target="_blank">DEBIAN-CVE-2020-18773</a>: An invalid memory access in the decode function in iptc.cpp of Exiv2 0.27.99....</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2020-18774" target="_blank">DEBIAN-CVE-2020-18774</a>: A float point exception in the printLong function in tags_int.cpp of Exiv2 0....</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2020-18898" target="_blank">DEBIAN-CVE-2020-18898</a>: A stack exhaustion issue in the printIFDStructure function of Exiv2 0.27 allo...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-32617" target="_blank">DEBIAN-CVE-2021-32617</a>: Exiv2 is a command-line utility and C++ library for reading, writing, deletin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-24826" target="_blank">DEBIAN-CVE-2024-24826</a>: Exiv2 is a command-line utility and C++ library for reading, writing, deletin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-25112" target="_blank">DEBIAN-CVE-2024-25112</a>: Exiv2 is a command-line utility and C++ library for reading, writing, deletin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-54080" target="_blank">DEBIAN-CVE-2025-54080</a>: Exiv2 is a C++ library and a command-line utility to read, write, delete and ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-55304" target="_blank">DEBIAN-CVE-2025-55304</a>: Exiv2 is a C++ library and a command-line utility to read, write, delete and ...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="safe">
+      <td><strong>fmt</strong></td>
+      <td>10.1.1</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">MIT</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="safe">
+      <td><strong>nlohmann_json</strong></td>
+      <td>3.11.2</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">MIT</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>libcurl</strong></td>
+      <td>8.7.0-DEV</td>
+      <td><details><summary>22 Versionen</summary><ul class="clean-list"><li><strong>v7.79.1-1</strong></li><li><strong>v7.86.0-1</strong></li><li><strong>v7.86.0-3</strong></li><li><strong>v7.88.1-1</strong></li><li><strong>v7.88.1-10</strong></li><li><strong>v8.10.0-1</strong></li><li><strong>v8.11.0-1</strong></li><li><strong>v8.11.1-1</strong></li><li><strong>v8.12.0+git20250209.89ed161+ds-1</strong></li><li><strong>v8.14.0-1</strong></li><li><strong>v8.14.1-1</strong></li><li><strong>v8.16.0-1</strong></li><li><strong>v8.16.0~rc2-1</strong></li><li><strong>v8.17.0-2</strong></li><li><strong>v8.17.0~rc2-1</strong></li><li><strong>v8.18.0-1</strong></li><li><strong>v8.18.0~rc2-1</strong></li><li><strong>v8.18.0~rc3-1</strong></li><li><strong>v8.5.0-1</strong></li><li><strong>v8.7.1-1</strong></li><li><strong>v8.9.0-1</strong></li><li><strong>v8.9.1-1</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">curl</span></td>
+      <td><span class="vuln-title">❌ 34 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922" target="_blank">DEBIAN-CVE-2021-22922</a>: When curl is instructed to download content using the metalink feature, theco...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923" target="_blank">DEBIAN-CVE-2021-22923</a>: When curl is instructed to get content using the metalink feature, and a user...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916" target="_blank">DEBIAN-CVE-2022-42916</a>: In curl before 7.86.0, the HSTS check could be bypassed to trick it into stay...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551" target="_blank">DEBIAN-CVE-2022-43551</a>: A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to t...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914" target="_blank">DEBIAN-CVE-2023-23914</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915" target="_blank">DEBIAN-CVE-2023-23915</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320" target="_blank">DEBIAN-CVE-2023-28320</a>: A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl p...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219" target="_blank">DEBIAN-CVE-2023-46219</a>: When saving HSTS data to an excessively long file name, curl could end up rem...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-11053" target="_blank">DEBIAN-CVE-2024-11053</a>: When asked to both use a `.netrc` file for credentials and to follow HTTP red...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2004" target="_blank">DEBIAN-CVE-2024-2004</a>: When a protocol selection parameter option disables all protocols without add...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379" target="_blank">DEBIAN-CVE-2024-2379</a>: libcurl skips the certificate verification for a QUIC connection under certai...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2398" target="_blank">DEBIAN-CVE-2024-2398</a>: When an application tells libcurl it wants to allow HTTP/2 server push, and t...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2466" target="_blank">DEBIAN-CVE-2024-2466</a>: libcurl did not check the server certificate of TLS connections done to a hos...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-6197" target="_blank">DEBIAN-CVE-2024-6197</a>: libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-6874" target="_blank">DEBIAN-CVE-2024-6874</a>: libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_ur...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-7264" target="_blank">DEBIAN-CVE-2024-7264</a>: libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing a...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-8096" target="_blank">DEBIAN-CVE-2024-8096</a>: When curl is told to use the Certificate Status Request TLS extension, often ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681" target="_blank">DEBIAN-CVE-2024-9681</a>: When curl is asked to use HSTS, the expiry time for a subdomain might overwri...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0167" target="_blank">DEBIAN-CVE-2025-0167</a>: When asked to use a `.netrc` file for credentials **and** to follow HTTP redi...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0665" target="_blank">DEBIAN-CVE-2025-0665</a>: libcurl would wrongly close the same eventfd file descriptor twice when takin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725" target="_blank">DEBIAN-CVE-2025-0725</a>: When libcurl is asked to perform automatic gzip decompression of content-enco...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148" target="_blank">DEBIAN-CVE-2025-10148</a>: curl's websocket code did not update the 32 bit mask pattern for each new  ou...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966" target="_blank">DEBIAN-CVE-2025-10966</a>: curl's code for managing SSH connections when SFTP was done using the wolfSSH...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563" target="_blank">DEBIAN-CVE-2025-11563</a>: No summary available</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034" target="_blank">DEBIAN-CVE-2025-13034</a>: When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017" target="_blank">DEBIAN-CVE-2025-14017</a>: When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, chang...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524" target="_blank">DEBIAN-CVE-2025-14524</a>: When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfe...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819" target="_blank">DEBIAN-CVE-2025-14819</a>: When doing TLS related transfers with reused easy or multi handles and alteri...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079" target="_blank">DEBIAN-CVE-2025-15079</a>: When doing SSH-based transfers using either SCP or SFTP, and setting the know...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224" target="_blank">DEBIAN-CVE-2025-15224</a>: When doing SSH-based transfers using either SCP or SFTP, and asked to do publ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-4947" target="_blank">DEBIAN-CVE-2025-4947</a>: libcurl accidentally skips the certificate verification for QUIC connections ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-5025" target="_blank">DEBIAN-CVE-2025-5025</a>: libcurl supports *pinning* of the server certificate public key for HTTPS tra...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399" target="_blank">DEBIAN-CVE-2025-5399</a>: Due to a mistake in libcurl's WebSocket code, a malicious server can send a p...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086" target="_blank">DEBIAN-CVE-2025-9086</a>: 1. A cookie is set using the `secure` keyword for `https://target`   2. curl ...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="safe">
+      <td><strong>RustFly</strong></td>
+      <td>2.0.0</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>spip</strong></td>
+      <td>4.4.8</td>
+      <td><details><summary>3 Versionen</summary><ul class="clean-list"><li><strong>v4.3.0+dfsg-1</strong></li><li><strong>v4.3.6+dfsg-1</strong></li><li><strong>v4.4.5+dfsg-1</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td><span class="vuln-title">❌ 11 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-53900" target="_blank">DEBIAN-CVE-2023-53900</a>: Spip 4.1.10 contains a file upload vulnerability that allows attackers to upl...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-71240" target="_blank">DEBIAN-CVE-2025-71240</a>: SPIP before 4.2.15 allows Cross-Site Scripting (XSS) via crafted content in H...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-71241" target="_blank">DEBIAN-CVE-2025-71241</a>: SPIP before 4.3.6, 4.2.17, and 4.1.20 allows Cross-Site Scripting (XSS) in th...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-71242" target="_blank">DEBIAN-CVE-2025-71242</a>: SPIP before 4.3.6, 4.2.17, and 4.1.20 allows unauthorized content disclosure ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-71244" target="_blank">DEBIAN-CVE-2025-71244</a>: SPIP before 4.4.5 and 4.3.9 allows an Open Redirect via the login form when u...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-26223" target="_blank">DEBIAN-CVE-2026-26223</a>: SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the private area via m...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-26345" target="_blank">DEBIAN-CVE-2026-26345</a>: SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the public area for ce...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-27472" target="_blank">DEBIAN-CVE-2026-27472</a>: SPIP before 4.4.9 allows Blind Server-Side Request Forgery (SSRF) via syndica...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-27473" target="_blank">DEBIAN-CVE-2026-27473</a>: SPIP before 4.4.9 allows Stored Cross-Site Scripting (XSS) via syndicated sit...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-27474" target="_blank">DEBIAN-CVE-2026-27474</a>: SPIP before 4.4.9 allows Cross-Site Scripting (XSS) in the private area, comp...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-27475" target="_blank">DEBIAN-CVE-2026-27475</a>: SPIP before 4.4.9 allows Insecure Deserialization in the public area through ...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="safe">
+      <td><strong>myCred</strong></td>
+      <td>2.8.7</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="safe">
+      <td><strong>bardwp</strong></td>
+      <td>1.6</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="safe">
+      <td><strong>LMS</strong></td>
+      <td>3.6.27</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="safe">
+      <td><strong>VSS</strong></td>
+      <td>3.1</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="safe">
+      <td><strong>libzip</strong></td>
+      <td>1.10.1</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>openssl</strong></td>
+      <td>3.5.3</td>
+      <td><details><summary>4 Versionen</summary><ul class="clean-list"><li><strong>v3.5.0-1</strong></li><li><strong>v3.5.4-1</strong></li><li><strong>v3.5.4-1~deb13u2</strong></li><li><strong>v3.5.5-1</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">Apache-2.0</span></td>
+      <td><span class="vuln-title">❌ 17 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-11187" target="_blank">DEBIAN-CVE-2025-11187</a>: Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation whic...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15467" target="_blank">DEBIAN-CVE-2025-15467</a>: Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15468" target="_blank">DEBIAN-CVE-2025-15468</a>: Issue summary: If an application using the SSL_CIPHER_find() function in a QU...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15469" target="_blank">DEBIAN-CVE-2025-15469</a>: Issue summary: The 'openssl dgst' command-line tool silently truncates input ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-27587" target="_blank">DEBIAN-CVE-2025-27587</a>: OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Mi...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-66199" target="_blank">DEBIAN-CVE-2025-66199</a>: Issue summary: A TLS 1.3 connection using certificate compression can be forc...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-68160" target="_blank">DEBIAN-CVE-2025-68160</a>: Issue summary: Writing large, newline-free data into a BIO chain using the li...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69418" target="_blank">DEBIAN-CVE-2025-69418</a>: Issue summary: When using the low-level OCB API directly with AES-NI or<br>ot...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69419" target="_blank">DEBIAN-CVE-2025-69419</a>: Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously cr...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69420" target="_blank">DEBIAN-CVE-2025-69420</a>: Issue summary: A type confusion vulnerability exists in the TimeStamp Respons...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-69421" target="_blank">DEBIAN-CVE-2025-69421</a>: Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9230" target="_blank">DEBIAN-CVE-2025-9230</a>: Issue summary: An application trying to decrypt CMS messages encrypted using ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9231" target="_blank">DEBIAN-CVE-2025-9231</a>: Issue summary: A timing side-channel which could potentially allow remote rec...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9232" target="_blank">DEBIAN-CVE-2025-9232</a>: Issue summary: An application using the OpenSSL HTTP client API functions may...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-22795" target="_blank">DEBIAN-CVE-2026-22795</a>: Issue summary: An invalid or NULL pointer dereference can happen in an applic...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-22796" target="_blank">DEBIAN-CVE-2026-22796</a>: Issue summary: A type confusion vulnerability exists in the signature verific...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-6113-1" target="_blank">DSA-6113-1</a>: openssl - security update</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>liblouis</strong></td>
+      <td>3.24.0</td>
+      <td><details><summary>2 Versionen</summary><ul class="clean-list"><li><strong>v3.22.0-1</strong></li><li><strong>v3.24.0-2</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td><span class="vuln-title">❌ 5 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-26981" target="_blank">DEBIAN-CVE-2022-26981</a>: Liblouis through 3.21.0 has a buffer overflow in compilePassOpcode in compile...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-31783" target="_blank">DEBIAN-CVE-2022-31783</a>: Liblouis 3.21.0 has an out-of-bounds write in compileRule in compileTranslati...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-26767" target="_blank">DEBIAN-CVE-2023-26767</a>: Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote atta...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-26768" target="_blank">DEBIAN-CVE-2023-26768</a>: Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote atta...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-26769" target="_blank">DEBIAN-CVE-2023-26769</a>: Buffer Overflow vulnerability found in Liblouis Lou_Trace v.3.24.0 allows a r...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="safe">
+      <td><strong>my-lib</strong></td>
+      <td>1.2.0</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>spdlog</strong></td>
+      <td>1.12.0</td>
+      <td><details><summary>1 Version</summary><ul class="clean-list"><li><strong>v1:1.15.2+ds-1</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">MIT</span></td>
+      <td><span class="vuln-title">❌ 1 Vulnerability</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-6140" target="_blank">DEBIAN-CVE-2025-6140</a>: A vulnerability, which was classified as problematic, was found in spdlog up ...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>zlib</strong></td>
+      <td>1.3.1</td>
+      <td><details><summary>17 Versionen</summary><ul class="clean-list"><li><strong>v0.4.0-2</strong></li><li><strong>v0.4.1-1</strong></li><li><strong>v1:1.1.4-10</strong></li><li><strong>v1:1.2.1.1-6</strong></li><li><strong>v1:1.2.11.dfsg-1+deb10u2</strong></li><li><strong>v1:1.2.11.dfsg-2+deb11u1</strong></li><li><strong>v1:1.2.11.dfsg-2+deb11u2</strong></li><li><strong>v1:1.2.11.dfsg-4</strong></li><li><strong>v1:1.2.11.dfsg-4.1</strong></li><li><strong>v1:1.2.2-4.sarge.1</strong></li><li><strong>v1:1.2.2-4.sarge.2</strong></li><li><strong>v1:1.2.6.dfsg-1</strong></li><li><strong>v1:1.2.8.dfsg-2+deb8u1</strong></li><li><strong>v1:1.2.8.dfsg-3</strong></li><li><strong>v1:1.2.8.dfsg-4</strong></li><li><strong>v1:1.2.8.dfsg-5+deb9u1</strong></li><li><strong>v1:1.3.dfsg-2</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">Zlib</span></td>
+      <td><span class="vuln-title">❌ 20 Vulnerabilities</span>
+<details><summary>Details anzeigen</summary>
+<ul class="clean-list">
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2003-0107" target="_blank">DEBIAN-CVE-2003-0107</a>: Buffer overflow in the gzprintf function in zlib 1.1.4, when zlib is compiled...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2004-0797" target="_blank">DEBIAN-CVE-2004-0797</a>: The error handling in the (1) inflate and (2) inflateBack functions in ZLib c...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2005-1849" target="_blank">DEBIAN-CVE-2005-1849</a>: inftrees.h in zlib 1.2.2 allows remote attackers to cause a denial of service...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2005-2096" target="_blank">DEBIAN-CVE-2005-2096</a>: zlib 1.2 and later versions allows remote attackers to cause a denial of serv...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2016-9840" target="_blank">DEBIAN-CVE-2016-9840</a>: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unsp...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2016-9841" target="_blank">DEBIAN-CVE-2016-9841</a>: inffast.c in zlib 1.2.8 might allow context-dependent attackers to have unspe...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2016-9842" target="_blank">DEBIAN-CVE-2016-9842</a>: The inflateMark function in inflate.c in zlib 1.2.8 might allow context-depen...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2016-9843" target="_blank">DEBIAN-CVE-2016-9843</a>: The crc32_big function in crc32.c in zlib 1.2.8 might allow context-dependent...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2018-25032" target="_blank">DEBIAN-CVE-2018-25032</a>: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compre...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-37434" target="_blank">DEBIAN-CVE-2022-37434</a>: zlib through 1.2.12 has a heap-based buffer over-read or buffer overflow in i...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-45853" target="_blank">DEBIAN-CVE-2023-45853</a>: MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based ...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-22184" target="_blank">DEBIAN-CVE-2026-22184</a>: zlib versions up to and including 1.3.1.2 include a global buffer overflow in...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-27171" target="_blank">DEBIAN-CVE-2026-27171</a>: zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combin...</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DLA-2085-1" target="_blank">DLA-2085-1</a>: zlib - security update</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DLA-2968-1" target="_blank">DLA-2968-1</a>: zlib - security update</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DLA-3103-1" target="_blank">DLA-3103-1</a>: zlib - security update</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-5111-1" target="_blank">DSA-5111-1</a>: zlib - security update</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-5218-1" target="_blank">DSA-5218-1</a>: zlib - security update</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-740-1" target="_blank">DSA-740-1</a>: zlib - buffer overflow</li>
+  <li><a class="cve-link" href="https://osv.dev/vulnerability/DSA-763-1" target="_blank">DSA-763-1</a>: zlib - buffer overflow</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="">
+      <td><strong>libc.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libgcc_s.so.1</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libm.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libstdc++.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>Unknown</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

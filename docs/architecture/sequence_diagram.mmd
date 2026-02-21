@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant User
+    participant Main
+    participant Parsers as Manifest/Build Parsers
+    participant Scanners as Binary/Include Scanners
+    participant Resolvers as Resolvers (License/CVE/PkgConfig)
+    participant Output as Output (JSON/HTML)
+
+    User->>Main: Execute with options
+    Main->>Parsers: parse_vcpkg_manifest()
+    Main->>Parsers: parse_conan_dependencies()
+    Main->>Parsers: parse_cmake_libs()
+    Main->>Scanners: load_compile_commands()
+    Main->>Scanners: scan_includes()
+    Main->>Scanners: scan_elf_dependencies()
+    Main->>Resolvers: query(pkg_name) via PkgConfig
+    Main->>Resolvers: resolve_licenses()
+    Main->>Resolvers: query_cves(name, version, ecosystem)
+    Main->>Output: JSON report
+    Main->>Output: generate_html_report()
+    Output-->>User: Report files

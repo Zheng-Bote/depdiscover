@@ -3,6 +3,15 @@
 fmt/10.1.1
 nlohmann_json/3.11.2
 libcurl/8.7.0-DEV
+RustFly/2.0.0
+spip/4.4.8
+myCred/2.8.7.6
+bardwp/1.6
+LMS/3.6.27
+VSS/3.1
+libzip/1.10.1
+openssl/3.0.0
+liblouis/3.24.0
 
 # Abhängigkeit mit User und Channel (altes Conan v1 Format, aber noch möglich)
 my-lib/1.2.0@mycompany/stable
