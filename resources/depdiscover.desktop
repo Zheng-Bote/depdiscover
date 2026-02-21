@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=depdiscover
+GenericName=Dependency Scanner
+Comment=Native C++ Dependency Scanner & SBOM Generator
+Exec=depdiscover
+Icon=app_icon
+Terminal=true
+Categories=Development;Engineering;
+Keywords=cpp;dependency;scanner;sbom;cve;license;
+StartupNotify=true
+MimeType=application/json;

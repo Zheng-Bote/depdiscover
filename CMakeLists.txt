@@ -42,7 +42,17 @@ else()
     target_compile_options(depdiscover PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
-# --- 3. Custom Generators (Original Code) ---
+# --- 4. Installation ---
+include(GNUInstallDirs)
+install(TARGETS depdiscover
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+# --- 5. Custom Generators (Original Code) ---
 
 # CMake File API Query (Datei erzeugen)
 set(QUERY_DIR "${CMAKE_BINARY_DIR}/.cmake/api/v1/query/client-project")

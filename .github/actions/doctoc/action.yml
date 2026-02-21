@@ -1,0 +1,40 @@
+name: TOC Generator
+description: GitHub Action to generate TOC in Markdown files.
+author: Zheng Robert
+
+branding:
+  icon: "Sternchen"
+  color: "red"
+
+# inputs still under construction
+inputs:
+  GITHUB_TOKEN:
+    description: Secret GitHub API token used to make API requests or git authentication.
+    default: ${{ github.token }}
+    required: false
+  API_TOKEN:
+    description: Secret GitHub API token used to make API requests.
+    required: false
+  SIGNOFF:
+    description: "Add `Signed-off-by` line by the committer at the end of the commit log message."
+    required: false
+
+  TARGET_PATHS:
+    description: Target file path. (Comma separated, @see https://github.com/thlorenz/doctoc#adding-toc-to-individual-files)
+    default: "README*.md"
+    required: false
+  TOC_TITLE:
+    description: TOC Title
+    default: "**Table of Contents**"
+    required: false
+  FOLDING:
+    description: Whether to fold.
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: create TOC of Markdown files
+      id: doctoc
+      run: node ./.github/actions/doctoc/dist/index.js . --github --title '**Table of Contents**'
+      shell: bash

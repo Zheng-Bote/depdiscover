@@ -1,0 +1,67 @@
+name: Repo - create TOC of Markdown files
+# description: https://github.com/thlorenz/doctoc
+
+# README.md:
+# <!-- DOCTOC SKIP -->    // skip this file
+# <!-- START doctoc -->   // fix position of TOC; otherwise on top of markdown file
+# <!-- END doctoc -->     // end of ToC area
+
+run-name: create README table of contents by ${{ github.actor }}
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "README.md"
+  #    - "dist/**"
+  #    - "docs/**"
+  #    - ".github/actions/**"
+  #    - ".github/workflows/**"
+
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  generateTOC:
+    name: TOC Generator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: "main"
+
+      - uses: ./.github/actions/doctoc
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v20
+        id: verify_changed_files
+        # ToDo
+        #with:
+        #  files: |
+        #    *.md
+        #    **/*.{md}
+
+      - name: Markdown files changed
+        if: steps.verify_changed_files.outputs.files_changed == 'false'
+        run: |
+          echo "no uncommitted changes"
+          #exit 1
+
+      - name: commit and push
+        if: steps.verify_changed_files.outputs.files_changed == 'true'
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: "main"
+          commit-message: "appended by Github Actions"
+          force-add: "true"
+          #files: README.md
+          name: "github-actions[bot]"
+          email: "github-actions[bot]@users.noreply.github.com"
