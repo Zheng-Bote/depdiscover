@@ -4,14 +4,12 @@ This guide explains how to integrate the **depdiscover** AppImage into your GitL
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
-- [Using depdiscover AppImage in GitLab Actions](#using-depdiscover-appimage-in-gitlab-actions)
-  - [GitLab Integration Benefits](#gitlab-integration-benefits)
-  - [Workflow Example](#workflow-example)
-  - [Why Extract the AppImage?](#why-extract-the-appimage)
-    - [Key Steps](#key-steps)
+- [GitLab Integration Benefits](#gitlab-integration-benefits)
+- [Workflow Example](#workflow-example)
+- [Why Extract the AppImage?](#why-extract-the-appimage)
+  - [Key Steps](#key-steps)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
