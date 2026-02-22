@@ -24,17 +24,28 @@ add_subdirectory(configure)
 include(FetchContent)
 
 FetchContent_Declare(
-  json
+  nlohmann_json
   GIT_REPOSITORY https://github.com/nlohmann/json.git
   GIT_TAG        v3.11.3
 )
-FetchContent_MakeAvailable(json)
+
+FetchContent_Declare(
+  gh_update_checker
+  GIT_REPOSITORY https://github.com/Zheng-Bote/gh-update-checker.git
+  GIT_TAG        v1.0.6
+)
+
+FetchContent_MakeAvailable(nlohmann_json gh_update_checker)
 
 
 add_executable(depdiscover src/main.cpp)
 
 target_include_directories(depdiscover PRIVATE "${CMAKE_SOURCE_DIR}/include")
-target_link_libraries(depdiscover PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(depdiscover PRIVATE 
+    nlohmann_json::nlohmann_json
+    gh_update_checker
+    libcurl
+)
 
 if(MSVC)
     target_compile_options(depdiscover PRIVATE /W4)

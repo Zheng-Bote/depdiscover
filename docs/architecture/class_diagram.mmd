@@ -1,0 +1,51 @@
+classDiagram
+    class Dependency {
+        +string name
+        +string version
+        +string type
+        +string source
+        +vector~string~ headers
+        +vector~string~ libraries
+        +vector~string~ licenses
+        +vector~CVE~ cves
+    }
+
+    class CVE {
+        +string id
+        +string summary
+        +string severity
+        +string fixed_version
+        +bool suppressed
+        +string suppression_reason
+    }
+
+    class PkgInfo {
+        +bool found
+        +string version
+        +vector~string~ include_paths
+        +vector~string~ lib_names
+    }
+
+    class PkgConfig {
+        <<static>>
+        +query(string package_name) PkgInfo
+        -exec(string cmd) string
+        -parse_flags(string input, string prefix) vector~string~
+    }
+
+    class SemVer {
+        +int major
+        +int minor
+        +int patch
+        +parse(string_view v) SemVer
+    }
+
+    class UpdateInfo {
+        +bool hasUpdate
+        +string latestVersion
+    }
+
+    Dependency "1" *-- "many" CVE
+    PkgConfig ..> PkgInfo : creates
+    Main ..> Dependency : manages
+    Main ..> UpdateInfo : checks

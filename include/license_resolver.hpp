@@ -28,29 +28,25 @@ namespace depdiscover {
 
 namespace fs = std::filesystem;
 
-// --- Hilfsfunktionen für Text-Analyse ---
-
-// Liest eine Datei und sucht nach Lizenz-Schlüsselwörtern
 /**
  * @brief Guesses the license type from a file's content.
  *
  * Reads the first 20 lines and checks for common license keywords.
  *
  * @param path The path to the file (e.g., LICENSE).
- * @return std::string The matched license (e.g., "MIT"), or "See file: ..." if
- * ambiguous.
+ * @return std::string The matched license (e.g., "MIT"), or "See file: ..." if ambiguous.
  */
 inline std::string guess_license_from_content(const fs::path &path) {
   std::ifstream f(path);
   if (!f)
     return "";
 
-  // Wir lesen nur die ersten 20 Zeilen (Performance & Relevanz)
+  // Read only the first 20 lines for performance and relevance
   std::string content;
   std::string line;
   int lines_read = 0;
   while (std::getline(f, line) && lines_read < 20) {
-    // ToUpper für einfachen Vergleich
+    // ToUpper for easier comparison
     std::transform(line.begin(), line.end(), line.begin(), ::toupper);
     content += line + "\n";
     lines_read++;
@@ -81,23 +77,17 @@ inline std::string guess_license_from_content(const fs::path &path) {
   if (content.find("ZLIB LICENSE") != std::string::npos)
     return "Zlib";
 
-  // Fallback: Wenn wir die Datei gefunden haben, aber den Text nicht erkennen,
-  // geben wir "Custom" oder den Dateinamen zurück, damit der User nachsehen
-  // kann.
+  // Fallback: If we found the file but don't recognize the text, return filename.
   return "See file: " + path.filename().string();
 }
-
-// --- Hauptfunktion ---
 
 /**
  * @brief Resolves licenses for a package.
  *
- * Uses a static database, name heuristics, and file system scanning of header
- * directories.
+ * Uses a static database, name heuristics, and file system scanning of header directories.
  *
  * @param package_name The name of the package.
- * @param header_files A list of associated header files (used for locating
- * license files).
+ * @param header_files A list of associated header files (used for locating license files).
  * @return std::vector<std::string> A list of resolved licenses.
  */
 inline std::vector<std::string>
@@ -105,7 +95,7 @@ resolve_licenses(const std::string &package_name,
                  const std::vector<std::string> &header_files = {}) {
   std::vector<std::string> licenses;
 
-  // 1. Statische Datenbank (Erweitert)
+  // 1. Static database
   static const std::map<std::string, std::vector<std::string>> license_db = {
       {"openssl", {"Apache-2.0"}},
       {"zlib", {"Zlib"}},
@@ -120,7 +110,7 @@ resolve_licenses(const std::string &package_name,
       {"abseil", {"Apache-2.0"}},
       {"eigen", {"MPL-2.0"}},
       {"qt", {"LGPL-3.0", "GPL-2.0", "GPL-3.0"}},
-      {"ffmpeg", {"LGPL-2.1"}}, // Oder GPL, je nach Config
+      {"ffmpeg", {"LGPL-2.1"}}, // Or GPL depending on config
       {"opencv", {"Apache-2.0"}},
       {"sqlite3", {"Public-Domain"}},
       {"catch2", {"BSL-1.0"}}};
@@ -129,14 +119,14 @@ resolve_licenses(const std::string &package_name,
     return license_db.at(package_name);
   }
 
-  // 2. Namens-Heuristik
+  // 2. Name heuristics
   if (package_name.find("boost") != std::string::npos)
     return {"BSL-1.0"};
   if (package_name.find("gpl") != std::string::npos)
     return {"GPL"};
 
-  // 3. File-System Scan (Intelligent)
-  // Wir prüfen die Verzeichnisse, in denen die Header liegen.
+  // 3. Intelligent file system scan
+  // Check directories containing the headers.
   std::set<std::string> checked_dirs;
 
   for (const auto &header_path : header_files) {
@@ -147,14 +137,13 @@ resolve_licenses(const std::string &package_name,
 
       fs::path parent = p.parent_path();
 
-      // Wir prüfen das direkte Verzeichnis und maximal 2 Ebenen darüber
-      // (z.B. include/fmt/core.h -> include/fmt/LICENSE oder include/LICENSE)
+      // Check current directory and up to 2 levels above.
       for (int i = 0; i < 3; ++i) {
         if (checked_dirs.contains(parent.string()))
           break;
         checked_dirs.insert(parent.string());
 
-        // Typische Lizenz-Dateinamen
+        // Common license filenames
         std::vector<std::string> candidates = {
             "LICENSE",     "LICENSE.txt", "LICENSE.md",   "COPYING",
             "COPYING.txt", "NOTICE",      "Copyright.txt"};
@@ -166,7 +155,7 @@ resolve_licenses(const std::string &package_name,
               fs::is_regular_file(license_path, ec)) {
             std::string detected = guess_license_from_content(license_path);
             if (!detected.empty()) {
-              // Duplikate vermeiden
+              // Avoid duplicates
               bool already_have = false;
               for (const auto &l : licenses)
                 if (l == detected)
@@ -183,7 +172,7 @@ resolve_licenses(const std::string &package_name,
           break;
       }
     } catch (...) {
-      // Pfad-Fehler ignorieren
+      // Ignore path errors
     }
   }
 

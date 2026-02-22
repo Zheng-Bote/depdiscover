@@ -1,13 +1,19 @@
 /**
+ * SPDX-FileComment: Project Configuration template
+ * SPDX-FileType: SOURCE
+ * SPDX-FileContributor: ZHENG Robert
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert
+ * SPDX-License-Identifier: MIT
+ *
  * @file rz_config.hpp.in
- * @author ZHENG Robert (robert@hase-zheng.net)
- * @brief configuration
+ * @brief Configuration template for CMake.
  * @version 2.1.0
  * @date 2026-01-01
  *
- * @copyright Copyright (c) 2025 ZHENG Robert
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  *
- * SPDX-License-Identifier: MIT
+ * @license MIT License
  */
 #pragma once
 
@@ -21,9 +27,9 @@ constexpr std::string_view PROJECT_DESCRIPTION = "Dependency Tracker for C++ Pro
 
 constexpr std::string_view EXECUTABLE_NAME = "depdiscover";
 
-constexpr std::string_view VERSION = "1.1.0";
+constexpr std::string_view VERSION = "1.2.0";
 constexpr std::int32_t PROJECT_VERSION_MAJOR { 1 };
-constexpr std::int32_t PROJECT_VERSION_MINOR { 1 };
+constexpr std::int32_t PROJECT_VERSION_MINOR { 2 };
 constexpr std::int32_t PROJECT_VERSION_PATCH { 0 };
 
 constexpr std::string_view PROJECT_HOMEPAGE_URL = "https://github.com/zb-bamboo/Dependency_Tracker_2";

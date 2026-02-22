@@ -9,6 +9,11 @@
  * @brief Main entry point for the Dependency Tracker application.
  * @version 1.2.0
  * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
  */
 
 #include <algorithm>
@@ -20,17 +25,17 @@
 #include <string>
 #include <vector>
 
-// Externe Bibliotheken
+// External Libraries
 #include <nlohmann/json.hpp>
 
-// Projekt Konfiguration
+// Project Configuration
 #include "rz_config.hpp"
 
 // Update Checker
 #include <check_gh-update.hpp>
 #include <print>
 
-// Core Komponenten
+// Core Components
 #include "compile_commands.hpp"
 #include "elf_scanner.hpp"
 #include "header_resolver.hpp"
@@ -39,12 +44,12 @@
 #include "semver.hpp"
 #include "types.hpp"
 
-// Parser
+// Parsers
 #include "cmake_libs_parser.hpp"
 #include "conan_parser.hpp"
 #include "vcpkg_parser.hpp"
 
-// Metadaten & Output Resolver
+// Metadata & Output Resolvers
 #include "cve_resolver.hpp"
 #include "cyclonedx_generator.hpp"
 #include "html_generator.hpp"
@@ -54,9 +59,19 @@ using namespace depdiscover;
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
+/**
+ * @brief Current schema version for the generated JSON report.
+ */
 constexpr auto SCHEMA_VERSION = "1.2";
 
-// --- Hilfsfunktionen für Matching ---
+/**
+ * @brief Checks if a string contains another string (case-insensitive).
+ *
+ * @param haystack The string to search in.
+ * @param needle The string to search for.
+ * @return true If the needle is found in the haystack.
+ * @return false Otherwise.
+ */
 bool string_contains(const std::string &haystack, const std::string &needle) {
   auto it = std::search(haystack.begin(), haystack.end(), needle.begin(),
                         needle.end(), [](char ch1, char ch2) {
@@ -65,6 +80,14 @@ bool string_contains(const std::string &haystack, const std::string &needle) {
   return it != haystack.end();
 }
 
+/**
+ * @brief Checks if a path starts with a given prefix.
+ *
+ * @param path The path to check.
+ * @param prefix The prefix to look for.
+ * @return true If the path starts with the prefix.
+ * @return false Otherwise.
+ */
 bool path_starts_with(const std::string &path, const std::string &prefix) {
   if (path.rfind(prefix, 0) == 0)
     return true;
@@ -74,6 +97,14 @@ bool path_starts_with(const std::string &path, const std::string &prefix) {
   return false;
 }
 
+/**
+ * @brief Performs a fuzzy match between a header path and a package name.
+ *
+ * @param header_path The path to the header file.
+ * @param pkg_name The name of the package.
+ * @return true If a match is likely.
+ * @return false Otherwise.
+ */
 bool fuzzy_match_header(const std::string &header_path,
                         const std::string &pkg_name) {
   if (string_contains(header_path, "/" + pkg_name + "/"))
@@ -100,6 +131,14 @@ bool fuzzy_match_header(const std::string &header_path,
   return false;
 }
 
+/**
+ * @brief Performs a fuzzy match between a library filename and a package name.
+ *
+ * @param lib_filename The filename of the library.
+ * @param pkg_name The name of the package.
+ * @return true If a match is likely.
+ * @return false Otherwise.
+ */
 bool fuzzy_match_lib(const std::string &lib_filename,
                      const std::string &pkg_name) {
   std::string clean_filename = lib_filename;
@@ -111,7 +150,12 @@ bool fuzzy_match_lib(const std::string &lib_filename,
   return (clean_filename.rfind(clean_pkg, 0) == 0);
 }
 
-// --- Hilfsfunktion: CVSS Score extrahieren ---
+/**
+ * @brief Extracts a CVSS score from a severity string.
+ *
+ * @param severity_str The severity string (e.g., "7.5" or "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H").
+ * @return double The extracted CVSS score.
+ */
 double extract_cvss_score(const std::string &severity_str) {
   if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
       severity_str.empty())
@@ -139,40 +183,50 @@ double extract_cvss_score(const std::string &severity_str) {
   return 0.0;
 }
 
+/**
+ * @brief Prints the help message to the standard error stream.
+ *
+ * @param program_name The name of the executable.
+ */
 void print_help(const char *program_name) {
   std::cerr
-      << "Verwendung: " << program_name << " [OPTIONEN]\n\n"
-      << "Optionen:\n"
-      << "  -c, --compile-commands <PFAD>  Input: compile_commands.json\n"
-      << "  -l, --libs <PFAD>              Input: libs.txt (CMake generated)\n"
-      << "  -b, --binary <PFAD>            Input: Binary (für ldd Analyse)\n"
-      << "  -v, --vcpkg <PFAD>             Input: vcpkg.json\n"
-      << "  -C, --conan <PFAD>             Input: conanfile.txt\n"
-      << "  -o, --output <PFAD>            Output: JSON Datei (Default: "
+      << "Usage: " << program_name << " [OPTIONS]\n\n"
+      << "Options:\n"
+      << "  -c, --compile-commands <PATH>  Input: compile_commands.json\n"
+      << "  -l, --libs <PATH>              Input: libs.txt (CMake generated)\n"
+      << "  -b, --binary <PATH>            Input: Binary (for ldd analysis)\n"
+      << "  -v, --vcpkg <PATH>             Input: vcpkg.json\n"
+      << "  -C, --conan <PATH>             Input: conanfile.txt\n"
+      << "  -o, --output <PATH>            Output: JSON file (Default: "
          "depdiscover.json)\n"
-      << "  -n, --name <NAME>              Setzt den Projektnamen im Report\n"
-      << "  -e, --ecosystem <NAME>         OSV Ecosystem für CVE Checks "
+      << "  -n, --name <NAME>              Sets the project name in the report\n"
+      << "  -e, --ecosystem <NAME>         OSV Ecosystem for CVE checks "
          "(Default: Debian)\n"
-      << "  -H, --html <PFAD>              Output: HTML Report generieren "
+      << "  -H, --html <PATH>              Output: Generate HTML report "
          "(Optional)\n"
-      << "  -x, --cyclonedx <PFAD>         Output: CycloneDX 1.4 JSON "
-         "generieren (Optional)\n"
-      << "  -f, --fail-on-cvss <SCORE>     Build Breaker: Exit 1 wenn "
-         "CVSS-Score >= SCORE (z.B. 7.0)\n"
-      << "  -s, --suppressions <PFAD>      Input: Path to JSON file with "
+      << "  -x, --cyclonedx <PATH>         Output: Generate CycloneDX 1.4 JSON "
+         "(Optional)\n"
+      << "  -f, --fail-on-cvss <SCORE>     Build Breaker: Exit 1 if "
+         "CVSS-Score >= SCORE (e.g., 7.0)\n"
+      << "  -s, --suppressions <PATH>      Input: Path to JSON file with "
          "suppressed CVEs (Optional)\n"
-      << "  -h, --help                     Zeigt diese Hilfe an\n\n"
+      << "  -h, --help                     Shows this help message\n\n"
       << "Info:\n"
       << "  " << rz::config::PROG_LONGNAME << "\n"
       << "  Version: " << rz::config::VERSION << "\n"
       << "  Author:  " << rz::config::AUTHOR << "\n";
 }
 
-// --- Main ---
-
+/**
+ * @brief Main entry point of the application.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * @return int Exit code (0 for success, non-zero for failure).
+ */
 int main(int argc, char **argv) {
   // --- Update Check ---
-  std::cerr << "[Info] Update Check...\n";
+  std::cerr << "[Info] Checking for updates...\n";
   try {
     const std::string repo_url(rz::config::PROJECT_HOMEPAGE_URL);
     const std::string current_version(rz::config::VERSION);
@@ -181,7 +235,7 @@ int main(int argc, char **argv) {
       auto result = ghupdate::check_github_update(repo_url, current_version);
       if (result.hasUpdate) {
         std::println(
-            "\n[Update] Eine neue Version ist verfügbar: {} (aktuell: {})",
+            "\n[Update] A new version is available: {} (current: {})",
             result.latestVersion, current_version);
         std::println("[Update] Download: {}\n", repo_url);
       } else {
@@ -190,7 +244,7 @@ int main(int argc, char **argv) {
       }
     }
   } catch (const std::exception &ex) {
-    // Falls kein Internet oder URL falsch, leise ignorieren
+    // Silently ignore if no internet or invalid URL
   }
 
   std::string cc_path = "compile_commands.json";
@@ -251,8 +305,7 @@ int main(int argc, char **argv) {
         try {
           fail_on_cvss = std::stod(argv[++i]);
         } catch (...) {
-          std::cerr << "Fehler: --fail-on-cvss erfordert eine gültige Zahl "
-                       "(z.B. 7.0).\n";
+          std::cerr << "Error: --fail-on-cvss requires a valid number (e.g., 7.0).\n";
           return 1;
         }
       }
@@ -263,9 +316,9 @@ int main(int argc, char **argv) {
   }
 
   try {
-    // --- 0. Suppressions laden ---
+    // --- 0. Load Suppressions ---
     if (!suppressions_path.empty() && fs::exists(suppressions_path)) {
-      std::cerr << "[Info] Lade Suppressions: " << suppressions_path << "\n";
+      std::cerr << "[Info] Loading suppressions from: " << suppressions_path << "\n";
       try {
         std::ifstream f(suppressions_path);
         json j;
@@ -274,26 +327,26 @@ int main(int argc, char **argv) {
           suppressions[key] = value.get<std::string>();
         }
       } catch (const std::exception &e) {
-        std::cerr << "[Warnung] Fehler beim Lesen der Suppressions-Datei: "
+        std::cerr << "[Warning] Error reading suppressions file: "
                   << e.what() << "\n";
       }
     }
 
-    // --- 1. Abhängigkeiten laden ---
+    // --- 1. Load Dependencies ---
     std::vector<Dependency> deps;
 
     if (fs::exists(vcpkg_path)) {
-      std::cerr << "[Info] Lade Vcpkg Manifest: " << vcpkg_path << "\n";
+      std::cerr << "[Info] Loading Vcpkg manifest: " << vcpkg_path << "\n";
       auto v = parse_vcpkg_manifest(vcpkg_path);
       deps.insert(deps.end(), v.begin(), v.end());
     }
     if (fs::exists(conan_path)) {
-      std::cerr << "[Info] Lade Conan File: " << conan_path << "\n";
+      std::cerr << "[Info] Loading Conan file: " << conan_path << "\n";
       auto c = parse_conan_dependencies(conan_path);
       deps.insert(deps.end(), c.begin(), c.end());
     }
     if (fs::exists(libs_txt_path)) {
-      std::cerr << "[Info] Lade CMake libs.txt: " << libs_txt_path << "\n";
+      std::cerr << "[Info] Loading CMake libs.txt: " << libs_txt_path << "\n";
       auto cmake_deps = parse_cmake_libs(libs_txt_path);
       for (const auto &cd : cmake_deps) {
         bool found = false;
@@ -314,11 +367,11 @@ int main(int argc, char **argv) {
       }
     }
 
-    // --- 2. Build-Artefakte scannen ---
+    // --- 2. Scan Build Artifacts ---
     std::set<std::string> all_resolved_headers;
     std::set<std::string> all_elf_libs;
 
-    std::cerr << "[Info] Analysiere Compile Commands...\n";
+    std::cerr << "[Info] Analyzing Compile Commands...\n";
     auto cc = load_compile_commands(cc_path);
     for (const auto &entry : cc) {
       auto incs = extract_include_paths(entry.command);
@@ -331,16 +384,16 @@ int main(int argc, char **argv) {
       }
     }
     std::cerr << "   -> " << all_resolved_headers.size()
-              << " Header-Dateien identifiziert.\n";
+              << " header files identified.\n";
 
     if (!binary_path.empty()) {
-      std::cerr << "[Info] Scanne Binary (ELF): " << binary_path << "\n";
+      std::cerr << "[Info] Scanning binary (ELF): " << binary_path << "\n";
       auto l = scan_elf_dependencies(binary_path);
       all_elf_libs.insert(l.begin(), l.end());
     }
 
-    // --- 3. Mapping & Anreicherung ---
-    std::cerr << "[Info] Starte Mapping & Metadaten-Abfrage...\n";
+    // --- 3. Mapping & Enrichment ---
+    std::cerr << "[Info] Starting mapping & metadata enrichment...\n";
 
     for (auto &dep : deps) {
       PkgInfo pkg = PkgConfig::query(dep.name);
@@ -406,7 +459,7 @@ int main(int argc, char **argv) {
 
       dep.cves = query_cves(dep.name, clean_ver, ecosystem);
 
-      // NEU: Suppressions anwenden
+      // Apply suppressions
       if (!suppressions.empty()) {
         for (auto &cve : dep.cves) {
           if (suppressions.contains(cve.id)) {
@@ -428,7 +481,7 @@ int main(int argc, char **argv) {
       deps.push_back(sys);
     }
 
-    // --- 5. Output Generieren (Erweiterter Header) ---
+    // --- 5. Generate Output ---
     json root;
 
     json header;
@@ -451,46 +504,46 @@ int main(int argc, char **argv) {
     root["header"] = header;
     root["dependencies"] = deps;
 
-    // JSON Speichern
+    // Save JSON
     std::ofstream out_file(output_path);
     if (!out_file) {
-      std::cerr << "Error: Konnte Ausgabedatei nicht schreiben: " << output_path
+      std::cerr << "Error: Could not write output file: " << output_path
                 << "\n";
       return 1;
     }
     out_file << root.dump(2);
-    std::cerr << "[Success] SBOM Report geschrieben nach: " << output_path
+    std::cerr << "[Success] SBOM report written to: " << output_path
               << "\n";
 
-    // HTML Report Generieren
+    // Generate HTML Report
     if (!html_path.empty()) {
       generate_html_report(root, html_path);
-      std::cerr << "[Success] HTML Report geschrieben nach: " << html_path
+      std::cerr << "[Success] HTML report written to: " << html_path
                 << "\n";
     }
 
-    // CycloneDX Report Generieren
+    // Generate CycloneDX Report
     if (!cyclonedx_path.empty()) {
       generate_cyclonedx_report(root, cyclonedx_path);
-      std::cerr << "[Success] CycloneDX SBOM geschrieben nach: "
+      std::cerr << "[Success] CycloneDX SBOM written to: "
                 << cyclonedx_path << "\n";
     }
 
-    // --- 6. Build Breaker Logik prüfen ---
+    // --- 6. Check Build Breaker Logic ---
     if (fail_on_cvss <= 10.0) {
       bool critical_vuln_found = false;
-      std::cerr << "\n[Audit] Prüfe auf Schwachstellen mit CVSS >= "
+      std::cerr << "\n[Audit] Checking for vulnerabilities with CVSS >= "
                 << fail_on_cvss << " ...\n";
 
       for (const auto &dep : deps) {
         for (const auto &cve : dep.cves) {
-          // NEU: Unterdrückte CVEs werden im Build Breaker ignoriert
+          // Suppressed CVEs are ignored in build breaker
           if (!cve.suppressed && cve.id != "SAFE" && cve.id != "NOT-CHECKED" &&
               cve.id != "CHECK-ERROR") {
             double score = extract_cvss_score(cve.severity);
             if (score >= fail_on_cvss) {
-              std::cerr << "  ❌ FEHLER: " << dep.name << " v" << dep.version
-                        << " hat Schwachstelle " << cve.id << " (Score: ~"
+              std::cerr << "  ❌ ERROR: " << dep.name << " v" << dep.version
+                        << " has vulnerability " << cve.id << " (Score: ~"
                         << score << ")\n";
               critical_vuln_found = true;
             }
@@ -499,12 +552,10 @@ int main(int argc, char **argv) {
       }
 
       if (critical_vuln_found) {
-        std::cerr << "\n[Audit] BUILD FAILED: Kritische Schwachstellen "
-                     "gefunden, die den Schwellenwert überschreiten!\n";
-        return 1; // Exit mit Fehlercode
+        std::cerr << "\n[Audit] BUILD FAILED: Critical vulnerabilities found exceeding threshold!\n";
+        return 1; // Exit with error code
       } else {
-        std::cerr << "[Audit] BUILD SUCCESS: Keine kritischen ungelösten "
-                     "Schwachstellen über dem Schwellenwert gefunden.\n";
+        std::cerr << "[Audit] BUILD SUCCESS: No critical unresolved vulnerabilities found above threshold.\n";
       }
     }
 

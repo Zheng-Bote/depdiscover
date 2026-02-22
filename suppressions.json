@@ -1,0 +1,5 @@
+{
+  "CVE-2023-12345": "Wird ignoriert, weil wir das betroffene Krypto-Modul nicht kompilieren.",
+  "GHSA-abcd-1234-wxyz": "False Positive: Unser Wrapper verhindert den Buffer Overflow.",
+  "DEBIAN-CVE-2025-11187": "testing suppression"
+}

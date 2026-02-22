@@ -22,17 +22,16 @@
 
 namespace depdiscover {
 
-// CVE Struktur
 /**
  * @brief Represents a Common Vulnerability and Exposure (CVE).
  */
 struct CVE {
-  std::string id;
-  std::string summary;
-  std::string severity;
-  std::string fixed_version;
-  bool suppressed = false;
-  std::string suppression_reason;
+  std::string id;                  ///< The unique ID of the CVE (e.g., CVE-2021-1234).
+  std::string summary;             ///< A brief summary of the vulnerability.
+  std::string severity;            ///< The severity score (CVSS).
+  std::string fixed_version;       ///< The version where the vulnerability is fixed.
+  bool suppressed = false;         ///< True if this vulnerability is manually suppressed.
+  std::string suppression_reason;  ///< The reason for suppression.
 };
 
 /**
@@ -46,27 +45,24 @@ inline void to_json(nlohmann::json &j, const CVE &c) {
                      {"summary", c.summary},
                      {"severity", c.severity},
                      {"fixed_version", c.fixed_version},
-                     // FIX: Die beiden Felder gehören HIER rein (zur CVE)
                      {"suppressed", c.suppressed},
                      {"suppression_reason", c.suppression_reason}};
 }
 
-// Dependency Struktur (Erweitert)
 /**
  * @brief Represents a software dependency.
  */
 struct Dependency {
-  std::string name;
-  std::string version;
-  std::string type;   // "vcpkg", "conan", "system"
-  std::string source; // "manifest", "pkgconfig"
+  std::string name;                ///< Package name.
+  std::string version;             ///< Package version.
+  std::string type;                ///< Dependency type (e.g., "vcpkg", "conan", "system").
+  std::string source;              ///< Metadata source (e.g., "manifest", "pkgconfig").
 
-  std::vector<std::string> headers;
-  std::vector<std::string> libraries;
+  std::vector<std::string> headers;   ///< List of associated header files.
+  std::vector<std::string> libraries; ///< List of associated binary libraries.
 
-  // NEU: Metadaten
-  std::vector<std::string> licenses;
-  std::vector<CVE> cves;
+  std::vector<std::string> licenses;  ///< List of resolved licenses.
+  std::vector<CVE> cves;              ///< List of identified vulnerabilities.
 };
 
 /**
@@ -84,7 +80,6 @@ inline void to_json(nlohmann::json &j, const Dependency &d) {
       {"headers", d.headers},
       {"libraries", d.libraries},
       {"licenses", d.licenses},
-      // FIX: Hier wurden 'suppressed' und 'suppression_reason' entfernt
       {"cves", d.cves}};
 }
 

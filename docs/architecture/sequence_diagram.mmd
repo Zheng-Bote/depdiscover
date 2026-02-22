@@ -1,12 +1,17 @@
 sequenceDiagram
     participant User
     participant Main
+    participant GH as GitHub API
     participant Parsers as Manifest/Build Parsers
     participant Scanners as Binary/Include Scanners
     participant Resolvers as Resolvers (License/CVE/PkgConfig)
-    participant Output as Output (JSON/HTML)
+    participant OSV as OSV.dev API
+    participant Output as Output (JSON/HTML/CDX)
 
     User->>Main: Execute with options
+    Main->>GH: check_github_update()
+    GH-->>Main: Update info
+    Main->>Main: Load Suppressions (-s)
     Main->>Parsers: parse_vcpkg_manifest()
     Main->>Parsers: parse_conan_dependencies()
     Main->>Parsers: parse_cmake_libs()
@@ -16,6 +21,11 @@ sequenceDiagram
     Main->>Resolvers: query(pkg_name) via PkgConfig
     Main->>Resolvers: resolve_licenses()
     Main->>Resolvers: query_cves(name, version, ecosystem)
+    Resolvers->>OSV: POST /v1/query
+    OSV-->>Resolvers: Vulnerabilities
     Main->>Output: JSON report
     Main->>Output: generate_html_report()
+    Main->>Output: generate_cyclonedx_report()
+    Main->>Main: Build Breaker Check (-f)
+    Note over Main: Exit 1 if critical<br>vulnerabilities found
     Output-->>User: Report files

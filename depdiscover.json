@@ -6,7 +6,9 @@
           "fixed_version": "",
           "id": "NOT-CHECKED",
           "severity": "UNKNOWN",
-          "summary": "Version unknown or latest, cannot query OSV"
+          "summary": "Version unknown or latest, cannot query OSV",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -17,7 +19,7 @@
       "name": "fmt",
       "source": "manifest",
       "type": "vcpkg",
-      "version": "latest"
+      "version": "unknown"
     },
     {
       "cves": [
@@ -25,106 +27,165 @@
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-11187",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:H",
-          "summary": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p..."
+          "summary": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p...",
+          "suppressed": true,
+          "suppression_reason": "testing suppression"
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15467",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow.  Impact summary:..."
+          "summary": "Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow.  Impact summary:...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15468",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the..."
+          "summary": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15469",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N",
-          "summary": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes..."
+          "summary": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.0-1",
           "id": "DEBIAN-CVE-2025-27587",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m..."
+          "summary": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-66199",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag..."
+          "summary": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-68160",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg..."
+          "summary": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69418",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult..."
+          "summary": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69419",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
-          "summary": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin..."
+          "summary": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69420",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou..."
+          "summary": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69421",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum..."
+          "summary": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9230",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write...."
+          "summary": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write....",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9231",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
-          "summary": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on..."
+          "summary": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9232",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ..."
+          "summary": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2026-22795",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica..."
+          "summary": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2026-22796",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
-          "summary": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse..."
+          "summary": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1~deb13u2",
           "id": "DSA-6113-1",
           "severity": "UNKNOWN",
-          "summary": "openssl - security update"
+          "summary": "openssl - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
-      "headers": [],
+      "headers": [
+        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/curl-src/lib/vtls/openssl.h",
+        "/usr/include/openssl/bio.h",
+        "/usr/include/openssl/bn.h",
+        "/usr/include/openssl/buffer.h",
+        "/usr/include/openssl/conf.h",
+        "/usr/include/openssl/core_names.h",
+        "/usr/include/openssl/des.h",
+        "/usr/include/openssl/dh.h",
+        "/usr/include/openssl/dsa.h",
+        "/usr/include/openssl/engine.h",
+        "/usr/include/openssl/err.h",
+        "/usr/include/openssl/evp.h",
+        "/usr/include/openssl/md4.h",
+        "/usr/include/openssl/md5.h",
+        "/usr/include/openssl/ocsp.h",
+        "/usr/include/openssl/opensslv.h",
+        "/usr/include/openssl/pkcs12.h",
+        "/usr/include/openssl/rand.h",
+        "/usr/include/openssl/rsa.h",
+        "/usr/include/openssl/ssl.h",
+        "/usr/include/openssl/tls1.h",
+        "/usr/include/openssl/ui.h",
+        "/usr/include/openssl/x509v3.h",
+        "/usr/include/x86_64-linux-gnu/openssl/opensslconf.h"
+      ],
       "libraries": [],
       "licenses": [
         "Apache-2.0"
@@ -140,209 +201,279 @@
           "fixed_version": "7.79.1-1",
           "id": "DEBIAN-CVE-2021-22922",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
-          "summary": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th..."
+          "summary": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.79.1-1",
           "id": "DEBIAN-CVE-2021-22923",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s..."
+          "summary": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.86.0-1",
           "id": "DEBIAN-CVE-2022-42916",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H..."
+          "summary": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.86.0-3",
           "id": "DEBIAN-CVE-2022-43551",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru..."
+          "summary": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-1",
           "id": "DEBIAN-CVE-2023-23914",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
-          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs..."
+          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-1",
           "id": "DEBIAN-CVE-2023-23915",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w..."
+          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-10",
           "id": "DEBIAN-CVE-2023-28320",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ..."
+          "summary": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.5.0-1",
           "id": "DEBIAN-CVE-2023-46219",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
-          "summary": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware..."
+          "summary": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.11.1-1",
           "id": "DEBIAN-CVE-2024-11053",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",
-          "summary": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo..."
+          "summary": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2004",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N",
-          "summary": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ..."
+          "summary": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2379",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
-          "summary": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad..."
+          "summary": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2398",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L",
-          "summary": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow..."
+          "summary": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2466",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul..."
+          "summary": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.0-1",
           "id": "DEBIAN-CVE-2024-6197",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor..."
+          "summary": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.0-1",
           "id": "DEBIAN-CVE-2024-6874",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co..."
+          "summary": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.1-1",
           "id": "DEBIAN-CVE-2024-7264",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi..."
+          "summary": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.10.0-1",
           "id": "DEBIAN-CVE-2024-8096",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is..."
+          "summary": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.11.0-1",
           "id": "DEBIAN-CVE-2024-9681",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L",
-          "summary": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o..."
+          "summary": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0167",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",
-          "summary": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol..."
+          "summary": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0665",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res..."
+          "summary": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0725",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
-          "summary": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ..."
+          "summary": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.16.0-1",
           "id": "DEBIAN-CVE-2025-10148",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t..."
+          "summary": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.17.0~rc2-1",
           "id": "DEBIAN-CVE-2025-10966",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ..."
+          "summary": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.17.0-2",
           "id": "DEBIAN-CVE-2025-11563",
           "severity": "UNKNOWN",
-          "summary": "No summary available"
+          "summary": "No summary available",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-13034",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
-          "summary": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert..."
+          "summary": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-14017",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
-          "summary": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally..."
+          "summary": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-14524",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP..."
+          "summary": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc3-1",
           "id": "DEBIAN-CVE-2025-14819",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall..."
+          "summary": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc3-1",
           "id": "DEBIAN-CVE-2025-15079",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host..."
+          "summary": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0-1",
           "id": "DEBIAN-CVE-2025-15224",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
-          "summary": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u..."
+          "summary": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.0-1",
           "id": "DEBIAN-CVE-2025-4947",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There..."
+          "summary": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.0-1",
           "id": "DEBIAN-CVE-2025-5025",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin..."
+          "summary": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.1-1",
           "id": "DEBIAN-CVE-2025-5399",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle..."
+          "summary": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.16.0~rc2-1",
           "id": "DEBIAN-CVE-2025-9086",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same..."
+          "summary": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
-      "libraries": [],
+      "libraries": [
+        "libcurl.so.4"
+      ],
       "licenses": [
         "curl"
       ],
@@ -357,55 +488,73 @@
           "fixed_version": "",
           "id": "DEBIAN-CVE-2018-14338",
           "severity": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "samples/geotag.cpp in the example code of Exiv2 0.26 misuses the realpath function on POSIX platforms (other than Apple platforms) where glibc is n..."
+          "summary": "samples/geotag.cpp in the example code of Exiv2 0.26 misuses the realpath function on POSIX platforms (other than Apple platforms) where glibc is n...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2020-18773",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "An invalid memory access in the decode function in iptc.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a crafted ti..."
+          "summary": "An invalid memory access in the decode function in iptc.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a crafted ti...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2020-18774",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "A float point exception in the printLong function in tags_int.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a craf..."
+          "summary": "A float point exception in the printLong function in tags_int.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a craf...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2020-18898",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "A stack exhaustion issue in the printIFDStructure function of Exiv2 0.27 allows remote attackers to cause a denial of service (DOS) via a crafted f..."
+          "summary": "A stack exhaustion issue in the printIFDStructure function of Exiv2 0.27 allows remote attackers to cause a denial of service (DOS) via a crafted f...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.27.5-1",
           "id": "DEBIAN-CVE-2021-32617",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An inefficient algorithm..."
+          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An inefficient algorithm...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.28.3+dfsg-2",
           "id": "DEBIAN-CVE-2024-24826",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An out-of-bounds read wa..."
+          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An out-of-bounds read wa...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.28.3+dfsg-2",
           "id": "DEBIAN-CVE-2024-25112",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. A denial-of-service was ..."
+          "summary": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. A denial-of-service was ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.28.7+dfsg-2",
           "id": "DEBIAN-CVE-2025-54080",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. An out-of-bounds read w..."
+          "summary": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. An out-of-bounds read w...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.28.7+dfsg-2",
           "id": "DEBIAN-CVE-2025-55304",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. A denial-of-service was..."
+          "summary": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. A denial-of-service was...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -424,7 +573,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -443,11 +594,13 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [
-        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/json-src/include/nlohmann/json.hpp"
+        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/nlohmann_json-src/include/nlohmann/json.hpp"
       ],
       "libraries": [],
       "licenses": [
@@ -464,205 +617,273 @@
           "fixed_version": "7.79.1-1",
           "id": "DEBIAN-CVE-2021-22922",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
-          "summary": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th..."
+          "summary": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.79.1-1",
           "id": "DEBIAN-CVE-2021-22923",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s..."
+          "summary": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.86.0-1",
           "id": "DEBIAN-CVE-2022-42916",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H..."
+          "summary": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.86.0-3",
           "id": "DEBIAN-CVE-2022-43551",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru..."
+          "summary": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-1",
           "id": "DEBIAN-CVE-2023-23914",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
-          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs..."
+          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-1",
           "id": "DEBIAN-CVE-2023-23915",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w..."
+          "summary": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "7.88.1-10",
           "id": "DEBIAN-CVE-2023-28320",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ..."
+          "summary": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.5.0-1",
           "id": "DEBIAN-CVE-2023-46219",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
-          "summary": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware..."
+          "summary": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.11.1-1",
           "id": "DEBIAN-CVE-2024-11053",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",
-          "summary": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo..."
+          "summary": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2004",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N",
-          "summary": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ..."
+          "summary": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2379",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
-          "summary": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad..."
+          "summary": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2398",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L",
-          "summary": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow..."
+          "summary": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.7.1-1",
           "id": "DEBIAN-CVE-2024-2466",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul..."
+          "summary": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.0-1",
           "id": "DEBIAN-CVE-2024-6197",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor..."
+          "summary": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.0-1",
           "id": "DEBIAN-CVE-2024-6874",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co..."
+          "summary": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.9.1-1",
           "id": "DEBIAN-CVE-2024-7264",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi..."
+          "summary": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.10.0-1",
           "id": "DEBIAN-CVE-2024-8096",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is..."
+          "summary": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.11.0-1",
           "id": "DEBIAN-CVE-2024-9681",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L",
-          "summary": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o..."
+          "summary": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0167",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",
-          "summary": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol..."
+          "summary": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0665",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res..."
+          "summary": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.12.0+git20250209.89ed161+ds-1",
           "id": "DEBIAN-CVE-2025-0725",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
-          "summary": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ..."
+          "summary": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.16.0-1",
           "id": "DEBIAN-CVE-2025-10148",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t..."
+          "summary": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.17.0~rc2-1",
           "id": "DEBIAN-CVE-2025-10966",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ..."
+          "summary": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.17.0-2",
           "id": "DEBIAN-CVE-2025-11563",
           "severity": "UNKNOWN",
-          "summary": "No summary available"
+          "summary": "No summary available",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-13034",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
-          "summary": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert..."
+          "summary": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-14017",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
-          "summary": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally..."
+          "summary": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc2-1",
           "id": "DEBIAN-CVE-2025-14524",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP..."
+          "summary": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc3-1",
           "id": "DEBIAN-CVE-2025-14819",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall..."
+          "summary": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0~rc3-1",
           "id": "DEBIAN-CVE-2025-15079",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
-          "summary": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host..."
+          "summary": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.18.0-1",
           "id": "DEBIAN-CVE-2025-15224",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
-          "summary": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u..."
+          "summary": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.0-1",
           "id": "DEBIAN-CVE-2025-4947",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There..."
+          "summary": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.0-1",
           "id": "DEBIAN-CVE-2025-5025",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin..."
+          "summary": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.14.1-1",
           "id": "DEBIAN-CVE-2025-5399",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle..."
+          "summary": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "8.16.0~rc2-1",
           "id": "DEBIAN-CVE-2025-9086",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same..."
+          "summary": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -681,7 +902,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -700,67 +923,89 @@
           "fixed_version": "",
           "id": "DEBIAN-CVE-2023-53900",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "Spip 4.1.10 contains a file upload vulnerability that allows attackers to upload malicious SVG files with embedded external links. Attackers can tr..."
+          "summary": "Spip 4.1.10 contains a file upload vulnerability that allows attackers to upload malicious SVG files with embedded external links. Attackers can tr...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "4.3.0+dfsg-1",
           "id": "DEBIAN-CVE-2025-71240",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.2.15 allows Cross-Site Scripting (XSS) via crafted content in HTML code tags. The application does not properly verify JavaScript wit..."
+          "summary": "SPIP before 4.2.15 allows Cross-Site Scripting (XSS) via crafted content in HTML code tags. The application does not properly verify JavaScript wit...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "4.3.6+dfsg-1",
           "id": "DEBIAN-CVE-2025-71241",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows Cross-Site Scripting (XSS) in the private area. The content of the error message displayed by the 'tra..."
+          "summary": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows Cross-Site Scripting (XSS) in the private area. The content of the error message displayed by the 'tra...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "4.3.6+dfsg-1",
           "id": "DEBIAN-CVE-2025-71242",
           "severity": "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
-          "summary": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows unauthorized content disclosure in the private area. The application does not properly check authoriza..."
+          "summary": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows unauthorized content disclosure in the private area. The application does not properly check authoriza...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "4.4.5+dfsg-1",
           "id": "DEBIAN-CVE-2025-71244",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.4.5 and 4.3.9 allows an Open Redirect via the login form when used in AJAX mode. An attacker can craft a malicious URL that, when vis..."
+          "summary": "SPIP before 4.4.5 and 4.3.9 allows an Open Redirect via the login form when used in AJAX mode. An attacker can craft a malicious URL that, when vis...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-26223",
           "severity": "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:P/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
-          "summary": "SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the private area via malicious iframe tags. The application does not properly sandbox or esc..."
+          "summary": "SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the private area via malicious iframe tags. The application does not properly sandbox or esc...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-26345",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the public area for certain edge-case usage patterns. The echapper_html_suspect() function d..."
+          "summary": "SPIP before 4.4.8 allows Cross-Site Scripting (XSS) in the public area for certain edge-case usage patterns. The echapper_html_suspect() function d...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-27472",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
-          "summary": "SPIP before 4.4.9 allows Blind Server-Side Request Forgery (SSRF) via syndicated sites in the private area. When editing a syndicated site, the app..."
+          "summary": "SPIP before 4.4.9 allows Blind Server-Side Request Forgery (SSRF) via syndicated sites in the private area. When editing a syndicated site, the app...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-27473",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.4.9 allows Stored Cross-Site Scripting (XSS) via syndicated sites in the private area. The #URL_SYNDIC output is not properly sanitiz..."
+          "summary": "SPIP before 4.4.9 allows Stored Cross-Site Scripting (XSS) via syndicated sites in the private area. The #URL_SYNDIC output is not properly sanitiz...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-27474",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
-          "summary": "SPIP before 4.4.9 allows Cross-Site Scripting (XSS) in the private area, complementing an incomplete fix from SPIP 4.4.8. The echappe_anti_xss() fu..."
+          "summary": "SPIP before 4.4.9 allows Cross-Site Scripting (XSS) in the private area, complementing an incomplete fix from SPIP 4.4.8. The echappe_anti_xss() fu...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-27475",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "SPIP before 4.4.9 allows Insecure Deserialization in the public area through the table_valeur filter and the DATA iterator, which accept serialized..."
+          "summary": "SPIP before 4.4.9 allows Insecure Deserialization in the public area through the table_valeur filter and the DATA iterator, which accept serialized...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -779,7 +1024,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -798,7 +1045,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -817,7 +1066,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -836,13 +1087,17 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
-      "headers": [],
+      "headers": [
+        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/curl-src/lib/vssh/ssh.h"
+      ],
       "libraries": [],
       "licenses": [
-        "UNKNOWN"
+        "See file: COPYING"
       ],
       "name": "VSS",
       "source": "manifest",
@@ -855,7 +1110,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -874,103 +1131,137 @@
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-11187",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:H",
-          "summary": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p..."
+          "summary": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p...",
+          "suppressed": true,
+          "suppression_reason": "testing suppression"
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15467",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow.  Impact summary:..."
+          "summary": "Issue summary: Parsing CMS AuthEnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow.  Impact summary:...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15468",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the..."
+          "summary": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-15469",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N",
-          "summary": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes..."
+          "summary": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.0-1",
           "id": "DEBIAN-CVE-2025-27587",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
-          "summary": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m..."
+          "summary": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-66199",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag..."
+          "summary": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-68160",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg..."
+          "summary": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69418",
           "severity": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
-          "summary": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult..."
+          "summary": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69419",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
-          "summary": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin..."
+          "summary": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69420",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou..."
+          "summary": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2025-69421",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum..."
+          "summary": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9230",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write...."
+          "summary": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write....",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9231",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
-          "summary": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on..."
+          "summary": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1",
           "id": "DEBIAN-CVE-2025-9232",
           "severity": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ..."
+          "summary": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2026-22795",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica..."
+          "summary": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.5-1",
           "id": "DEBIAN-CVE-2026-22796",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
-          "summary": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse..."
+          "summary": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.5.4-1~deb13u2",
           "id": "DSA-6113-1",
           "severity": "UNKNOWN",
-          "summary": "openssl - security update"
+          "summary": "openssl - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -989,31 +1280,41 @@
           "fixed_version": "3.22.0-1",
           "id": "DEBIAN-CVE-2022-26981",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
-          "summary": "Liblouis through 3.21.0 has a buffer overflow in compilePassOpcode in compileTranslationTable.c (called, indirectly, by tools/lou_checktable.c)."
+          "summary": "Liblouis through 3.21.0 has a buffer overflow in compilePassOpcode in compileTranslationTable.c (called, indirectly, by tools/lou_checktable.c).",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.22.0-1",
           "id": "DEBIAN-CVE-2022-31783",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
-          "summary": "Liblouis 3.21.0 has an out-of-bounds write in compileRule in compileTranslationTable.c, as demonstrated by lou_trace."
+          "summary": "Liblouis 3.21.0 has an out-of-bounds write in compileRule in compileTranslationTable.c, as demonstrated by lou_trace.",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.24.0-2",
           "id": "DEBIAN-CVE-2023-26767",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the lou_logFile function at logg..."
+          "summary": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the lou_logFile function at logg...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.24.0-2",
           "id": "DEBIAN-CVE-2023-26768",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the compileTranslationTable.c an..."
+          "summary": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the compileTranslationTable.c an...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "3.24.0-2",
           "id": "DEBIAN-CVE-2023-26769",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "Buffer Overflow vulnerability found in Liblouis Lou_Trace v.3.24.0 allows a remote attacker to cause a denial of service via the resolveSubtable fu..."
+          "summary": "Buffer Overflow vulnerability found in Liblouis Lou_Trace v.3.24.0 allows a remote attacker to cause a denial of service via the resolveSubtable fu...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -1032,7 +1333,9 @@
           "fixed_version": "",
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -1051,7 +1354,9 @@
           "fixed_version": "1:1.15.2+ds-1",
           "id": "DEBIAN-CVE-2025-6140",
           "severity": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
-          "summary": "A vulnerability, which was classified as problematic, was found in spdlog up to 1.15.1. This affects the function scoped_padder in the library incl..."
+          "summary": "A vulnerability, which was classified as problematic, was found in spdlog up to 1.15.1. This affects the function scoped_padder in the library incl...",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
       "headers": [],
@@ -1070,124 +1375,166 @@
           "fixed_version": "1:1.1.4-10",
           "id": "DEBIAN-CVE-2003-0107",
           "severity": "UNKNOWN",
-          "summary": "Buffer overflow in the gzprintf function in zlib 1.1.4, when zlib is compiled without vsnprintf or when long inputs are truncated using vsnprintf, ..."
+          "summary": "Buffer overflow in the gzprintf function in zlib 1.1.4, when zlib is compiled without vsnprintf or when long inputs are truncated using vsnprintf, ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.1.1-6",
           "id": "DEBIAN-CVE-2004-0797",
           "severity": "UNKNOWN",
-          "summary": "The error handling in the (1) inflate and (2) inflateBack functions in ZLib compression library 1.2.x allows local users to cause a denial of servi..."
+          "summary": "The error handling in the (1) inflate and (2) inflateBack functions in ZLib compression library 1.2.x allows local users to cause a denial of servi...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.4.1-1",
           "id": "DEBIAN-CVE-2005-1849",
           "severity": "UNKNOWN",
-          "summary": "inftrees.h in zlib 1.2.2 allows remote attackers to cause a denial of service (application crash) via an invalid file that causes a large dynamic t..."
+          "summary": "inftrees.h in zlib 1.2.2 allows remote attackers to cause a denial of service (application crash) via an invalid file that causes a large dynamic t...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "0.4.0-2",
           "id": "DEBIAN-CVE-2005-2096",
           "severity": "UNKNOWN",
-          "summary": "zlib 1.2 and later versions allows remote attackers to cause a denial of service (crash) via a crafted compressed stream with an incomplete code de..."
+          "summary": "zlib 1.2 and later versions allows remote attackers to cause a denial of service (crash) via a crafted compressed stream with an incomplete code de...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-3",
           "id": "DEBIAN-CVE-2016-9840",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
-          "summary": "inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic."
+          "summary": "inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-4",
           "id": "DEBIAN-CVE-2016-9841",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "inffast.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic."
+          "summary": "inffast.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-3",
           "id": "DEBIAN-CVE-2016-9842",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
-          "summary": "The inflateMark function in inflate.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving left s..."
+          "summary": "The inflateMark function in inflate.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving left s...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-3",
           "id": "DEBIAN-CVE-2016-9843",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "The crc32_big function in crc32.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving big-endian..."
+          "summary": "The crc32_big function in crc32.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving big-endian...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.11.dfsg-4",
           "id": "DEBIAN-CVE-2018-25032",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches."
+          "summary": "zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.11.dfsg-4.1",
           "id": "DEBIAN-CVE-2022-37434",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "zlib through 1.2.12 has a heap-based buffer over-read or buffer overflow in inflate in inflate.c via a large gzip header extra field. NOTE: only ap..."
+          "summary": "zlib through 1.2.12 has a heap-based buffer over-read or buffer overflow in inflate in inflate.c via a large gzip header extra field. NOTE: only ap...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.3.dfsg-2",
           "id": "DEBIAN-CVE-2023-45853",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, commen..."
+          "summary": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, commen...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.6.dfsg-1",
           "id": "DEBIAN-CVE-2026-22184",
           "severity": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "summary": "zlib versions up to and including 1.3.1.2 include a global buffer overflow in the untgz utility located under contrib/untgz. The vulnerability is l..."
+          "summary": "zlib versions up to and including 1.3.1.2 include a global buffer overflow in the untgz utility located under contrib/untgz. The vulnerability is l...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "",
           "id": "DEBIAN-CVE-2026-27171",
           "severity": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
-          "summary": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no ..."
+          "summary": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no ...",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-2+deb8u1",
           "id": "DLA-2085-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - security update"
+          "summary": "zlib - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.8.dfsg-5+deb9u1",
           "id": "DLA-2968-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - security update"
+          "summary": "zlib - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.11.dfsg-1+deb10u2",
           "id": "DLA-3103-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - security update"
+          "summary": "zlib - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.11.dfsg-2+deb11u1",
           "id": "DSA-5111-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - security update"
+          "summary": "zlib - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.11.dfsg-2+deb11u2",
           "id": "DSA-5218-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - security update"
+          "summary": "zlib - security update",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.2-4.sarge.1",
           "id": "DSA-740-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - buffer overflow"
+          "summary": "zlib - buffer overflow",
+          "suppressed": false,
+          "suppression_reason": ""
         },
         {
           "fixed_version": "1:1.2.2-4.sarge.2",
           "id": "DSA-763-1",
           "severity": "UNKNOWN",
-          "summary": "zlib - buffer overflow"
+          "summary": "zlib - buffer overflow",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ],
-      "headers": [],
+      "headers": [
+        "/usr/include/zlib.h"
+      ],
       "libraries": [],
       "licenses": [
         "Zlib"
@@ -1266,7 +1613,7 @@
       "description": "Native C++ Dependency Scanner & SBOM Generator",
       "homepage": "https://github.com/zb-bamboo/Dependency_Tracker_2",
       "name": "depdiscover",
-      "version": "1.1.0"
+      "version": "1.2.0"
     }
   }
 }

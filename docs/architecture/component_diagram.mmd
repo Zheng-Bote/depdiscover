@@ -1,17 +1,25 @@
 graph TD
+    subgraph External
+        GH[GitHub API]
+        OSV[OSV.dev API]
+    end
+
     subgraph Inputs
         CC[compile_commands.json]
         LIBS[libs.txt]
         MAN[vcpkg.json / conanfile]
         BIN[Binary ELF]
+        SUPP[suppressions.json]
     end
 
     subgraph Core
+        UC[GitHub Update Checker]
         P_CC[Compile DB Parser]
         P_CMAKE[CMake Libs Parser]
         P_MAN[Manifest Parser]
         S_ELF[ELF Scanner]
         S_INC[Include Scanner]
+        BB[Build Breaker / Audit]
     end
 
     subgraph Resolvers
@@ -24,12 +32,15 @@ graph TD
     subgraph Output
         JSON["depdiscover.json <br> (SBOM)"]
         HTML["report.html <br> (Interactive)"]
+        CDX["sbom-cyclonedx.json <br> (CycloneDX 1.4)"]
     end
 
+    GH <--> UC
     CC --> P_CC
     LIBS --> P_CMAKE
     MAN --> P_MAN
     BIN --> S_ELF
+    SUPP --> BB
 
     P_CC --> S_INC
     S_INC --> R_HEAD
@@ -39,6 +50,9 @@ graph TD
 
     R_HEAD --> R_LIC
     R_PKG --> R_CVE
+    OSV <--> R_CVE
 
     P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
+    JSON --> BB
     JSON --> HTML
+    JSON --> CDX

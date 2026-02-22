@@ -30,7 +30,6 @@ namespace depdiscover {
 
 namespace fs = std::filesystem;
 
-// Hilfsfunktion: Liest Version aus Header via Regex
 /**
  * @brief Reads a version string from a header file using a regex pattern.
  *
@@ -50,19 +49,18 @@ inline std::string read_header_version(const fs::path &path,
   std::smatch m;
 
   if (std::regex_search(content, m, re)) {
-    // Fall 1: Major.Minor.Patch (3 Gruppen)
+    // Case 1: Major.Minor.Patch (3 groups)
     if (m.size() >= 4) {
       return m[1].str() + "." + m[2].str() + "." + m[3].str();
     }
-    // Fall 2: Ein Integer (z.B. FMT_VERSION 100100)
+    // Case 2: Single integer (e.g., FMT_VERSION 100100)
     if (m.size() == 2) {
-      return m[1].str(); // Roh zurückgeben, Formatierung macht der Aufrufer
+      return m[1].str(); // Return raw, caller handles formatting
     }
   }
   return "";
 }
 
-// Sucht nach _deps (FetchContent) oder vcpkg_installed Ordnern
 /**
  * @brief Fetches metadata (version, license) for a CMake target from build
  * directories.
@@ -78,27 +76,25 @@ inline std::pair<std::string, std::string>
 fetch_cmake_metadata(const std::string &target_name,
                      const fs::path &build_dir) {
   std::string clean = target_name;
-  // Namespace entfernen (Qt6::Core -> Core, fmt::fmt -> fmt)
+  // Remove namespace (Qt6::Core -> Core, fmt::fmt -> fmt)
   if (clean.find("::") != std::string::npos) {
-    // Nimm den Teil VOR dem :: für Libraries wie nlohmann_json::nlohmann_json
-    // -> nlohmann_json Oder den Teil DANACH für Qt6::Core -> Core? Meist ist
-    // der Paketname vor dem :: relevanter für die Ordnerstruktur
-    // (nlohmann_json) Aber manchmal auch nicht. Wir probieren beides.
+    // Take the part BEFORE :: for libraries like nlohmann_json::nlohmann_json -> nlohmann_json
+    // or the part AFTER for Qt6::Core -> Core? Usually the package name before :: is more
+    // relevant for the directory structure (nlohmann_json). We try both implicitly.
     clean = clean.substr(0, clean.find("::"));
   }
   std::transform(clean.begin(), clean.end(), clean.begin(), ::tolower);
 
-  // Orte wo CMake Dependencies ablegt
+  // Locations where CMake stores dependencies
   std::vector<fs::path> search_dirs = {
       build_dir / "_deps",
-      build_dir / "vcpkg_installed" / "x64-linux" /
-          "share" // Vcpkg Linux Standard
+      build_dir / "vcpkg_installed" / "x64-linux" / "share" // Vcpkg Linux Standard
   };
 
   // 1. Check FetchContent (_deps)
   fs::path deps_dir = build_dir / "_deps";
   if (fs::exists(deps_dir)) {
-    // nlohmann_json Spezialfall
+    // nlohmann_json special case
     if (clean.find("nlohmann") != std::string::npos ||
         clean.find("json") != std::string::npos) {
       // _deps/json-src/include/nlohmann/json.hpp
@@ -112,7 +108,7 @@ fetch_cmake_metadata(const std::string &target_name,
           return {v, "MIT"};
       }
     }
-    // fmt Spezialfall
+    // fmt special case
     if (clean == "fmt") {
       // _deps/fmt-src/include/fmt/core.h
       fs::path header = deps_dir / "fmt-src" / "include" / "fmt" / "core.h";
@@ -134,8 +130,7 @@ fetch_cmake_metadata(const std::string &target_name,
   }
 
   // 2. Check Vcpkg Manifests (share/package/vcpkg.json)
-  // Wir suchen rekursiv oder direkt
-  // clean könnte "openssl" sein -> vcpkg_installed/.../share/openssl/vcpkg.json
+  // Search recursively or directly
   fs::path vcpkg_share = build_dir / "vcpkg_installed" / "x64-linux" / "share";
   if (fs::exists(vcpkg_share / clean / "vcpkg.json")) {
     try {
@@ -167,7 +162,7 @@ parse_cmake_libs(const std::string &libs_txt_path) {
     return deps;
 
   std::string content;
-  std::getline(f, content); // libs.txt ist meist einzeilig mit ; Trenner
+  std::getline(f, content); // libs.txt is usually a single line with ';' separator
 
   if (content.empty())
     return deps;
@@ -175,30 +170,28 @@ parse_cmake_libs(const std::string &libs_txt_path) {
   std::stringstream ss(content);
   std::string segment;
 
-  // Build Directory erraten (Elternverzeichnis der libs.txt)
+  // Guess build directory (parent directory of libs.txt)
   fs::path build_dir = fs::path(libs_txt_path).parent_path();
 
   while (std::getline(ss, segment, ';')) {
     if (segment.empty())
       continue;
 
-    // Ignoriere Pfade (z.B. /usr/lib/libfoo.so) - die haben wir via
-    // ldd/elf_scanner schon
+    // Ignore absolute paths (e.g., /usr/lib/libfoo.so) - those are handled via ldd/elf_scanner
     if (segment.find("/") != std::string::npos)
       continue;
 
-    // Ignoriere Flags (-lfoo) - die haben wir via include_scanner
+    // Ignore flags (-lfoo) - those are handled via include_scanner
     if (segment[0] == '-')
       continue;
 
-    // Wir interessieren uns für CMake Targets: "Qt6::Core", "fmt::fmt",
-    // "nlohmann_json"
+    // We are interested in CMake targets: "Qt6::Core", "fmt::fmt", "nlohmann_json"
     std::string name = segment;
     std::string version = "unknown";
     std::string source = "cmake_target";
     std::vector<std::string> licenses;
 
-    // Metadaten holen
+    // Fetch metadata
     auto [meta_ver, meta_lic] = fetch_cmake_metadata(name, build_dir);
 
     if (meta_ver != "unknown") {
@@ -210,11 +203,10 @@ parse_cmake_libs(const std::string &libs_txt_path) {
       licenses.push_back(meta_lic);
     }
 
-    // Qt Spezialbehandlung (falls qmake/qt nicht verfügbar, raten wir oder
-    // lassen unknown)
+    // Special treatment for Qt (if qmake/qt is not available, we guess or leave as unknown)
     if (name.rfind("Qt", 0) == 0 || name.rfind("Qt6::", 0) == 0) {
       if (version == "unknown")
-        version = "System/Qt"; // Platzhalter
+        version = "System/Qt"; // Placeholder
       if (licenses.empty())
         licenses = {"LGPL-3.0"};
     }

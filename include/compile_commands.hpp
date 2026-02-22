@@ -29,9 +29,9 @@ namespace depdiscover {
  * @brief Represents a single entry in a compile_commands.json file.
  */
 struct CompileCommand {
-  std::string file;
-  std::string command;
-  std::string directory; // NEU: Arbeitsverzeichnis
+  std::string file;      ///< The source file being compiled.
+  std::string command;   ///< The full compilation command.
+  std::string directory; ///< The working directory for the compilation.
 };
 
 /**

@@ -41,21 +41,21 @@ parse_conan_dependencies(const std::string &path) {
   std::string line;
   bool in_requires_section = false;
 
-  // Regex für: packetname/version (z.B. "fmt/8.1.1" oder
-  // "zlib/1.2.11#revision") Group 1: Name, Group 2: Version
+  // Regex for: packagename/version (e.g., "fmt/8.1.1" or "zlib/1.2.11#revision")
+  // Group 1: Name, Group 2: Version
   std::regex re_dep(R"(^\s*([^/\s]+)/([^#\s\n\r]+))");
 
-  // Regex für Sektions-Header [requires]
+  // Regex for section header [requires]
   std::regex re_section(R"(^\s*\[requires\]\s*)");
 
   while (std::getline(f, line)) {
-    // 1. Prüfen, ob wir in der [requires] Sektion sind
+    // 1. Check if we are in the [requires] section
     if (std::regex_match(line, re_section)) {
       in_requires_section = true;
       continue;
     }
 
-    // Wenn wir eine neue Sektion erreichen (z.B. [generators]), hören wir auf
+    // Stop if we reach a new section (e.g., [generators])
     if (line.find("[") == 0 && line.find("]") != std::string::npos &&
         line.find("[requires]") == std::string::npos) {
       in_requires_section = false;

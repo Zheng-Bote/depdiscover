@@ -12,9 +12,6 @@
 
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [depdiscover](#depdiscover)
@@ -31,11 +28,11 @@
     - [Options](#options)
     - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
     - [📄 Output Example](#-output-example)
+  - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
+  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
   - [📜 License](#-license)
   - [Author](#author)
   - [Code Contributors](#code-contributors)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -47,25 +44,27 @@
 
 - **Hybrid Analysis**: Combines data from package manifests with actual build artifacts.
 - **Multi-Source Parsing**:
-  - Manifests: vcpkg.json, conanfile.txt
-  - Build Data: compile_commands.json (Clang/CMake), libs.txt (CMake Targets)
-  - Binaries: Native ELF scanner (analyzes DT_NEEDED / ldd equivalent)
+  - Manifests: `vcpkg.json`, `conanfile.txt`
+  - Build Data: `compile_commands.json` (Clang/CMake), `libs.txt` (CMake Targets)
+  - Binaries: Native ELF scanner (analyzes `DT_NEEDED` / `ldd` equivalent)
 - **Deep Inspection**:
   - Header Resolution: Maps logical includes to physical files on disk.
   - License Scanning: Detects licenses via static DB and file system heuristics.
-  - Security (CVE): Live vulnerability check via OSV.dev API (using curl).
+  - Security (CVE): Live vulnerability check via OSV.dev API (using `curl`).
+- **CI/CD Ready**: Configurable build breaker (`--fail-on-cvss`) to automatically fail pipelines on critical vulnerabilities.
+- **Auditing**: Suppress false positives or accepted risks using a `.suppressions.json` file.
 - **Structured Output**:
-  - Generates a detailed JSON report including metadata, file paths, licenses, and security status.
-  - Generates a CycloneDX 1.4 SBOM in JSON format.
-  - Generates an HTML report for visualization and linking to the detailed CVEs.
+  - Generates a detailed custom JSON report including metadata, file paths, licenses, and security status.
+  - Generates an industry-standard **CycloneDX 1.4 SBOM** in JSON format.
+  - Generates an interactive **HTML Dashboard** featuring CVSS color-coding and detailed vulnerability links.
 
 ## Screenshots
 
-_example_ HTML Report (see also docs/example_report.html):
+_example_ HTML Report (see also `docs/example_report.html`):
 
-![html_report](docs/img/html_report.png)
+![html_report](docs/img/overview_html-report.png)
 
-_example_ CycloneDX SBOM: see docs/example_sbom-cyclonedx.json
+_example_ CycloneDX SBOM: see `docs/example_sbom-cyclonedx.json`
 
 > [!TIP]
 > see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
@@ -74,21 +73,31 @@ _example_ CycloneDX SBOM: see docs/example_sbom-cyclonedx.json
 
 The tool operates in three stages: **Input Parsing**, **Physical Scanning**, and **Metadata Enrichment**.
 
+For a detailed look at the system design, please refer to the [Full Documentation](docs/index.md) and the [Architecture Overview](docs/architecture/architecture.md).
+
 ```mermaid
 graph TD
+    subgraph External
+        GH[GitHub API]
+        OSV[OSV.dev API]
+    end
+
     subgraph Inputs
         CC[compile_commands.json]
         LIBS[libs.txt]
         MAN[vcpkg.json / conanfile]
         BIN[Binary ELF]
+        SUPP[suppressions.json]
     end
 
     subgraph Core
+        UC[GitHub Update Checker]
         P_CC[Compile DB Parser]
         P_CMAKE[CMake Libs Parser]
         P_MAN[Manifest Parser]
         S_ELF[ELF Scanner]
         S_INC[Include Scanner]
+        BB[Build Breaker / Audit]
     end
 
     subgraph Resolvers
@@ -99,14 +108,17 @@ graph TD
     end
 
     subgraph Output
-        JSON["depdiscover.json <br> (SBOM)"]
-        HTML["report.html <br> (Interactive)"]
+        JSON["depdiscover.json <br> (Detailed SBOM)"]
+        HTML["report.html <br> (Interactive HTML)"]
+        CDX["bom.cdx.json <br> (CycloneDX 1.4)"]
     end
 
+    GH <--> UC
     CC --> P_CC
     LIBS --> P_CMAKE
     MAN --> P_MAN
     BIN --> S_ELF
+    SUPP --> BB
 
     P_CC --> S_INC
     S_INC --> R_HEAD
@@ -116,9 +128,12 @@ graph TD
 
     R_HEAD --> R_LIC
     R_PKG --> R_CVE
+    OSV <--> R_CVE
 
     P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
+    JSON --> BB
     JSON --> HTML
+    JSON --> CDX
 ```
 
 ## 🛠 Prerequisites
@@ -128,7 +143,7 @@ To build and run depdiscover, you need:
 - **C++ Compiler**: Supporting C++23 (e.g., GCC 13+, Clang 16+, MSVC VS2022 17.6+).
 - **CMake**: Version 3.23 or higher.
 - **Dependencies**:
-- nlohmann_json (usually handled via CMake/Vcpkg).
+- nlohmann_json, gh_update_checker (usually handled via CMake/Vcpkg).
 
 ### Runtime Requirements
 
@@ -173,7 +188,12 @@ To get the most comprehensive report, provide as many inputs as possible:
  --libs ../build/libs.txt \
  --binary ../build/bin/myapp \
  --vcpkg ../vcpkg.json \
- --output report.json
+ --ecosystem "Debian" \
+ --suppressions suppressions.json \
+ --fail-on-cvss 7.0 \
+ --cyclonedx docs/bom.cdx.json \
+ --html docs/report.html \
+ --output docs/report.json
 ```
 
 ### Options
@@ -212,7 +232,7 @@ The generated JSON contains a metadata header and a list of dependencies includi
 {
   "header": {
     "schema_version": "1.2",
-    "scan_date": "2026-02-18",
+    "scan_date": "2026-02-22",
     "tool": {
       "name": "depdiscover",
       "version": "1.0.0"
@@ -235,13 +255,44 @@ The generated JSON contains a metadata header and a list of dependencies includi
         {
           "id": "SAFE",
           "severity": "NONE",
-          "summary": "No known vulnerabilities found. Checked on 2026-02-18 via OSV.dev"
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "fixed_version": "",
+          "suppressed": false,
+          "suppression_reason": ""
         }
       ]
     }
   ]
 }
 ```
+
+## 🛡️ CI/CD & Build Breaker
+
+You can use depdiscover as a security gate in your CI/CD pipelines. By passing the --fail-on-cvss flag, the tool will exit with code 1 if it detects any unsuppressed vulnerability matching or exceeding the given score.
+
+```bash
+# Fail the pipeline if any "High" or "Critical" vulnerabilities are found
+./depdiscover -c compile_commands.json --fail-on-cvss 7.0
+```
+
+## 🤫 Suppressions (Ignore Vulnerabilities)
+
+In real-world projects, some CVEs might be false positives or affect components of a library you are not using. You can suppress these using a .json file passed via -s or --suppressions.
+
+Create a file (e.g., suppressions.json) mapping the exact CVE ID to your justification:
+
+```json
+{
+  "CVE-2023-12345": "Ignored because the vulnerable networking module is disabled during our build.",
+  "GHSA-abcd-1234-wxyz": "False Positive: Our custom wrapper sanitizes the input before it reaches the library."
+}
+```
+
+> [!NOTE]
+> Suppressed vulnerabilities will not trigger the Build Breaker\
+> and will be neatly grayed out and marked as "Suppressed" with your provided reason in the HTML report.
+
+---
 
 ## 📜 License
 

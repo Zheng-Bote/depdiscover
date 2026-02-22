@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  *
  * @file include_scanner.hpp
- * @brief scanns compiler flags for include paths and library names.
+ * @brief Scans compiler flags for include paths and library names.
  * @version 1.0.0
  * @date 2026-02-18
  *
@@ -30,8 +30,8 @@ namespace depdiscover {
  */
 inline std::vector<std::string> extract_include_paths(const std::string &cmd) {
   std::vector<std::string> out;
-  // Fix: \\s* erlaubt Leerzeichen (z.B. "-I /usr/include")
-  // ([^\\s]+) fängt alles bis zum nächsten Whitespace
+  // Fix: \\s* allows spaces (e.g., "-I /usr/include")
+  // ([^\\s]+) captures everything until the next whitespace
   std::regex re("-I\\s*([^\\s]+)");
   std::smatch m;
 
@@ -54,7 +54,7 @@ inline std::vector<std::string> extract_include_paths(const std::string &cmd) {
  */
 inline std::vector<std::string> extract_libraries(const std::string &cmd) {
   std::vector<std::string> out;
-  // Gleicher Fix für Libraries (-l lib vs -lLIB)
+  // Same fix for libraries (-l lib vs -llib)
   std::regex re("-l\\s*([^\\s]+)");
   std::smatch m;
 

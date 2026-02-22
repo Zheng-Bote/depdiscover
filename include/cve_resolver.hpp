@@ -8,6 +8,12 @@
  * @file cve_resolver.hpp
  * @brief Queries OSV.dev for CVEs associated with packages.
  * @version 1.3.1
+ * @date 2026-02-18
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
+ *
+ * @license MIT License
  */
 #pragma once
 #include "types.hpp"
@@ -31,6 +37,11 @@ namespace depdiscover {
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
+/**
+ * @brief Returns the current date as a string in YYYY-MM-DD format.
+ *
+ * @return std::string The formatted date.
+ */
 inline std::string get_current_date() {
   auto now = std::chrono::system_clock::now();
   auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -39,7 +50,13 @@ inline std::string get_current_date() {
   return ss.str();
 }
 
-// Sicheres curl via Temp-File
+/**
+ * @brief Performs a secure curl POST request using a temporary file for the payload.
+ *
+ * @param url The target URL.
+ * @param json_payload The JSON payload to send.
+ * @return std::string The response from the server.
+ */
 inline std::string perform_curl_post(const std::string &url,
                                      const std::string &json_payload) {
   std::string response;
@@ -73,7 +90,14 @@ inline std::string perform_curl_post(const std::string &url,
   return response;
 }
 
-// --- Hauptfunktion mit Ecosystem Parameter ---
+/**
+ * @brief Queries OSV.dev for vulnerabilities related to a package and version.
+ *
+ * @param name The name of the package.
+ * @param version The version of the package.
+ * @param ecosystem The OSV ecosystem (default: "Debian").
+ * @return std::vector<CVE> A list of vulnerabilities found.
+ */
 inline std::vector<CVE> query_cves(const std::string &name,
                                    const std::string &version,
                                    const std::string &ecosystem = "Debian") {
@@ -83,7 +107,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       version == "latest") {
     results.push_back({"NOT-CHECKED",
                        "Version unknown or latest, cannot query OSV", "UNKNOWN",
-                       "", false, ""}); // FIX: false und "" hinzugefügt
+                       "", false, ""});
     return results;
   }
 
@@ -104,7 +128,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
     std::cerr << "Failed (Network Error)\n";
     results.push_back(
         {"CHECK-ERROR", "Network request failed or no output from curl",
-         "UNKNOWN", "", false, ""}); // FIX: false und "" hinzugefügt
+         "UNKNOWN", "", false, ""});
     return results;
   }
 
@@ -116,7 +140,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       std::cerr << "API Error (" << error_msg << ")\n";
       results.push_back({"CHECK-ERROR", "OSV API Error: " + error_msg,
                          "UNKNOWN", "", false,
-                         ""}); // FIX: false und "" hinzugefügt
+                         ""});
       return results;
     }
 
@@ -126,8 +150,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       for (const auto &item : doc["vulns"]) {
         CVE cve;
 
-        // ID extrahieren (Versuche echte CVE aus Aliases zu holen, wenn es eine
-        // DEBIAN interne ist)
+        // ID extraction (Try to get real CVE from aliases if it's a DEBIAN internal ID)
         std::string id = item.value("id", "UNKNOWN");
         if (id.starts_with("DEBIAN-CVE") && item.contains("aliases") &&
             item["aliases"].is_array() && !item["aliases"].empty()) {
@@ -135,23 +158,22 @@ inline std::vector<CVE> query_cves(const std::string &name,
         }
         cve.id = id;
 
-        // Summary extrahieren (Fallback auf 'details', da Debian oft keine
-        // summary hat)
+        // Summary extraction (fallback to 'details' as Debian often lacks 'summary')
         cve.summary = item.value("summary", "");
         if (cve.summary.empty() && item.contains("details")) {
           std::string details = item.value("details", "");
-          // Kürze zu lange Details für die Übersicht
+          // Truncate long details for overview
           if (details.length() > 150)
             details = details.substr(0, 147) + "...";
 
-          // Entferne Zeilenumbrüche für saubereres JSON
+          // Remove newlines for cleaner JSON
           std::replace(details.begin(), details.end(), '\n', ' ');
           cve.summary = details;
         }
         if (cve.summary.empty())
           cve.summary = "No summary available";
 
-        // Severity (Debian liefert oft keine Severity mit, daher Fallback)
+        // Severity (Debian often lacks severity, use fallback)
         if (item.contains("severity") && item["severity"].is_array() &&
             !item["severity"].empty()) {
           cve.severity = item["severity"][0].value("score", "UNKNOWN");
@@ -177,7 +199,6 @@ inline std::vector<CVE> query_cves(const std::string &name,
           }
         }
 
-        // Explizit initialisieren, damit keine Überraschungen auftreten
         cve.suppressed = false;
         cve.suppression_reason = "";
 
@@ -199,7 +220,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
     std::cerr << "JSON Error: " << e.what() << "\n";
     results.push_back({"CHECK-ERROR",
                        std::string("JSON parse error: ") + e.what(), "UNKNOWN",
-                       "", false, ""}); // FIX: false und "" hinzugefügt
+                       "", false, ""});
   }
 
   return results;

@@ -7,7 +7,7 @@
  *
  * @file html_generator.hpp
  * @brief Generates a user-friendly HTML report from the SBOM JSON data.
- * @version 1.2.1
+ * @version 1.4.0
  * @date 2026-02-22
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
@@ -18,12 +18,51 @@
 
 #pragma once
 #include <fstream>
+#include <iomanip>
 #include <nlohmann/json.hpp>
 #include <set>
+#include <sstream>
 #include <string>
 
 namespace depdiscover {
 
+/**
+ * @brief Helper function to extract a CVSS score from a severity string for HTML display.
+ *
+ * @param severity_str The severity string.
+ * @return double The extracted score.
+ */
+inline double extract_score_for_html(const std::string &severity_str) {
+  if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
+      severity_str.empty())
+    return 0.0;
+  try {
+    return std::stod(severity_str);
+  } catch (...) {
+    if (severity_str.find("CVSS:") == 0) {
+      int high_count = 0;
+      if (severity_str.find("C:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("I:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("A:H") != std::string::npos)
+        high_count++;
+      if (high_count == 3)
+        return 9.0; // Critical
+      if (high_count > 0)
+        return 7.0; // High
+      return 5.0;   // Medium Fallback
+    }
+  }
+  return 0.0;
+}
+
+/**
+ * @brief Generates an HTML report from the internal JSON representation.
+ *
+ * @param root The root of the internal JSON data.
+ * @param filepath The path where the report will be saved.
+ */
 inline void generate_html_report(const nlohmann::json &root,
                                  const std::string &filepath) {
   std::ofstream out(filepath);
@@ -31,7 +70,7 @@ inline void generate_html_report(const nlohmann::json &root,
     return;
 
   // Basic HTML template with embedded CSS
-  out << "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n"
+  out << "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n"
       << "<meta charset=\"UTF-8\">\n"
       << "<meta name=\"viewport\" content=\"width=device-width, "
          "initial-scale=1.0\">\n"
@@ -89,6 +128,7 @@ inline void generate_html_report(const nlohmann::json &root,
       << "    <th>Fixed Version</th>\n"
       << "    <th>Type</th>\n"
       << "    <th>Licenses</th>\n"
+      << "    <th style=\"width: 90px;\">Max Score</th>\n"
       << "    <th>Security Status</th>\n"
       << "  </tr></thead>\n"
       << "  <tbody>\n";
@@ -109,10 +149,13 @@ inline void generate_html_report(const nlohmann::json &root,
         }
       }
 
-      // Security Status & Fixed Versions evaluieren
+      // Security Status & Fixed Versions evaluation
       std::string sec_class = "";
       std::string sec_text = "Unknown";
       std::set<std::string> unique_fixes;
+
+      double max_score = 0.0;
+      int active_vulns = 0;
 
       if (dep.contains("cves") && !dep["cves"].empty()) {
         auto first_cve = dep["cves"][0];
@@ -125,29 +168,31 @@ inline void generate_html_report(const nlohmann::json &root,
           sec_class = "warn";
           sec_text = "⚠️ " + first_id;
         } else {
-          // NEU: Auswertung der unterdrückten CVEs
-          int active_vulns = 0;
           int suppressed_vulns = 0;
 
           for (const auto &cve : dep["cves"]) {
-            if (cve.value("suppressed", false))
+            if (cve.value("suppressed", false)) {
               suppressed_vulns++;
-            else
+            } else {
               active_vulns++;
+              double s = extract_score_for_html(cve.value("severity", ""));
+              if (s > max_score)
+                max_score = s;
+            }
           }
 
           if (active_vulns > 0) {
-            sec_class = "vuln"; // Rot, da noch echte Lücken da sind
+            sec_class = "vuln";
             sec_text = "<span class=\"vuln-title\">❌ " +
                        std::to_string(active_vulns) + " Vulnerabilit" +
                        (active_vulns > 1 ? "ies" : "y") + "</span>";
           } else {
-            sec_class = "warn"; // Gelb, da alle Lücken ignoriert wurden
+            sec_class = "warn";
             sec_text = "<span style=\"color:#856404; font-weight:bold;\">⚠️ " +
                        std::to_string(suppressed_vulns) + " Suppressed</span>";
           }
 
-          sec_text += "\n<details><summary>Details anzeigen</summary>\n<ul "
+          sec_text += "\n<details><summary>Show details</summary>\n<ul "
                       "class=\"clean-list\">\n";
 
           for (const auto &cve : dep["cves"]) {
@@ -169,14 +214,13 @@ inline void generate_html_report(const nlohmann::json &root,
               url = "https://osv.dev/vulnerability/" + id;
             }
 
-            // NEU: Styling für unterdrückte Einträge
             std::string li_style =
                 is_suppressed ? "opacity: 0.6; text-decoration: line-through;"
                               : "";
             std::string reason_html = "";
             if (is_suppressed) {
               std::string reason = cve.value("suppression_reason",
-                                             "Keine Begründung angegeben.");
+                                             "No reason provided.");
               reason_html = "<br><small style=\"text-decoration: none; "
                             "display:block; color:#666;\">↳ <i>Suppressed: " +
                             reason + "</i></small>";
@@ -196,11 +240,44 @@ inline void generate_html_report(const nlohmann::json &root,
         }
       }
 
+      // Format score badge with color
+      std::string score_html = "-";
+      if (active_vulns > 0) {
+        if (max_score > 0.0) {
+          std::stringstream stream;
+          stream << std::fixed << std::setprecision(1) << max_score;
+          std::string val = stream.str();
+
+          std::string bg_color = "#6c757d"; // Gray (fallback)
+          std::string text_color = "white";
+
+          if (max_score >= 9.0)
+            bg_color = "#dc3545"; // Critical: Red
+          else if (max_score >= 7.0)
+            bg_color = "#fd7e14"; // High: Orange
+          else if (max_score >= 4.0) {
+            bg_color = "#ffc107";
+            text_color = "#212529";
+          } // Medium: Yellow
+          else
+            bg_color = "#17a2b8"; // Low: Blue
+
+          score_html =
+              "<span class=\"badge\" style=\"background-color:" + bg_color +
+              "; color:" + text_color + "; font-size: 100%;\">" + val +
+              "</span>";
+        } else {
+          score_html =
+              "<span class=\"badge\" style=\"background-color:#6c757d; "
+              "font-size: 100%;\">?</span>";
+        }
+      }
+
       std::string fixed_versions_str = "-";
       if (!unique_fixes.empty()) {
         size_t fix_count = unique_fixes.size();
         std::string summary_text = std::to_string(fix_count) +
-                                   (fix_count > 1 ? " Versionen" : " Version");
+                                   (fix_count > 1 ? " Versions" : " Version");
 
         fixed_versions_str = "<details><summary>" + summary_text +
                              "</summary><ul class=\"clean-list\">";
@@ -217,6 +294,7 @@ inline void generate_html_report(const nlohmann::json &root,
           << "      <td>" << fixed_versions_str << "</td>\n"
           << "      <td>" << type << "</td>\n"
           << "      <td>" << licenses << "</td>\n"
+          << "      <td>" << score_html << "</td>\n"
           << "      <td>" << sec_text << "</td>\n"
           << "    </tr>\n";
     }

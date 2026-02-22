@@ -53,7 +53,6 @@ inline std::vector<std::string> scan_includes(const std::string &source_file) {
   return included_headers;
 }
 
-// work_dir: Das Verzeichnis, in dem der Compiler ausgeführt wurde
 /**
  * @brief Resolves a header filename to an absolute path.
  *
@@ -61,8 +60,7 @@ inline std::vector<std::string> scan_includes(const std::string &source_file) {
  *
  * @param header_name The name of the header file.
  * @param include_paths A list of include directories.
- * @param work_dir The compiler's working directory (for relative include
- * paths).
+ * @param work_dir The working directory where the compiler was executed (for relative include paths).
  * @return std::string The absolute path to the header, or empty if not found.
  */
 inline std::string resolve_header(const std::string &header_name,
@@ -71,7 +69,7 @@ inline std::string resolve_header(const std::string &header_name,
 
   fs::path p_header(header_name);
 
-  // 1. Ist der Header-Name selbst schon absolut?
+  // 1. Is the header name itself absolute?
   if (p_header.is_absolute()) {
     std::error_code ec;
     if (fs::exists(p_header, ec))
@@ -79,7 +77,7 @@ inline std::string resolve_header(const std::string &header_name,
     return "";
   }
 
-  // Helper: Pfad prüfen und kanonisieren
+  // Helper: check path and canonicalize
   auto check_path = [&](const fs::path &full_p) -> std::string {
     std::error_code ec;
     if (fs::exists(full_p, ec))
@@ -87,11 +85,11 @@ inline std::string resolve_header(const std::string &header_name,
     return "";
   };
 
-  // 2. Explizite Include-Pfade (-I) durchsuchen
+  // 2. Search explicit include paths (-I)
   for (const auto &inc_str : include_paths) {
     fs::path inc_path(inc_str);
 
-    // Wenn der -I Pfad relativ ist und wir ein work_dir haben, verknüpfen!
+    // If the -I path is relative and we have a work_dir, combine them!
     if (inc_path.is_relative() && !work_dir.empty()) {
       inc_path = fs::path(work_dir) / inc_path;
     }
@@ -101,7 +99,7 @@ inline std::string resolve_header(const std::string &header_name,
       return res;
   }
 
-  // 3. Systempfade (Fallback) - Wichtig für exiv2 in /usr/local/include
+  // 3. System paths (fallback)
   static const std::vector<std::string> system_paths = {
       "/usr/include", "/usr/local/include", "/usr/include/x86_64-linux-gnu",
       "/opt/local/include"};

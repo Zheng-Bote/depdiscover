@@ -29,7 +29,11 @@ namespace depdiscover {
 
 using json = nlohmann::json;
 
-// Hilfsfunktion: ISO-8601 Timestamp für CycloneDX (YYYY-MM-DDThh:mm:ssZ)
+/**
+ * @brief Returns an ISO-8601 timestamp for CycloneDX (YYYY-MM-DDThh:mm:ssZ).
+ *
+ * @return std::string The formatted timestamp.
+ */
 inline std::string get_iso8601_timestamp() {
   auto now = std::chrono::system_clock::now();
   auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -38,7 +42,11 @@ inline std::string get_iso8601_timestamp() {
   return ss.str();
 }
 
-// Hilfsfunktion: Pseudo-UUIDv4 für die SBOM Serial Number
+/**
+ * @brief Generates a pseudo-UUIDv4 for the SBOM serial number.
+ *
+ * @return std::string The generated UUID.
+ */
 inline std::string generate_uuid_v4() {
   std::random_device rd;
   std::mt19937 gen(rd());
@@ -58,6 +66,12 @@ inline std::string generate_uuid_v4() {
   return uuid;
 }
 
+/**
+ * @brief Generates a CycloneDX 1.4 report from the internal JSON representation.
+ *
+ * @param internal_root The root of the internal JSON data.
+ * @param filepath The path where the report will be saved.
+ */
 inline void generate_cyclonedx_report(const json &internal_root,
                                       const std::string &filepath) {
   json cdx;
@@ -98,13 +112,13 @@ inline void generate_cyclonedx_report(const json &internal_root,
       std::string name = dep.value("name", "unknown");
       std::string version = dep.value("version", "unknown");
 
-      // PURL (Package URL) als eindeutige Referenz
+      // PURL (Package URL) as unique reference
       std::string purl = "pkg:generic/" + name + "@" + version;
 
       comp["type"] = "library";
       comp["name"] = name;
       comp["version"] = version;
-      comp["bom-ref"] = purl; // Verknüpfungspunkt für CVEs
+      comp["bom-ref"] = purl; // Connection point for CVEs
       comp["purl"] = purl;
 
       // Licenses
@@ -112,8 +126,7 @@ inline void generate_cyclonedx_report(const json &internal_root,
         json licenses_arr = json::array();
         for (const auto &lic : dep["licenses"]) {
           std::string l_str = lic.get<std::string>();
-          // Wir nehmen vereinfacht an, dass unsere Lizenzen SPDX-IDs sind
-          // Fallback wäre {"license": {"name": l_str}}
+          // Assuming licenses are SPDX-IDs; fallback to name if unknown
           if (l_str != "UNKNOWN" && l_str != "unknown") {
             licenses_arr.push_back({{"license", {{"id", l_str}}}});
           } else {
@@ -130,13 +143,13 @@ inline void generate_cyclonedx_report(const json &internal_root,
         for (const auto &cve : dep["cves"]) {
           std::string id = cve.value("id", "UNKNOWN");
 
-          // Wir ignorieren unsere internen "Safe"-Marker für CycloneDX
+          // Ignore internal "Safe" markers for CycloneDX
           if (id == "SAFE" || id == "NOT-CHECKED" || id == "CHECK-ERROR") {
             continue;
           }
 
           json vuln;
-          vuln["bom-ref"] = purl; // Zeigt auf die Component oben
+          vuln["bom-ref"] = purl; // Points to the component above
           vuln["id"] = id;
 
           json source;
@@ -147,15 +160,12 @@ inline void generate_cyclonedx_report(const json &internal_root,
           if (!summary.empty())
             vuln["description"] = summary;
 
-          // Dummy Rating, da OSV den Score als String liefert ("UNKNOWN" oder
-          // "7.5" etc) In einer echten Umsetzung müsste man den CVSS String
-          // parsen
+          // Note: OSV provides scores as strings ("UNKNOWN", "7.5", etc.).
+          // Ratings require a mapping to enums (low, medium, high, critical).
           std::string severity = cve.value("severity", "UNKNOWN");
           if (severity != "UNKNOWN" && severity != "NONE") {
             json rating;
-            rating["severity"] = "unknown"; // CycloneDX erfordert enum: low,
-                                            // medium, high, critical
-            // Optional: String in double umwandeln für rating["score"]
+            rating["severity"] = "unknown"; 
             vuln["ratings"] = json::array({rating});
           }
 
@@ -180,7 +190,7 @@ inline void generate_cyclonedx_report(const json &internal_root,
     cdx["vulnerabilities"] = vulnerabilities;
   }
 
-  // Speichern
+  // Save to file
   std::ofstream out(filepath);
   if (out) {
     out << cdx.dump(2);

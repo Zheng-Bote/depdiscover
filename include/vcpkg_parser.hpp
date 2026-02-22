@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  *
  * @file vcpkg_parser.hpp
- * @brief Parses vcpkg.json manifests to identify dependencies.
+ * @brief Parses vcpkg.json manifests to extract dependencies.
  * @version 1.0.0
  * @date 2026-02-18
  *
@@ -16,68 +16,63 @@
  * @license MIT License
  */
 #pragma once
-#include "semver.hpp" // cleanup versions
-#include "types.hpp"  // Dependency struct
+#include "types.hpp"
 #include <fstream>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
 
 namespace depdiscover {
 
-// ENTFERNT: struct Dependency { ... }
-// ENTFERNT: void to_json(...) { ... }
-// Beide sind jetzt in types.hpp definiert.
-
 /**
  * @brief Parses a vcpkg.json manifest file.
  *
- * @param path The path to the vcpkg.json file.
- * @return std::vector<Dependency> A list of dependencies from the manifest.
+ * @param manifest_path Path to the vcpkg.json file.
+ * @return std::vector<Dependency> List of extracted dependencies.
  */
-inline std::vector<Dependency> parse_vcpkg_manifest(const std::string &path) {
+inline std::vector<Dependency>
+parse_vcpkg_manifest(const std::string &manifest_path) {
   std::vector<Dependency> deps;
-  std::ifstream f(path);
-  if (!f)
-    return deps;
-
-  nlohmann::json doc;
   try {
-    f >> doc;
-  } catch (...) {
-    return deps;
-  }
+    std::ifstream f(manifest_path);
+    if (!f.is_open())
+      return deps;
 
-  // Vcpkg Manifest hat "dependencies": [ ... ]
-  if (doc.contains("dependencies") && doc["dependencies"].is_array()) {
-    for (const auto &entry : doc["dependencies"]) {
-      Dependency dep;
-      dep.type = "vcpkg";
+    nlohmann::json j;
+    f >> j;
 
-      if (entry.is_string()) {
-        // Fall 1: "dependencies": ["fmt", "zlib"]
-        dep.name = entry.get<std::string>();
-        dep.version = "latest";
-      } else if (entry.is_object()) {
-        // Fall 2: "dependencies": [ { "name": "fmt", "version>=": "10.0" } ]
-        dep.name = entry.value("name", "unknown");
+    if (j.contains("dependencies") && j["dependencies"].is_array()) {
+      for (const auto &item : j["dependencies"]) {
+        Dependency dep;
+        dep.type = "vcpkg";
+        dep.source = "manifest";
 
-        // Versuche verschiedene Versions-Felder
-        if (entry.contains("version-string"))
-          dep.version = entry["version-string"];
-        else if (entry.contains("version>="))
-          dep.version = entry["version>="];
-        else if (entry.contains("version"))
-          dep.version = entry["version"];
-        else
-          dep.version = "latest";
-      }
-      dep.version = clean_version(dep.version);
+        // vcpkg dependencies can be simple strings or complex objects
+        if (item.is_string()) {
+          dep.name = item.get<std::string>();
+          dep.version = "unknown";
+        } else if (item.is_object()) {
+          dep.name = item.value("name", "unknown");
 
-      if (!dep.name.empty()) {
-        deps.push_back(dep);
+          // Try to extract version constraints
+          if (item.contains("version>=")) {
+            dep.version = item["version>="];
+          } else if (item.contains("version")) {
+            dep.version = item["version"];
+          } else {
+            dep.version = "unknown";
+          }
+        }
+
+        if (dep.name != "unknown") {
+          deps.push_back(dep);
+        }
       }
     }
+  } catch (const std::exception &e) {
+    std::cerr << "[Warning] Could not parse vcpkg manifest: " << e.what()
+              << "\n";
   }
   return deps;
 }
