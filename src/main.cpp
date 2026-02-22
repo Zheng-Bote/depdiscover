@@ -112,6 +112,45 @@ bool fuzzy_match_lib(const std::string &lib_filename,
   return (clean_filename.rfind(clean_pkg, 0) == 0);
 }
 
+// --- Hilfsfunktion: CVSS Score extrahieren ---
+// Die OSV API liefert oft den ganzen Vector-String, z.B.:
+// "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+// Manchmal steht dort aber auch einfach nur eine Zahl "9.8" oder "UNKNOWN".
+// Da es sehr aufwendig ist, einen CVSSv3 Vector manuell in C++ in einen Score
+// zu berechnen, versuchen wir primär einfache numerische Strings zu parsen.
+// Hinweis: OSV.dev verbessert gerade die API, um den echten Score direkt als
+// Float zu liefern.
+double extract_cvss_score(const std::string &severity_str) {
+  if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
+      severity_str.empty())
+    return 0.0;
+
+  try {
+    // Versuch 1: Ist es schon eine reine Zahl? (z.B. "7.5")
+    return std::stod(severity_str);
+  } catch (...) {
+    // Wenn es ein CVSS-Vector ist (CVSS:3.1/...), können wir den Score ohne
+    // Bibliothek schwer exakt berechnen. Als rudimentären Fallback schauen wir,
+    // ob wir "C:H/I:H/A:H" (Critical) etc. finden, um ihn grob einzuordnen.
+    if (severity_str.find("CVSS:") == 0) {
+      int high_count = 0;
+      if (severity_str.find("C:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("I:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("A:H") != std::string::npos)
+        high_count++;
+
+      if (high_count == 3)
+        return 9.0; // Critical
+      if (high_count > 0)
+        return 7.0; // High
+      return 5.0;   // Medium Fallback
+    }
+  }
+  return 0.0;
+}
+
 void print_help(const char *program_name) {
   std::cerr
       << "Verwendung: " << program_name << " [OPTIONEN]\n\n"
@@ -130,6 +169,8 @@ void print_help(const char *program_name) {
          "(Optional)\n"
       << "  -x, --cyclonedx <PFAD>         Output: CycloneDX 1.4 JSON "
          "generieren (Optional)\n"
+      << "  -f, --fail-on-cvss <SCORE>     Build Breaker: Exit 1 wenn "
+         "CVSS-Score >= SCORE (z.B. 7.0)\n" // NEU
       << "  -h, --help                     Zeigt diese Hilfe an\n\n"
       << "Info:\n"
       << "  " << rz::config::PROG_LONGNAME << "\n"
@@ -141,6 +182,7 @@ void print_help(const char *program_name) {
 
 int main(int argc, char **argv) {
   // --- Update Check ---
+  std::cerr << "[Info] Update Check...\n";
   try {
     const std::string repo_url(rz::config::PROJECT_HOMEPAGE_URL);
     const std::string current_version(rz::config::VERSION);
@@ -172,6 +214,8 @@ int main(int argc, char **argv) {
   std::string ecosystem = "Debian";
   std::string html_path = "";
   std::string cyclonedx_path = "";
+  double fail_on_cvss =
+      11.0; // Default: 11.0 (unmöglich zu erreichen, deaktiviert)
 
   // Argument Parsing
   for (int i = 1; i < argc; ++i) {
@@ -209,6 +253,16 @@ int main(int argc, char **argv) {
     } else if (arg == "-x" || arg == "--cyclonedx") {
       if (i + 1 < argc)
         cyclonedx_path = argv[++i];
+    } else if (arg == "-f" || arg == "--fail-on-cvss") {
+      if (i + 1 < argc) {
+        try {
+          fail_on_cvss = std::stod(argv[++i]);
+        } catch (...) {
+          std::cerr << "Fehler: --fail-on-cvss erfordert eine gültige Zahl "
+                       "(z.B. 7.0).\n";
+          return 1;
+        }
+      }
     }
   }
 
@@ -338,7 +392,6 @@ int main(int argc, char **argv) {
       if (!clean_ver.empty() && clean_ver[0] == 'v')
         clean_ver.erase(0, 1);
 
-      // NEU: Ecosystem an query_cves übergeben!
       dep.cves = query_cves(dep.name, clean_ver, ecosystem);
     }
 
@@ -401,9 +454,42 @@ int main(int argc, char **argv) {
                 << cyclonedx_path << "\n";
     }
 
+    // --- 6. Build Breaker Logik prüfen ---
+    if (fail_on_cvss <=
+        10.0) { // Nur prüfen wenn der Wert gesetzt wurde (<= 10.0)
+      bool critical_vuln_found = false;
+      std::cerr << "\n[Audit] Prüfe auf Schwachstellen mit CVSS >= "
+                << fail_on_cvss << " ...\n";
+
+      for (const auto &dep : deps) {
+        for (const auto &cve : dep.cves) {
+          if (cve.id != "SAFE" && cve.id != "NOT-CHECKED" &&
+              cve.id != "CHECK-ERROR") {
+            double score = extract_cvss_score(cve.severity);
+            if (score >= fail_on_cvss) {
+              std::cerr << "  ❌ FEHLER: " << dep.name << " v" << dep.version
+                        << " hat Schwachstelle " << cve.id << " (Score: ~"
+                        << score << ")\n";
+              critical_vuln_found = true;
+            }
+          }
+        }
+      }
+
+      if (critical_vuln_found) {
+        std::cerr << "\n[Audit] BUILD FAILED: Kritische Schwachstellen "
+                     "gefunden, die den Schwellenwert überschreiten!\n";
+        return 1; // Exit mit Fehlercode
+      } else {
+        std::cerr << "[Audit] BUILD SUCCESS: Keine kritischen Schwachstellen "
+                     "über dem Schwellenwert gefunden.\n";
+      }
+    }
+
   } catch (const std::exception &ex) {
     std::cerr << "Error: " << ex.what() << "\n";
     return 1;
   }
+
   return 0;
 }
