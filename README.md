@@ -1,30 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [depdiscover](#depdiscover)
-  - [Description](#description)
-  - [🚀 Key Features](#-key-features)
-  - [Screenshots](#screenshots)
-  - [🏗 Architecture](#-architecture)
-  - [🛠 Prerequisites](#-prerequisites)
-    - [Runtime Requirements](#runtime-requirements)
-  - [📦 Build Instructions](#-build-instructions)
-  - [💻 Usage](#-usage)
-    - [Basic Command](#basic-command)
-    - [Full Example](#full-example)
-    - [Options](#options)
-    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-    - [📄 Output Example](#-output-example)
-  - [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
-  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
-  - [📜 License](#-license)
-  - [📄 Changelog](#-changelog)
-  - [Author](#author)
-  - [Code Contributors](#code-contributors)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # depdiscover
 
 **Native C++ Dependency Scanner & SBOM Generator**
@@ -38,6 +11,9 @@
 [Report Issue](https://github.com/Zheng-Bote/depdiscover/issues) · [Request Feature](https://github.com/Zheng-Bote/depdiscover/pulls)
 
 ---
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 **Table of Contents**
 
@@ -58,8 +34,11 @@
   - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
   - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
   - [📜 License](#-license)
+  - [📄 Changelog](#-changelog)
   - [Author](#author)
   - [Code Contributors](#code-contributors)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 

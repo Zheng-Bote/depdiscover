@@ -4,13 +4,11 @@ This guide explains how to integrate the **depdiscover** AppImage into your GitH
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
-- [Using depdiscover AppImage in GitHub Actions](#using-depdiscover-appimage-in-github-actions)
-  - [Workflow Example](#workflow-example)
-  - [Why Extract the AppImage?](#why-extract-the-appimage)
-    - [Key Steps:](#key-steps)
+- [Workflow Example](#workflow-example)
+- [Why Extract the AppImage?](#why-extract-the-appimage)
+  - [Key Steps:](#key-steps)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

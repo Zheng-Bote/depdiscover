@@ -4,16 +4,14 @@ Welcome to the documentation for **depdiscover**, a native C++ Dependency Scanne
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
-- [depdiscover Documentation](#depdiscover-documentation)
-  - [Core Documentation](#core-documentation)
-  - [Screenshots and Reports](#screenshots-and-reports)
-    - [Overview of the HTML Report](#overview-of-the-html-report)
-    - [Vulnerability Details](#vulnerability-details)
-    - [Vulnerability Suppression](#vulnerability-suppression)
-    - [Build Breaker (Fail on CVSS)](#build-breaker-fail-on-cvss)
+- [Core Documentation](#core-documentation)
+- [Screenshots and Reports](#screenshots-and-reports)
+  - [Overview of the HTML Report](#overview-of-the-html-report)
+  - [Vulnerability Details](#vulnerability-details)
+  - [Vulnerability Suppression](#vulnerability-suppression)
+  - [Build Breaker (Fail on CVSS)](#build-breaker-fail-on-cvss)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
