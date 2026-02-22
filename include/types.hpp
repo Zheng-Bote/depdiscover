@@ -7,8 +7,8 @@
  *
  * @file types.hpp
  * @brief definitions of common data structures like Dependency and CVE.
- * @version 1.0.0
- * @date 2026-02-18
+ * @version 1.1.0
+ * @date 2026-02-22
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert
@@ -31,6 +31,8 @@ struct CVE {
   std::string summary;
   std::string severity;
   std::string fixed_version;
+  bool suppressed = false;
+  std::string suppression_reason;
 };
 
 /**
@@ -43,7 +45,10 @@ inline void to_json(nlohmann::json &j, const CVE &c) {
   j = nlohmann::json{{"id", c.id},
                      {"summary", c.summary},
                      {"severity", c.severity},
-                     {"fixed_version", c.fixed_version}};
+                     {"fixed_version", c.fixed_version},
+                     // FIX: Die beiden Felder gehören HIER rein (zur CVE)
+                     {"suppressed", c.suppressed},
+                     {"suppression_reason", c.suppression_reason}};
 }
 
 // Dependency Struktur (Erweitert)
@@ -71,14 +76,16 @@ struct Dependency {
  * @param d The Dependency object.
  */
 inline void to_json(nlohmann::json &j, const Dependency &d) {
-  j = nlohmann::json{{"name", d.name},
-                     {"version", d.version},
-                     {"type", d.type},
-                     {"source", d.source.empty() ? "manifest" : d.source},
-                     {"headers", d.headers},
-                     {"libraries", d.libraries},
-                     {"licenses", d.licenses},
-                     {"cves", d.cves}};
+  j = nlohmann::json{
+      {"name", d.name},
+      {"version", d.version},
+      {"type", d.type},
+      {"source", d.source.empty() ? "manifest" : d.source},
+      {"headers", d.headers},
+      {"libraries", d.libraries},
+      {"licenses", d.licenses},
+      // FIX: Hier wurden 'suppressed' und 'suppression_reason' entfernt
+      {"cves", d.cves}};
 }
 
 } // namespace depdiscover

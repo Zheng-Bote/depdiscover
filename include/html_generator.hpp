@@ -7,8 +7,8 @@
  *
  * @file html_generator.hpp
  * @brief Generates a user-friendly HTML report from the SBOM JSON data.
- * @version 1.2.0
- * @date 2026-02-21
+ * @version 1.2.1
+ * @date 2026-02-22
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert
@@ -58,12 +58,7 @@ inline void generate_html_report(const nlohmann::json &root,
       << "  details { margin-top: 8px; font-size: 0.9em; }\n"
       << "  summary { cursor: pointer; font-weight: bold; color: #495057; }\n"
       << "  summary:hover { color: #000; }\n"
-      << "  ul.clean-list { margin-top: 5px; padding-left: 20px; }\n" // Generische
-                                                                      // Klasse
-                                                                      // für
-                                                                      // Listen
-                                                                      // im
-                                                                      // details
+      << "  ul.clean-list { margin-top: 5px; padding-left: 20px; }\n"
       << "  ul.clean-list li { margin-bottom: 4px; }\n"
       << "  a.cve-link { color: #0056b3; text-decoration: none; font-weight: "
          "bold; }\n"
@@ -117,7 +112,7 @@ inline void generate_html_report(const nlohmann::json &root,
       // Security Status & Fixed Versions evaluieren
       std::string sec_class = "";
       std::string sec_text = "Unknown";
-      std::set<std::string> unique_fixes; // Set für eindeutige Fix-Versionen
+      std::set<std::string> unique_fixes;
 
       if (dep.contains("cves") && !dep["cves"].empty()) {
         auto first_cve = dep["cves"][0];
@@ -130,15 +125,28 @@ inline void generate_html_report(const nlohmann::json &root,
           sec_class = "warn";
           sec_text = "⚠️ " + first_id;
         } else {
-          sec_class = "vuln";
-          size_t vuln_count = dep["cves"].size();
+          // NEU: Auswertung der unterdrückten CVEs
+          int active_vulns = 0;
+          int suppressed_vulns = 0;
 
-          // Roter Titel
-          sec_text = "<span class=\"vuln-title\">❌ " +
-                     std::to_string(vuln_count) + " Vulnerabilit" +
-                     (vuln_count > 1 ? "ies" : "y") + "</span>";
+          for (const auto &cve : dep["cves"]) {
+            if (cve.value("suppressed", false))
+              suppressed_vulns++;
+            else
+              active_vulns++;
+          }
 
-          // Interaktives <details> Menü für CVEs
+          if (active_vulns > 0) {
+            sec_class = "vuln"; // Rot, da noch echte Lücken da sind
+            sec_text = "<span class=\"vuln-title\">❌ " +
+                       std::to_string(active_vulns) + " Vulnerabilit" +
+                       (active_vulns > 1 ? "ies" : "y") + "</span>";
+          } else {
+            sec_class = "warn"; // Gelb, da alle Lücken ignoriert wurden
+            sec_text = "<span style=\"color:#856404; font-weight:bold;\">⚠️ " +
+                       std::to_string(suppressed_vulns) + " Suppressed</span>";
+          }
+
           sec_text += "\n<details><summary>Details anzeigen</summary>\n<ul "
                       "class=\"clean-list\">\n";
 
@@ -146,13 +154,12 @@ inline void generate_html_report(const nlohmann::json &root,
             std::string id = cve.value("id", "UNKNOWN");
             std::string summary = cve.value("summary", "");
             std::string fixed = cve.value("fixed_version", "");
+            bool is_suppressed = cve.value("suppressed", false);
 
-            // Wenn es einen Fix gibt, in unser Set aufnehmen
-            if (!fixed.empty()) {
+            if (!fixed.empty() && !is_suppressed) {
               unique_fixes.insert(fixed);
             }
 
-            // Dynamische Link-Generierung basierend auf der ID
             std::string url;
             if (id.find("CVE-") == 0) {
               url = "https://nvd.nist.gov/vuln/detail/" + id;
@@ -162,22 +169,33 @@ inline void generate_html_report(const nlohmann::json &root,
               url = "https://osv.dev/vulnerability/" + id;
             }
 
-            // Listen-Eintrag generieren
-            sec_text += "  <li><a class=\"cve-link\" href=\"" + url +
+            // NEU: Styling für unterdrückte Einträge
+            std::string li_style =
+                is_suppressed ? "opacity: 0.6; text-decoration: line-through;"
+                              : "";
+            std::string reason_html = "";
+            if (is_suppressed) {
+              std::string reason = cve.value("suppression_reason",
+                                             "Keine Begründung angegeben.");
+              reason_html = "<br><small style=\"text-decoration: none; "
+                            "display:block; color:#666;\">↳ <i>Suppressed: " +
+                            reason + "</i></small>";
+            }
+
+            sec_text += "  <li style=\"" + li_style +
+                        "\"><a class=\"cve-link\" href=\"" + url +
                         "\" target=\"_blank\">" + id + "</a>";
             if (!summary.empty()) {
               if (summary.length() > 80)
                 summary = summary.substr(0, 77) + "...";
               sec_text += ": " + summary;
             }
-            sec_text += "</li>\n";
+            sec_text += reason_html + "</li>\n";
           }
           sec_text += "</ul>\n</details>";
         }
       }
 
-      // NEU: Fixed Versions String als aufklappbares <details> Menü
-      // zusammenbauen
       std::string fixed_versions_str = "-";
       if (!unique_fixes.empty()) {
         size_t fix_count = unique_fixes.size();

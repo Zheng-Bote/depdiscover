@@ -57,7 +57,6 @@ namespace fs = std::filesystem;
 constexpr auto SCHEMA_VERSION = "1.2";
 
 // --- Hilfsfunktionen für Matching ---
-// (Unverändert gelassen für Übersichtlichkeit)
 bool string_contains(const std::string &haystack, const std::string &needle) {
   auto it = std::search(haystack.begin(), haystack.end(), needle.begin(),
                         needle.end(), [](char ch1, char ch2) {
@@ -113,25 +112,14 @@ bool fuzzy_match_lib(const std::string &lib_filename,
 }
 
 // --- Hilfsfunktion: CVSS Score extrahieren ---
-// Die OSV API liefert oft den ganzen Vector-String, z.B.:
-// "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-// Manchmal steht dort aber auch einfach nur eine Zahl "9.8" oder "UNKNOWN".
-// Da es sehr aufwendig ist, einen CVSSv3 Vector manuell in C++ in einen Score
-// zu berechnen, versuchen wir primär einfache numerische Strings zu parsen.
-// Hinweis: OSV.dev verbessert gerade die API, um den echten Score direkt als
-// Float zu liefern.
 double extract_cvss_score(const std::string &severity_str) {
   if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
       severity_str.empty())
     return 0.0;
 
   try {
-    // Versuch 1: Ist es schon eine reine Zahl? (z.B. "7.5")
     return std::stod(severity_str);
   } catch (...) {
-    // Wenn es ein CVSS-Vector ist (CVSS:3.1/...), können wir den Score ohne
-    // Bibliothek schwer exakt berechnen. Als rudimentären Fallback schauen wir,
-    // ob wir "C:H/I:H/A:H" (Critical) etc. finden, um ihn grob einzuordnen.
     if (severity_str.find("CVSS:") == 0) {
       int high_count = 0;
       if (severity_str.find("C:H") != std::string::npos)
@@ -170,7 +158,9 @@ void print_help(const char *program_name) {
       << "  -x, --cyclonedx <PFAD>         Output: CycloneDX 1.4 JSON "
          "generieren (Optional)\n"
       << "  -f, --fail-on-cvss <SCORE>     Build Breaker: Exit 1 wenn "
-         "CVSS-Score >= SCORE (z.B. 7.0)\n" // NEU
+         "CVSS-Score >= SCORE (z.B. 7.0)\n"
+      << "  -s, --suppressions <PFAD>      Input: Path to JSON file with "
+         "suppressed CVEs (Optional)\n"
       << "  -h, --help                     Zeigt diese Hilfe an\n\n"
       << "Info:\n"
       << "  " << rz::config::PROG_LONGNAME << "\n"
@@ -214,8 +204,11 @@ int main(int argc, char **argv) {
   std::string ecosystem = "Debian";
   std::string html_path = "";
   std::string cyclonedx_path = "";
-  double fail_on_cvss =
-      11.0; // Default: 11.0 (unmöglich zu erreichen, deaktiviert)
+
+  std::string suppressions_path = "";
+  std::map<std::string, std::string> suppressions;
+
+  double fail_on_cvss = 11.0;
 
   // Argument Parsing
   for (int i = 1; i < argc; ++i) {
@@ -263,10 +256,29 @@ int main(int argc, char **argv) {
           return 1;
         }
       }
+    } else if (arg == "-s" || arg == "--suppressions") {
+      if (i + 1 < argc)
+        suppressions_path = argv[++i];
     }
   }
 
   try {
+    // --- 0. Suppressions laden ---
+    if (!suppressions_path.empty() && fs::exists(suppressions_path)) {
+      std::cerr << "[Info] Lade Suppressions: " << suppressions_path << "\n";
+      try {
+        std::ifstream f(suppressions_path);
+        json j;
+        f >> j;
+        for (auto &[key, value] : j.items()) {
+          suppressions[key] = value.get<std::string>();
+        }
+      } catch (const std::exception &e) {
+        std::cerr << "[Warnung] Fehler beim Lesen der Suppressions-Datei: "
+                  << e.what() << "\n";
+      }
+    }
+
     // --- 1. Abhängigkeiten laden ---
     std::vector<Dependency> deps;
 
@@ -393,6 +405,16 @@ int main(int argc, char **argv) {
         clean_ver.erase(0, 1);
 
       dep.cves = query_cves(dep.name, clean_ver, ecosystem);
+
+      // NEU: Suppressions anwenden
+      if (!suppressions.empty()) {
+        for (auto &cve : dep.cves) {
+          if (suppressions.contains(cve.id)) {
+            cve.suppressed = true;
+            cve.suppression_reason = suppressions[cve.id];
+          }
+        }
+      }
     }
 
     // --- 4. System Libs ---
@@ -455,15 +477,15 @@ int main(int argc, char **argv) {
     }
 
     // --- 6. Build Breaker Logik prüfen ---
-    if (fail_on_cvss <=
-        10.0) { // Nur prüfen wenn der Wert gesetzt wurde (<= 10.0)
+    if (fail_on_cvss <= 10.0) {
       bool critical_vuln_found = false;
       std::cerr << "\n[Audit] Prüfe auf Schwachstellen mit CVSS >= "
                 << fail_on_cvss << " ...\n";
 
       for (const auto &dep : deps) {
         for (const auto &cve : dep.cves) {
-          if (cve.id != "SAFE" && cve.id != "NOT-CHECKED" &&
+          // NEU: Unterdrückte CVEs werden im Build Breaker ignoriert
+          if (!cve.suppressed && cve.id != "SAFE" && cve.id != "NOT-CHECKED" &&
               cve.id != "CHECK-ERROR") {
             double score = extract_cvss_score(cve.severity);
             if (score >= fail_on_cvss) {
@@ -481,8 +503,8 @@ int main(int argc, char **argv) {
                      "gefunden, die den Schwellenwert überschreiten!\n";
         return 1; // Exit mit Fehlercode
       } else {
-        std::cerr << "[Audit] BUILD SUCCESS: Keine kritischen Schwachstellen "
-                     "über dem Schwellenwert gefunden.\n";
+        std::cerr << "[Audit] BUILD SUCCESS: Keine kritischen ungelösten "
+                     "Schwachstellen über dem Schwellenwert gefunden.\n";
       }
     }
 

@@ -7,7 +7,7 @@
  *
  * @file cve_resolver.hpp
  * @brief Queries OSV.dev for CVEs associated with packages.
- * @version 1.3.0
+ * @version 1.3.1
  */
 #pragma once
 #include "types.hpp"
@@ -83,7 +83,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       version == "latest") {
     results.push_back({"NOT-CHECKED",
                        "Version unknown or latest, cannot query OSV", "UNKNOWN",
-                       ""});
+                       "", false, ""}); // FIX: false und "" hinzugefügt
     return results;
   }
 
@@ -102,9 +102,9 @@ inline std::vector<CVE> query_cves(const std::string &name,
 
   if (response.empty()) {
     std::cerr << "Failed (Network Error)\n";
-    results.push_back({"CHECK-ERROR",
-                       "Network request failed or no output from curl",
-                       "UNKNOWN", ""});
+    results.push_back(
+        {"CHECK-ERROR", "Network request failed or no output from curl",
+         "UNKNOWN", "", false, ""}); // FIX: false und "" hinzugefügt
     return results;
   }
 
@@ -114,8 +114,9 @@ inline std::vector<CVE> query_cves(const std::string &name,
     if (doc.contains("message") && doc.contains("code")) {
       std::string error_msg = doc["message"].get<std::string>();
       std::cerr << "API Error (" << error_msg << ")\n";
-      results.push_back(
-          {"CHECK-ERROR", "OSV API Error: " + error_msg, "UNKNOWN", ""});
+      results.push_back({"CHECK-ERROR", "OSV API Error: " + error_msg,
+                         "UNKNOWN", "", false,
+                         ""}); // FIX: false und "" hinzugefügt
       return results;
     }
 
@@ -175,6 +176,11 @@ inline std::vector<CVE> query_cves(const std::string &name,
             }
           }
         }
+
+        // Explizit initialisieren, damit keine Überraschungen auftreten
+        cve.suppressed = false;
+        cve.suppression_reason = "";
+
         results.push_back(cve);
       }
     } else {
@@ -185,13 +191,15 @@ inline std::vector<CVE> query_cves(const std::string &name,
       safe_entry.fixed_version = "";
       safe_entry.summary = "No vulnerabilities found in ecosystem '" +
                            ecosystem + "'. Checked on " + get_current_date();
+      safe_entry.suppressed = false;
+      safe_entry.suppression_reason = "";
       results.push_back(safe_entry);
     }
   } catch (const std::exception &e) {
     std::cerr << "JSON Error: " << e.what() << "\n";
     results.push_back({"CHECK-ERROR",
                        std::string("JSON parse error: ") + e.what(), "UNKNOWN",
-                       ""});
+                       "", false, ""}); // FIX: false und "" hinzugefügt
   }
 
   return results;
