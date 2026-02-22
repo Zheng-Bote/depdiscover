@@ -26,6 +26,10 @@
 // Projekt Konfiguration
 #include "rz_config.hpp"
 
+// Update Checker
+#include <check_gh-update.hpp>
+#include <print>
+
 // Core Komponenten
 #include "compile_commands.hpp"
 #include "elf_scanner.hpp"
@@ -136,6 +140,27 @@ void print_help(const char *program_name) {
 // --- Main ---
 
 int main(int argc, char **argv) {
+  // --- Update Check ---
+  try {
+    const std::string repo_url(rz::config::PROJECT_HOMEPAGE_URL);
+    const std::string current_version(rz::config::VERSION);
+
+    if (!repo_url.empty() && !current_version.empty()) {
+      auto result = ghupdate::check_github_update(repo_url, current_version);
+      if (result.hasUpdate) {
+        std::println(
+            "\n[Update] Eine neue Version ist verfügbar: {} (aktuell: {})",
+            result.latestVersion, current_version);
+        std::println("[Update] Download: {}\n", repo_url);
+      } else {
+        std::println("\n[Update] {} is up to date.\n",
+                     rz::config::EXECUTABLE_NAME);
+      }
+    }
+  } catch (const std::exception &ex) {
+    // Falls kein Internet oder URL falsch, leise ignorieren
+  }
+
   std::string cc_path = "compile_commands.json";
   std::string libs_txt_path = "libs.txt";
   std::string binary_path = "";
