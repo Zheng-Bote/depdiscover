@@ -7,7 +7,7 @@
  *
  * @file main.cpp
  * @brief Main entry point for the Dependency Tracker application.
- * @version 1.1.0
+ * @version 1.2.0
  * @date 2026-02-18
  */
 
@@ -42,7 +42,8 @@
 
 // Metadaten & Output Resolver
 #include "cve_resolver.hpp"
-#include "html_generator.hpp" // NEU: HTML Report Generator
+#include "cyclonedx_generator.hpp"
+#include "html_generator.hpp"
 #include "license_resolver.hpp"
 
 using namespace depdiscover;
@@ -120,9 +121,11 @@ void print_help(const char *program_name) {
          "depdiscover.json)\n"
       << "  -n, --name <NAME>              Setzt den Projektnamen im Report\n"
       << "  -e, --ecosystem <NAME>         OSV Ecosystem für CVE Checks "
-         "(Default: Debian)\n" // NEU
+         "(Default: Debian)\n"
       << "  -H, --html <PFAD>              Output: HTML Report generieren "
-         "(Optional)\n" // NEU
+         "(Optional)\n"
+      << "  -x, --cyclonedx <PFAD>         Output: CycloneDX 1.4 JSON "
+         "generieren (Optional)\n"
       << "  -h, --help                     Zeigt diese Hilfe an\n\n"
       << "Info:\n"
       << "  " << rz::config::PROG_LONGNAME << "\n"
@@ -141,8 +144,9 @@ int main(int argc, char **argv) {
 
   std::string output_path = "depdiscover.json";
   std::string project_name = "Unknown Project";
-  std::string ecosystem = "Debian"; // NEU
-  std::string html_path = "";       // NEU
+  std::string ecosystem = "Debian";
+  std::string html_path = "";
+  std::string cyclonedx_path = "";
 
   // Argument Parsing
   for (int i = 1; i < argc; ++i) {
@@ -174,11 +178,13 @@ int main(int argc, char **argv) {
     } else if (arg == "-e" || arg == "--ecosystem") {
       if (i + 1 < argc)
         ecosystem = argv[++i];
-    } // NEU
-    else if (arg == "-H" || arg == "--html") {
+    } else if (arg == "-H" || arg == "--html") {
       if (i + 1 < argc)
         html_path = argv[++i];
-    } // NEU
+    } else if (arg == "-x" || arg == "--cyclonedx") {
+      if (i + 1 < argc)
+        cyclonedx_path = argv[++i];
+    }
   }
 
   try {
@@ -356,11 +362,18 @@ int main(int argc, char **argv) {
     std::cerr << "[Success] SBOM Report geschrieben nach: " << output_path
               << "\n";
 
-    // NEU: HTML Report Generieren
+    // HTML Report Generieren
     if (!html_path.empty()) {
       generate_html_report(root, html_path);
       std::cerr << "[Success] HTML Report geschrieben nach: " << html_path
                 << "\n";
+    }
+
+    // CycloneDX Report Generieren
+    if (!cyclonedx_path.empty()) {
+      generate_cyclonedx_report(root, cyclonedx_path);
+      std::cerr << "[Success] CycloneDX SBOM geschrieben nach: "
+                << cyclonedx_path << "\n";
     }
 
   } catch (const std::exception &ex) {

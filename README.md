@@ -34,11 +34,18 @@
   - Header Resolution: Maps logical includes to physical files on disk.
   - License Scanning: Detects licenses via static DB and file system heuristics.
   - Security (CVE): Live vulnerability check via OSV.dev API (using curl).
-- **Structured Output**: Generates a detailed JSON report including metadata, file paths, licenses, and security status.
+- **Structured Output**:
+  - Generates a detailed JSON report including metadata, file paths, licenses, and security status.
+  - Generates a CycloneDX 1.4 SBOM in JSON format.
+  - Generates an HTML report for visualization and linking to the detailed CVEs.
 
 ## Screenshots
 
+_example_ HTML Report (see also docs/example_report.html):
+
 ![html_report](docs/img/html_report.png)
+
+_example_ CycloneDX SBOM: see docs/example_sbom-cyclonedx.json
 
 > [!TIP]
 > see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
@@ -162,6 +169,7 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -n   | --name             | Project name to appear in the report header.            |
 | -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).         |
 | -H   | --html             | Path for the generated HTML report (Optional).          |
+| -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).   |
 | -h   | --help             | Show help message.                                      |
 
 ### 💡 Generating libs.txt (CMake Integration)
@@ -176,7 +184,7 @@ file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/libs.txt"
 
 ### 📄 Output Example
 
-The generated JSON contains a metadata header and a list of dependencies.
+The generated JSON contains a metadata header and a list of dependencies including licenses and CVEs and paths.
 
 ```json
 {
