@@ -16,6 +16,7 @@ on:
       - "main"
     paths:
       - "README.md"
+      - "docs/**"
   #    - "dist/**"
   #    - "docs/**"
   #    - ".github/actions/**"
