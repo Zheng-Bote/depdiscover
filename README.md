@@ -14,24 +14,26 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [Description](#description)
-- [🚀 Key Features](#-key-features)
-- [Screenshots](#screenshots)
-- [🏗 Architecture](#-architecture)
-- [🛠 Prerequisites](#-prerequisites)
-  - [Runtime Requirements](#runtime-requirements)
-- [📦 Build Instructions](#-build-instructions)
-- [💻 Usage](#-usage)
-  - [Basic Command](#basic-command)
-  - [Full Example](#full-example)
-  - [Options](#options)
-  - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-  - [📄 Output Example](#-output-example)
-- [📜 License](#-license)
-- [Author](#author)
-- [Code Contributors](#code-contributors)
+- [depdiscover](#depdiscover)
+  - [Description](#description)
+  - [🚀 Key Features](#-key-features)
+  - [Screenshots](#screenshots)
+  - [🏗 Architecture](#-architecture)
+  - [🛠 Prerequisites](#-prerequisites)
+    - [Runtime Requirements](#runtime-requirements)
+  - [📦 Build Instructions](#-build-instructions)
+  - [💻 Usage](#-usage)
+    - [Basic Command](#basic-command)
+    - [Full Example](#full-example)
+    - [Options](#options)
+    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
+    - [📄 Output Example](#-output-example)
+  - [📜 License](#-license)
+  - [Author](#author)
+  - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -176,19 +178,21 @@ To get the most comprehensive report, provide as many inputs as possible:
 
 ### Options
 
-| Flag | Long               | Description                                             |
-| ---- | ------------------ | ------------------------------------------------------- |
-| -c   | --compile-commands | Path to compile_commands.json (Input).                  |
-| -l   | --libs             | Path to CMake generated libs.txt (Input).               |
-| -b   | --binary           | Path to the executable binary for ELF analysis (Input). |
-| -v   | --vcpkg            | Path to vcpkg.json manifest (Input).                    |
-| -C   | --conan            | Path to conanfile.txt (Input).                          |
-| -o   | --output           | Path for the generated JSON file (Output).              |
-| -n   | --name             | Project name to appear in the report header.            |
-| -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).         |
-| -H   | --html             | Path for the generated HTML report (Optional).          |
-| -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).   |
-| -h   | --help             | Show help message.                                      |
+| Flag | Long               | Description                                                              |
+| ---- | ------------------ | ------------------------------------------------------------------------ |
+| -c   | --compile-commands | Path to compile_commands.json (Input).                                   |
+| -l   | --libs             | Path to CMake generated libs.txt (Input).                                |
+| -b   | --binary           | Path to the executable binary for ELF analysis (Input).                  |
+| -v   | --vcpkg            | Path to vcpkg.json manifest (Input).                                     |
+| -C   | --conan            | Path to conanfile.txt (Input).                                           |
+| -o   | --output           | Path for the generated JSON file (Output).                               |
+| -n   | --name             | Project name to appear in the report header.                             |
+| -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).                          |
+| -f   | --fail-on-cvss     | Build Breaker: Exit 1 if CVSS-Score greater or equal to SCORE (e.g. 7.0) |
+| -H   | --html             | Path for the generated HTML report (Optional).                           |
+| -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).                    |
+| -s   | --suppressions     | Path to JSON file with suppressed CVEs (Optional).                       |
+| -h   | --help             | Show help message.                                                       |
 
 ### 💡 Generating libs.txt (CMake Integration)
 
