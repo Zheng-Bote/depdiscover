@@ -8,7 +8,7 @@
  * @file main.cpp
  * @brief Main entry point for the Dependency Tracker application.
  * @version 1.2.0
- * @date 2026-02-18
+ * @date 2026-02-22
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert

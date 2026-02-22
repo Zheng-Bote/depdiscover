@@ -19,6 +19,7 @@
   - [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
   - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
   - [📜 License](#-license)
+  - [📄 Changelog](#-changelog)
   - [Author](#author)
   - [Code Contributors](#code-contributors)
 
@@ -261,7 +262,7 @@ The generated JSON contains a metadata header and a list of dependencies includi
     "scan_date": "2026-02-22",
     "tool": {
       "name": "depdiscover",
-      "version": "1.0.0"
+      "version": "1.2.0"
     },
     "project": {
       "name": "MyApplication",
@@ -325,6 +326,10 @@ Create a file (e.g., suppressions.json) mapping the exact CVE ID to your justifi
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Copyright (c) 2026 ZHENG Robert
+
+## 📄 Changelog
+
+For a detailed history of changes, see the [CHANGELOG.md](CHANGELOG.md).
 
 ## Author
 
