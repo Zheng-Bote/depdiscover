@@ -14,6 +14,24 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Description](#description)
+- [🚀 Key Features](#-key-features)
+- [Screenshots](#screenshots)
+- [🏗 Architecture](#-architecture)
+- [🛠 Prerequisites](#-prerequisites)
+  - [Runtime Requirements](#runtime-requirements)
+- [📦 Build Instructions](#-build-instructions)
+- [💻 Usage](#-usage)
+  - [Basic Command](#basic-command)
+  - [Full Example](#full-example)
+  - [Options](#options)
+  - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
+  - [📄 Output Example](#-output-example)
+- [📜 License](#-license)
+- [Author](#author)
+- [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
