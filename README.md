@@ -1,3 +1,17 @@
+# depdiscover
+
+**Native C++ Dependency Scanner & SBOM Generator**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue.svg)]()
+[![CMake](https://img.shields.io/badge/CMake-3.23+-blue.svg)]()
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/depdiscover?logo=GitHub)](https://github.com/Zheng-Bote/depdiscover/releases)
+
+[Report Issue](https://github.com/Zheng-Bote/depdiscover/issues) · [Request Feature](https://github.com/Zheng-Bote/depdiscover/pulls)
+
+---
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -23,42 +37,6 @@
   - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# depdiscover
-
-**Native C++ Dependency Scanner & SBOM Generator**
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue.svg)]()
-[![CMake](https://img.shields.io/badge/CMake-3.23+-blue.svg)]()
-
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/depdiscover?logo=GitHub)](https://github.com/Zheng-Bote/depdiscover/releases)
-
-[Report Issue](https://github.com/Zheng-Bote/depdiscover/issues) · [Request Feature](https://github.com/Zheng-Bote/depdiscover/pulls)
-
----
-
-**Table of Contents**
-
-- [depdiscover](#depdiscover)
-  - [Description](#description)
-  - [🚀 Key Features](#-key-features)
-  - [Screenshots](#screenshots)
-  - [🏗 Architecture](#-architecture)
-  - [🛠 Prerequisites](#-prerequisites)
-    - [Runtime Requirements](#runtime-requirements)
-  - [📦 Build Instructions](#-build-instructions)
-  - [💻 Usage](#-usage)
-    - [Basic Command](#basic-command)
-    - [Full Example](#full-example)
-    - [Options](#options)
-    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-    - [📄 Output Example](#-output-example)
-  - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
-  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
-  - [📜 License](#-license)
-  - [Author](#author)
-  - [Code Contributors](#code-contributors)
 
 ---
 
