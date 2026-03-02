@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Table of Contents**
 
 - [Changelog](#changelog)
+  - [[1.2.1] - 2026-03-02](#121---2026-03-02)
+    - [Fixed](#fixed)
+    - [Changed](#changed)
   - [[1.2.0] - 2026-02-22](#120---2026-02-22)
     - [Added](#added)
     - [Changed](#changed)
@@ -24,6 +27,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
+
+## [1.2.1] - 2026-03-02
+
+### Fixed
+- **MacOS RPATH**: Corrected Mach-O headers and RPATH settings to ensure libraries are found correctly on macOS.
+- **Linker Configuration**: Updated `libcurl` linking to use `CURL::libcurl` for better compatibility.
+- **MacOS Dependency Scanning**: Fixed an issue where `LC_Path` was not found during ELF/Mach-O scanning on macOS.
+
+### Changed
+- Refined internal configuration and documentation for better clarity and consistency.
 
 ## [1.2.0] - 2026-02-22
 

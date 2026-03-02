@@ -236,10 +236,10 @@ The generated JSON contains a metadata header and a list of dependencies includi
 {
   "header": {
     "schema_version": "1.2",
-    "scan_date": "2026-02-22",
+    "scan_date": "2026-03-02",
     "tool": {
       "name": "depdiscover",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     "project": {
       "name": "MyApplication",
