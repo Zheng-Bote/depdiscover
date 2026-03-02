@@ -36,11 +36,11 @@ constexpr std::string_view PROJECT_HOMEPAGE_URL = "https://github.com/zb-bamboo/
 constexpr std::string_view AUTHOR = "ZHENG Bote";
 constexpr std::string_view CREATED_YEAR = "2026";
 constexpr std::string_view ORGANIZATION = "ZHENG Robert";
-constexpr std::string_view DOMAIN = "net.hase-zheng";
+constexpr std::string_view PROJECT_DOMAIN = "net.hase-zheng";
 
 constexpr std::string_view CMAKE_CXX_STANDARD = "c++23";
 constexpr std::string_view CMAKE_CXX_COMPILER =
-    "GNU 15.2.0";
+    "AppleClang 17.0.0.17000604";
 constexpr std::string_view QT_VERSION_BUILD = "";
 } // namespace config
 } // namespace rz

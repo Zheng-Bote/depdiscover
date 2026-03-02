@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 project(depdiscover 
-          VERSION 1.2.0
+          VERSION 1.2.1
           DESCRIPTION "Dependency Tracker for C++ Projects"
           HOMEPAGE_URL "https://github.com/zb-bamboo/Dependency_Tracker_2"
           LANGUAGES CXX)
@@ -19,6 +19,20 @@ set(PROG_ORGANIZATION_NAME "ZHENG Robert")
 set(PROG_ORGANIZATION_DOMAIN "net.hase-zheng")
 # create rz_config.hpp
 add_subdirectory(configure) 
+
+# --- macOS RPATH Settings ---
+if(APPLE)
+    # Ensure @rpath is used in Mach-O headers
+    set(CMAKE_MACOSX_RPATH ON)
+    # Add @executable_path/../lib and CMAKE_INSTALL_PREFIX/lib to the search path for libraries
+    # This allows the binary to find libraries if they are installed alongside it in a standard layout
+    set(CMAKE_INSTALL_RPATH "@executable_path/../lib;${CMAKE_INSTALL_PREFIX}/lib")
+    # Add paths to libraries outside the build tree to the install RPATH
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+endif()
+
+# --- Find dependencies ---
+find_package(CURL REQUIRED)
 
 # --- 1. Dependencies via FetchContent ---
 include(FetchContent)
@@ -44,7 +58,7 @@ target_include_directories(depdiscover PRIVATE "${CMAKE_SOURCE_DIR}/include")
 target_link_libraries(depdiscover PRIVATE 
     nlohmann_json::nlohmann_json
     gh_update_checker
-    libcurl
+    CURL::libcurl
 )
 
 if(MSVC)
