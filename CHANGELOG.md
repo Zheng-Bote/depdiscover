@@ -11,18 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Changelog](#changelog)
-  - [[1.2.1] - 2026-03-02](#121---2026-03-02)
-    - [Fixed](#fixed)
-    - [Changed](#changed)
-  - [[1.2.0] - 2026-02-22](#120---2026-02-22)
-    - [Added](#added)
-    - [Changed](#changed)
-  - [[1.1.0] - 2026-01-15](#110---2026-01-15)
-    - [Added](#added-1)
-    - [Changed](#changed-1)
-  - [[1.0.0] - 2026-01-01](#100---2026-01-01)
-    - [Added](#added-2)
+- [[1.2.1] - 2026-03-02](#121---2026-03-02)
+  - [Fixed](#fixed)
+  - [Changed](#changed)
+- [[1.2.0] - 2026-02-22](#120---2026-02-22)
+  - [Added](#added)
+  - [Changed](#changed-1)
+- [[1.1.0] - 2026-01-15](#110---2026-01-15)
+  - [Added](#added-1)
+  - [Changed](#changed-2)
+- [[1.0.0] - 2026-01-01](#100---2026-01-01)
+  - [Added](#added-2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
