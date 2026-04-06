@@ -27,6 +27,7 @@
   - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
   - [📄 Output Example](#-output-example)
 - [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
+- [🐙 GitHub Action](#-github-action)
 - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
 - [📜 License](#-license)
 - [📄 Changelog](#-changelog)
