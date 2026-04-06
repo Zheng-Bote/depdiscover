@@ -294,6 +294,21 @@ You can use depdiscover as a security gate in your CI/CD pipelines. By passing t
 ./depdiscover -c compile_commands.json --fail-on-cvss 7.0
 ```
 
+## 🐙 GitHub Action
+
+The easiest way to integrate **depdiscover** into your GitHub repository is by using the official [GitHub Action](action.yml).
+
+```yaml
+- name: Run depdiscover Scan
+  uses: Zheng-Bote/depdiscover@v1.3.0
+  with:
+    project-name: "MyAwesomeProject"
+    fail-on-cvss: 7.0
+    html: "data/report.html"
+```
+
+For more details and full workflow examples, see the [GitHub Action Usage Guide](docs/github_action_usage.md).
+
 ## 🤫 Suppressions (Ignore Vulnerabilities)
 
 In real-world projects, some CVEs might be false positives or affect components of a library you are not using. You can suppress these using a .json file passed via -s or --suppressions.

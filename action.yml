@@ -1,0 +1,85 @@
+name: "depdiscover"
+description: "Native C++ Dependency Scanner & SBOM Generator"
+author: "Robert Zheng"
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  compile-commands:
+    description: "Path to compile_commands.json (Input)"
+    required: false
+    default: "compile_commands.json"
+  libs:
+    description: "Path to CMake generated libs.txt (Input)"
+    required: false
+    default: "libs.txt"
+  binary:
+    description: "Path to the executable binary for ELF analysis (Input)"
+    required: false
+  vcpkg:
+    description: "Path to vcpkg.json manifest (Input)"
+    required: false
+    default: "vcpkg.json"
+  conan:
+    description: "Path to conanfile.txt (Input)"
+    required: false
+    default: "conanfile.txt"
+  cmake:
+    description: "Path to CMakeLists.txt to find FetchContent (Input)"
+    required: false
+    default: "CMakeLists.txt"
+  output:
+    description: "Path for the generated JSON file (Output)"
+    required: false
+  html:
+    description: "Path for the generated HTML report (Optional)"
+    required: false
+  cyclonedx:
+    description: "Path for the generated CycloneDX 1.4 SBOM (Optional)"
+    required: false
+  ecosystem:
+    description: "OSV Ecosystem for CVE checks (Default: Debian)"
+    required: false
+    default: "Debian"
+  fail-on-cvss:
+    description: "Build Breaker: Exit 1 if CVSS-Score >= SCORE (e.g., 7.0)"
+    required: false
+  suppressions:
+    description: "Path to JSON file with suppressed CVEs (Optional)"
+    required: false
+  project-name:
+    description: "Project name to appear in the report header"
+    required: false
+    default: "GitHub Action Project"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download depdiscover AppImage
+      shell: bash
+      run: |
+        # Note: In a real scenario, you might want to pin the version or use a specific release
+        wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.3.0/depdiscover-x86_64.AppImage
+        chmod +x depdiscover-x86_64.AppImage
+
+    - name: Run depdiscover
+      shell: bash
+      run: |
+        ARGS=""
+        if [ -f "${{ inputs.compile-commands }}" ]; then ARGS="$ARGS -c ${{ inputs.compile-commands }}"; fi
+        if [ -f "${{ inputs.libs }}" ]; then ARGS="$ARGS -l ${{ inputs.libs }}"; fi
+        if [ ! -z "${{ inputs.binary }}" ]; then ARGS="$ARGS -b ${{ inputs.binary }}"; fi
+        if [ -f "${{ inputs.vcpkg }}" ]; then ARGS="$ARGS -v ${{ inputs.vcpkg }}"; fi
+        if [ -f "${{ inputs.conan }}" ]; then ARGS="$ARGS -C ${{ inputs.conan }}"; fi
+        if [ -f "${{ inputs.cmake }}" ]; then ARGS="$ARGS -m ${{ inputs.cmake }}"; fi
+        if [ ! -z "${{ inputs.output }}" ]; then ARGS="$ARGS -o ${{ inputs.output }}"; fi
+        if [ ! -z "${{ inputs.html }}" ]; then ARGS="$ARGS -H ${{ inputs.html }}"; fi
+        if [ ! -z "${{ inputs.cyclonedx }}" ]; then ARGS="$ARGS -x ${{ inputs.cyclonedx }}"; fi
+        if [ ! -z "${{ inputs.ecosystem }}" ]; then ARGS="$ARGS -e ${{ inputs.ecosystem }}"; fi
+        if [ ! -z "${{ inputs.fail-on-cvss }}" ]; then ARGS="$ARGS -f ${{ inputs.fail-on-cvss }}"; fi
+        if [ ! -z "${{ inputs.suppressions }}" ]; then ARGS="$ARGS -s ${{ inputs.suppressions }}"; fi
+        if [ ! -z "${{ inputs.project-name }}" ]; then ARGS="$ARGS -n \"${{ inputs.project-name }}\""; fi
+
+        echo "Running: ./depdiscover-x86_64.AppImage $ARGS"
+        ./depdiscover-x86_64.AppImage --appimage-extract-and-run $ARGS

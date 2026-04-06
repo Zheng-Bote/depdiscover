@@ -1,29 +1,23 @@
-# Using depdiscover AppImage in GitHub Actions
+# Using depdiscover GitHub Action
 
-This guide explains how to integrate the **depdiscover** AppImage into your GitHub Actions CI/CD pipeline to automatically generate SBOM reports and scan for vulnerabilities.
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Workflow Example](#workflow-example)
-- [Why Extract the AppImage?](#why-extract-the-appimage)
-  - [Key Steps:](#key-steps)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+This guide explains how to integrate the **depdiscover** GitHub Action into your CI/CD pipeline to automatically generate SBOM reports, scan for vulnerabilities, and track GitHub-managed dependencies.
 
 ## Workflow Example
 
-You can use the AppImage directly in your workflow by extracting it. This is useful in environments where FUSE is not available (which is common in many containerized CI environments).
+The easiest way to use **depdiscover** in GitHub Actions is by using the provided action in this repository.
+
+### Standard Integration
+
+Add a file like `.github/workflows/depdiscover.yml` to your repository:
 
 ```yaml
 name: Dependency Scan (depdiscover)
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
-    branches: [main]
+    branches: [main, master]
 
 jobs:
   scan:
@@ -32,60 +26,61 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build Project (Optional)
+      - name: Build Project
+        # Ensure compile_commands.json and libs.txt are generated
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
           cmake --build .
-          # Generate libs.txt if needed (see README.md)
 
-      - name: Download depdiscover AppImage
-        run: |
-          # Replace with the actual URL of your release
-          curl -L -o depdiscover.AppImage https://github.com/Zheng-Bote/depdiscover/releases/latest/download/depdiscover-x86_64.AppImage
-          chmod +x depdiscover.AppImage
-
-      - name: Extract and Run depdiscover
-        env:
-          PROJECT_NAME: "MyAwesomeProject"
-          ECOSYSTEM: "Debian" # Default, or change to Alpine, ConanCenter, etc.
-        run: |
-          # 1. Extract the AppImage
-          ./depdiscover.AppImage --appimage-extract
-
-          # 2. Set Library Path (ensure internal libs are found)
-          export LD_LIBRARY_PATH=$PWD/squashfs-root/usr/lib:$LD_LIBRARY_PATH
-
-          # 3. Run the tool via AppRun with all security features enabled
-          ./squashfs-root/AppRun \
-            --name "$PROJECT_NAME" \
-            --compile-commands ./build/compile_commands.json \
-            --libs ./build/libs.txt \
-            --ecosystem "$ECOSYSTEM" \
-            --suppressions ./suppressions.json \
-            --fail-on-cvss 7.0 \
-            --output sbom.json \
-            --cyclonedx bom.cdx.json \
-            --html report.html
+      - name: Run depdiscover Action
+        uses: Zheng-Bote/depdiscover@v1.3.0
+        with:
+          project-name: "MyProject"
+          compile-commands: "build/compile_commands.json"
+          libs: "build/libs.txt"
+          cmake: "CMakeLists.txt"
+          fail-on-cvss: 7.0
+          html: "data/report.html"
+          cyclonedx: "data/bom.cdx.json"
+          output: "data/report.json"
 
       - name: Upload SBOM and Security Reports
-        # Use always() so reports are uploaded even if the build breaker fails the job
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: depdiscover-reports
-          path: |
-            sbom.json
-            bom.cdx.json
-            report.html
+          path: data/
 ```
 
-## Why Extract the AppImage?
+## Inputs
 
-GitHub Actions runners often lack the necessary FUSE setup to run AppImages directly (e.g., `./depdiscover.AppImage`). Using the `--appimage-extract` flag bypasses this requirement by unpacking the application into a `squashfs-root` directory.
+The following inputs are available for the action:
 
-### Key Steps:
+| Input | Description | Default |
+|-------|-------------|---------|
+| `compile-commands` | Path to `compile_commands.json` | `compile_commands.json` |
+| `libs` | Path to CMake generated `libs.txt` | `libs.txt` |
+| `binary` | Path to the executable binary for ELF analysis | - |
+| `vcpkg` | Path to `vcpkg.json` manifest | `vcpkg.json` |
+| `conan` | Path to `conanfile.txt` | `conanfile.txt` |
+| `cmake` | Path to `CMakeLists.txt` (for FetchContent) | `CMakeLists.txt` |
+| `output` | Path for the generated JSON file | (auto-generated in `./data/`) |
+| `html` | Path for the generated HTML report | (auto-generated in `./data/`) |
+| `cyclonedx` | Path for the generated CycloneDX 1.4 SBOM | (auto-generated in `./data/`) |
+| `ecosystem` | OSV Ecosystem for CVE checks | `Debian` |
+| `fail-on-cvss` | Build Breaker: Exit 1 if CVSS-Score >= SCORE | - |
+| `suppressions` | Path to JSON file with suppressed CVEs | - |
+| `project-name` | Project name in the report header | `GitHub Action Project` |
 
-1.  **Extraction**: `./depdiscover.AppImage --appimage-extract`
-2.  **Environment**: Updating `LD_LIBRARY_PATH` ensures that any bundled shared libraries within the AppImage are correctly linked at runtime.
-3.  **Execution**: Calling `./squashfs-root/AppRun` starts the application with the same environment it would have had inside the mounted AppImage.
+## Advanced: Manual AppImage Usage
+
+If you prefer not to use the composite action, you can run the AppImage manually. This is useful if you need custom FUSE settings or specific environment variables.
+
+```yaml
+      - name: Download and Run AppImage
+        run: |
+          wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.3.0/depdiscover-x86_64.AppImage
+          chmod +x depdiscover-x86_64.AppImage
+          ./depdiscover-x86_64.AppImage --appimage-extract-and-run -c build/compile_commands.json -f 7.0
+```
