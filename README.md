@@ -3,9 +3,6 @@
 **Native C++ Dependency Scanner & SBOM Generator**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue.svg)]()
-[![CMake](https://img.shields.io/badge/CMake-3.23+-blue.svg)]()
-
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/depdiscover?logo=GitHub)](https://github.com/Zheng-Bote/depdiscover/releases)
 
 [Report Issue](https://github.com/Zheng-Bote/depdiscover/issues) · [Request Feature](https://github.com/Zheng-Bote/depdiscover/pulls)
@@ -14,33 +11,38 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [Description](#description)
-- [🚀 Key Features](#-key-features)
-- [Screenshots](#screenshots)
-- [🏗 Architecture](#-architecture)
-- [🛠 Prerequisites](#-prerequisites)
-  - [Runtime Requirements](#runtime-requirements)
-- [📦 Build Instructions](#-build-instructions)
-- [💻 Usage](#-usage)
-  - [Basic Command](#basic-command)
-  - [Full Example](#full-example)
-  - [Options](#options)
-  - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-  - [📄 Output Example](#-output-example)
-- [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
-- [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
-- [📜 License](#-license)
-- [📄 Changelog](#-changelog)
-- [Author](#author)
-- [Code Contributors](#code-contributors)
+- [depdiscover](#depdiscover)
+  - [Description](#description)
+  - [🚀 Key Features](#-key-features)
+  - [Screenshots](#screenshots)
+  - [🏗 Architecture](#-architecture)
+  - [🛠 Prerequisites](#-prerequisites)
+    - [Runtime Requirements](#runtime-requirements)
+  - [📦 Build Instructions](#-build-instructions)
+  - [💻 Usage](#-usage)
+    - [Basic Command](#basic-command)
+    - [Full Example](#full-example)
+    - [Options](#options)
+    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
+    - [📄 Output Example](#-output-example)
+  - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
+  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
+  - [📜 License](#-license)
+  - [📄 Changelog](#-changelog)
+  - [Author](#author)
+  - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
 ## Description
+
+[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue.svg)]()
+[![CMake](https://img.shields.io/badge/CMake-3.23+-blue.svg)]()
 
 **depdiscover** is a lightweight, high-performance tool designed to bridge the gap between declared dependencies (manifests) and physical build artifacts. It scans your C++ project's build environment, analyzes binaries, checks for licenses, and queries vulnerabilities (CVEs) to generate a comprehensive Software Bill of Materials (SBOM) in JSON format.
 
@@ -49,18 +51,26 @@
 - **Hybrid Analysis**: Combines data from package manifests with actual build artifacts.
 - **Multi-Source Parsing**:
   - Manifests: `vcpkg.json`, `conanfile.txt`
-  - Build Data: `compile_commands.json` (Clang/CMake), `libs.txt` (CMake Targets)
+  - Build Data: `CMakeLists.txt` (FetchContent), `compile_commands.json` (Clang/CMake), `libs.txt` (CMake Targets)
   - Binaries: Native ELF scanner (analyzes `DT_NEEDED` / `ldd` equivalent)
 - **Deep Inspection**:
   - Header Resolution: Maps logical includes to physical files on disk.
   - License Scanning: Detects licenses via static DB and file system heuristics.
-  - Security (CVE): Live vulnerability check via OSV.dev API (using `curl`).
+  - Security (CVE): Live vulnerability check via OSV.dev API (using `libcurl` C-API).
 - **CI/CD Ready**: Configurable build breaker (`--fail-on-cvss`) to automatically fail pipelines on critical vulnerabilities.
 - **Auditing**: Suppress false positives or accepted risks using a `.suppressions.json` file.
 - **Structured Output**:
   - Generates a detailed custom JSON report including metadata, file paths, licenses, and security status.
   - Generates an industry-standard **CycloneDX 1.4 SBOM** in JSON format.
   - Generates an interactive **HTML Dashboard** featuring CVSS color-coding and detailed vulnerability links.
+  - Automatically exports GitHub-managed dependencies to `gh-libs.csv` and `gh-libs.json`.
+- **Smart Reports**: Automatically saves results to a `./data/` directory with a `<YYYY-MM-DD>_<Platform>_` prefix if no output path is specified.
+
+> [!TIP]
+> see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
+
+> [!TIP]
+> see also the [Online Github Update Checker](https://www.hase-zheng.net/wasm_gh_upd_check/)
 
 ## Screenshots
 
@@ -69,9 +79,6 @@ _example_ HTML Report (see also `docs/example_report.html`):
 ![html_report](docs/img/overview_html-report.png)
 
 _example_ CycloneDX SBOM: see `docs/example_sbom-cyclonedx.json`
-
-> [!TIP]
-> see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
 
 ## 🏗 Architecture
 
@@ -87,6 +94,7 @@ graph TD
     end
 
     subgraph Inputs
+        CML[CMakeLists.txt]
         CC[compile_commands.json]
         LIBS[libs.txt]
         MAN[vcpkg.json / conanfile]
@@ -96,6 +104,7 @@ graph TD
 
     subgraph Core
         UC[GitHub Update Checker]
+        P_FETCH[CMake FetchContent Parser]
         P_CC[Compile DB Parser]
         P_CMAKE[CMake Libs Parser]
         P_MAN[Manifest Parser]
@@ -108,16 +117,18 @@ graph TD
         R_HEAD[Header Resolver]
         R_PKG[Pkg-Config]
         R_LIC[License Resolver]
-        R_CVE["CVE Resolver<br>(OSV.dev via curl)"]
+        R_CVE["CVE Resolver<br>(OSV.dev via libcurl)"]
     end
 
     subgraph Output
         JSON["depdiscover.json <br> (Detailed SBOM)"]
         HTML["report.html <br> (Interactive HTML)"]
         CDX["bom.cdx.json <br> (CycloneDX 1.4)"]
+        GH_LIBS["gh-libs.csv/json <br> (GitHub Deps)"]
     end
 
     GH <--> UC
+    CML --> P_FETCH
     CC --> P_CC
     LIBS --> P_CMAKE
     MAN --> P_MAN
@@ -129,6 +140,7 @@ graph TD
 
     P_MAN --> R_PKG
     P_CMAKE --> R_PKG
+    P_FETCH --> R_CVE
 
     R_HEAD --> R_LIC
     R_PKG --> R_CVE
@@ -138,6 +150,7 @@ graph TD
     JSON --> BB
     JSON --> HTML
     JSON --> CDX
+    P_FETCH --> GH_LIBS
 ```
 
 ## 🛠 Prerequisites
@@ -151,7 +164,7 @@ To build and run depdiscover, you need:
 
 ### Runtime Requirements
 
-- curl (must be installed in the system PATH for CVE queries).
+- libcurl (must be installed in the system PATH for CVE queries).
 - pkg-config (optional, for better system library resolution).
 
 ## 📦 Build Instructions
@@ -209,6 +222,7 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -b   | --binary           | Path to the executable binary for ELF analysis (Input).                  |
 | -v   | --vcpkg            | Path to vcpkg.json manifest (Input).                                     |
 | -C   | --conan            | Path to conanfile.txt (Input).                                           |
+| -m   | --cmake            | Path to CMakeLists.txt to find FetchContent (Input).                     |
 | -o   | --output           | Path for the generated JSON file (Output).                               |
 | -n   | --name             | Project name to appear in the report header.                             |
 | -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).                          |
@@ -217,6 +231,9 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).                    |
 | -s   | --suppressions     | Path to JSON file with suppressed CVEs (Optional).                       |
 | -h   | --help             | Show help message.                                                       |
+
+> [!NOTE]
+> If -o, -H, or -x are not specified, depdiscover will automatically save them to the `./data/` folder using the prefix `<YYYY-MM-DD>_<Platform>_`.
 
 ### 💡 Generating libs.txt (CMake Integration)
 
@@ -236,10 +253,10 @@ The generated JSON contains a metadata header and a list of dependencies includi
 {
   "header": {
     "schema_version": "1.2",
-    "scan_date": "2026-03-02",
+    "scan_date": "2026-04-06",
     "tool": {
       "name": "depdiscover",
-      "version": "1.2.1"
+      "version": "1.3.0"
     },
     "project": {
       "name": "MyApplication",

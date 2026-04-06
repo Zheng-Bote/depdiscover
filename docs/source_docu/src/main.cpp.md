@@ -1,0 +1,124 @@
+# main.cpp
+
+## File Header Information
+
+| Field | Value |
+| :--- | :--- |
+| **SPDX Comment** | Main entry point for the Dependency Tracker application |
+| **SPDX Type** | SOURCE |
+| **Contributor** | ZHENG Robert |
+| **License ID** | MIT |
+| **File** | `main.cpp` |
+| **Description** | Main entry point for the Dependency Tracker application. |
+| **Version** | 1.3.0 |
+| **Date** | 2026-04-06 |
+| **Author** | ZHENG Robert (robert@hase-zheng.net) |
+| **Copyright** | Copyright (c) 2026 ZHENG Robert |
+| **License** | MIT License |
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## API Documentation
+
+### `constexpr auto SCHEMA_VERSION = "1.2"`
+
+> Current schema version for the generated JSON report.
+
+---
+
+### `bool string_contains(const std::string &haystack, const std::string &needle) `
+
+> Checks if a string contains another string (case-insensitive).
+
+| Parameter | Description |
+| --- | --- |
+| `haystack` | The string to search in. |
+| `needle` | The string to search for. |
+
+**Returns:** true If the needle is found in the haystack.
+
+---
+
+### `bool path_starts_with(const std::string &path, const std::string &prefix) `
+
+> Checks if a path starts with a given prefix.
+
+| Parameter | Description |
+| --- | --- |
+| `path` | The path to check. |
+| `prefix` | The prefix to look for. |
+
+**Returns:** true If the path starts with the prefix.
+
+---
+
+### `std::string get_platform_name() `
+
+> Identifies the current OS platform.
+
+**Returns:** std::string "Windows", "macOS", "Linux" or "Unknown".
+
+---
+
+### `bool fuzzy_match_header(const std::string &header_path,`
+
+> Performs a fuzzy match between a header path and a package name.
+
+| Parameter | Description |
+| --- | --- |
+| `header_path` | The path to the header file. |
+| `pkg_name` | The name of the package. |
+
+**Returns:** true If a match is likely.
+
+---
+
+### `bool fuzzy_match_lib(const std::string &lib_filename,`
+
+> Performs a fuzzy match between a library filename and a package name.
+
+| Parameter | Description |
+| --- | --- |
+| `lib_filename` | The filename of the library. |
+| `pkg_name` | The name of the package. |
+
+**Returns:** true If a match is likely.
+
+---
+
+### `double extract_cvss_score(const std::string &severity_str) `
+
+> Extracts a CVSS score from a severity string.
+
+| Parameter | Description |
+| --- | --- |
+| `severity_str` | The severity string (e.g., "7.5" or "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"). |
+
+**Returns:** double The extracted CVSS score.
+
+---
+
+### `void print_help(const char *program_name) `
+
+> Prints the help message to the standard error stream.
+
+| Parameter | Description |
+| --- | --- |
+| `program_name` | The name of the executable. |
+
+---
+
+### `int main(int argc, char **argv) `
+
+> Main entry point of the application.
+
+| Parameter | Description |
+| --- | --- |
+| `argc` | Number of command-line arguments. |
+| `argv` | Array of command-line arguments. |
+
+**Returns:** int Exit code (0 for success, non-zero for failure).
+
+---
+

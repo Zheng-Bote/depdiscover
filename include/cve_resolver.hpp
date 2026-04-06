@@ -20,6 +20,7 @@
 #include <array>
 #include <chrono>
 #include <cstdio>
+#include <curl/curl.h>
 #include <filesystem>
 #include <format>
 #include <fstream>
@@ -38,6 +39,16 @@ using json = nlohmann::json;
 namespace fs = std::filesystem;
 
 /**
+ * @brief CURL write callback for HTTP response buffering.
+ */
+static size_t curl_write_callback(void *contents, size_t size, size_t nmemb,
+                                  void *userp) {
+  size_t total = size * nmemb;
+  static_cast<std::string *>(userp)->append((char *)contents, total);
+  return total;
+}
+
+/**
  * @brief Returns the current date as a string in YYYY-MM-DD format.
  *
  * @return std::string The formatted date.
@@ -51,7 +62,7 @@ inline std::string get_current_date() {
 }
 
 /**
- * @brief Performs a secure curl POST request using a temporary file for the payload.
+ * @brief Performs a secure curl POST request using libcurl.
  *
  * @param url The target URL.
  * @param json_payload The JSON payload to send.
@@ -59,33 +70,33 @@ inline std::string get_current_date() {
  */
 inline std::string perform_curl_post(const std::string &url,
                                      const std::string &json_payload) {
-  std::string response;
-
-  fs::path tmp_file = fs::temp_directory_path() / "depdiscover_osv_query.json";
-  {
-    std::ofstream out(tmp_file);
-    out << json_payload;
-  }
-
-  std::string cmd = std::format("curl -s -L -X POST -H \"Content-Type: "
-                                "application/json\" -d @\"{}\" \"{}\"",
-                                tmp_file.string(), url);
-
-  std::array<char, 1024> buffer;
-  std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"),
-                                                pclose);
-
-  if (!pipe) {
-    std::cerr << "[Error] Could not run curl command.\n";
+  CURL *curl = curl_easy_init();
+  if (!curl) {
+    std::cerr << "[Error] curl_easy_init failed.\n";
     return "";
   }
 
-  while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-    response += buffer.data();
+  std::string response;
+  struct curl_slist *headers = nullptr;
+  headers = curl_slist_append(headers, "Content-Type: application/json");
+
+  curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json_payload.c_str());
+  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curl_write_callback);
+  curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+  curl_easy_setopt(curl, CURLOPT_USERAGENT, "depdiscover/1.3.0");
+  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+  CURLcode res = curl_easy_perform(curl);
+  if (res != CURLE_OK) {
+    std::cerr << "[Error] curl_easy_perform failed: " << curl_easy_strerror(res)
+              << "\n";
+    response = "";
   }
 
-  std::error_code ec;
-  fs::remove(tmp_file, ec);
+  curl_slist_free_all(headers);
+  curl_easy_cleanup(curl);
 
   return response;
 }

@@ -7,8 +7,9 @@
  *
  * @file main.cpp
  * @brief Main entry point for the Dependency Tracker application.
- * @version 1.2.1
- * @date 2026-03-02
+ * @version 1.3.0
+ * @date 2026-04-06
+
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert
@@ -45,6 +46,7 @@
 #include "types.hpp"
 
 // Parsers
+#include "cmake_fetch_parser.hpp"
 #include "cmake_libs_parser.hpp"
 #include "conan_parser.hpp"
 #include "vcpkg_parser.hpp"
@@ -95,6 +97,23 @@ bool path_starts_with(const std::string &path, const std::string &prefix) {
       path.rfind(prefix + "/", 0) == 0)
     return true;
   return false;
+}
+
+/**
+ * @brief Identifies the current OS platform.
+ * 
+ * @return std::string "Windows", "macOS", "Linux" or "Unknown".
+ */
+std::string get_platform_name() {
+#if defined(_WIN32) || defined(_WIN64)
+    return "Windows";
+#elif defined(__APPLE__) || defined(__MACH__)
+    return "macOS";
+#elif defined(__linux__)
+    return "Linux";
+#else
+    return "Unknown";
+#endif
 }
 
 /**
@@ -197,6 +216,7 @@ void print_help(const char *program_name) {
       << "  -b, --binary <PATH>            Input: Binary (for ldd analysis)\n"
       << "  -v, --vcpkg <PATH>             Input: vcpkg.json\n"
       << "  -C, --conan <PATH>             Input: conanfile.txt\n"
+      << "  -m, --cmake <PATH>             Input: CMakeLists.txt (to find FetchContent)\n"
       << "  -o, --output <PATH>            Output: JSON file (Default: "
          "depdiscover.json)\n"
       << "  -n, --name <NAME>              Sets the project name in the report\n"
@@ -225,6 +245,9 @@ void print_help(const char *program_name) {
  * @return int Exit code (0 for success, non-zero for failure).
  */
 int main(int argc, char **argv) {
+  // --- Initialize libcurl ---
+  curl_global_init(CURL_GLOBAL_DEFAULT);
+
   // --- Update Check ---
   std::cerr << "[Info] Checking for updates...\n";
   try {
@@ -252,8 +275,9 @@ int main(int argc, char **argv) {
   std::string binary_path = "";
   std::string vcpkg_path = "vcpkg.json";
   std::string conan_path = "conanfile.txt";
+  std::string cmake_lists_path = "CMakeLists.txt";
 
-  std::string output_path = "depdiscover.json";
+  std::string output_path = "";
   std::string project_name = "Unknown Project";
   std::string ecosystem = "Debian";
   std::string html_path = "";
@@ -273,33 +297,80 @@ int main(int argc, char **argv) {
     } else if (arg == "-c" || arg == "--compile-commands") {
       if (i + 1 < argc)
         cc_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-l" || arg == "--libs") {
       if (i + 1 < argc)
         libs_txt_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-b" || arg == "--binary") {
       if (i + 1 < argc)
         binary_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-v" || arg == "--vcpkg") {
       if (i + 1 < argc)
         vcpkg_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-C" || arg == "--conan") {
       if (i + 1 < argc)
         conan_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
+    } else if (arg == "-m" || arg == "--cmake") {
+      if (i + 1 < argc)
+        cmake_lists_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-o" || arg == "--output") {
       if (i + 1 < argc)
         output_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-n" || arg == "--name") {
       if (i + 1 < argc)
         project_name = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-e" || arg == "--ecosystem") {
       if (i + 1 < argc)
         ecosystem = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires an ecosystem name.\n";
+        return 1;
+      }
     } else if (arg == "-H" || arg == "--html") {
       if (i + 1 < argc)
         html_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-x" || arg == "--cyclonedx") {
       if (i + 1 < argc)
         cyclonedx_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-f" || arg == "--fail-on-cvss") {
       if (i + 1 < argc) {
         try {
@@ -308,11 +379,44 @@ int main(int argc, char **argv) {
           std::cerr << "Error: --fail-on-cvss requires a valid number (e.g., 7.0).\n";
           return 1;
         }
+      } else {
+        std::cerr << "Error: " << arg << " requires a score.\n";
+        return 1;
       }
     } else if (arg == "-s" || arg == "--suppressions") {
       if (i + 1 < argc)
         suppressions_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     }
+  }
+
+  // --- Handle Defaults and Data Directory ---
+  std::string date_prefix = get_current_date() + "_" + get_platform_name();
+  bool use_data_dir = false;
+
+  if (output_path.empty()) {
+      output_path = "data/" + date_prefix + "_depdiscover.json";
+      use_data_dir = true;
+  }
+  if (html_path.empty()) {
+      // If user wants HTML (by default or via flag? User says "all file-outputs")
+      // I assume standard paths should be set for all possible outputs if not specified.
+      html_path = "data/" + date_prefix + "_depdiscover.html";
+      use_data_dir = true;
+  }
+  if (cyclonedx_path.empty()) {
+      cyclonedx_path = "data/" + date_prefix + "_CycloneDx.json";
+      use_data_dir = true;
+  }
+
+  if (use_data_dir) {
+      std::error_code ec;
+      if (!fs::exists("data", ec)) {
+          fs::create_directories("data", ec);
+      }
   }
 
   try {
@@ -367,24 +471,71 @@ int main(int argc, char **argv) {
       }
     }
 
+    if (fs::exists(cmake_lists_path)) {
+      std::cerr << "[Info] Checking for FetchContent in: " << cmake_lists_path << "\n";
+      auto fetch_deps = parse_cmake_fetch_content(cmake_lists_path);
+      for (const auto &info : fetch_deps) {
+        bool found = false;
+        for (auto &existing : deps) {
+          // Case-insensitive match or contains match for FetchContent
+          if (string_contains(existing.name, info.name) || string_contains(info.name, existing.name)) {
+            found = true;
+            if (existing.version == "latest" || existing.version == "unknown") {
+              existing.version = info.version;
+              if (existing.source.empty() || existing.source == "manifest") {
+                existing.source = "cmake_fetchcontent";
+              }
+            }
+            break;
+          }
+        }
+        if (!found) {
+          Dependency d;
+          d.name = info.name;
+          d.version = info.version;
+          d.type = "cmake_fetch";
+          d.source = "cmake_fetchcontent";
+          deps.push_back(d);
+        }
+      }
+      // Additional Export as requested
+      if (!fetch_deps.empty()) {
+          std::string csv_path = "data/" + date_prefix + "_gh-libs.csv";
+          std::string json_path = "data/" + date_prefix + "_gh-libs.json";
+          
+          // Ensure data directory exists (just in case it was only for this output)
+          std::error_code ec;
+          if (!fs::exists("data", ec)) fs::create_directories("data", ec);
+          
+          export_fetch_to_csv(fetch_deps, csv_path);
+          export_fetch_to_json(fetch_deps, json_path);
+          std::cerr << "[Success] Exported FetchContent to " << csv_path << " and " << json_path << "\n";
+      }
+    }
+
     // --- 2. Scan Build Artifacts ---
     std::set<std::string> all_resolved_headers;
     std::set<std::string> all_elf_libs;
 
-    std::cerr << "[Info] Analyzing Compile Commands...\n";
-    auto cc = load_compile_commands(cc_path);
-    for (const auto &entry : cc) {
-      auto incs = extract_include_paths(entry.command);
-      std::vector<std::string> inc_vec(incs.begin(), incs.end());
-      auto raw = scan_includes(entry.file);
-      for (const auto &r : raw) {
-        std::string path = resolve_header(r, inc_vec, entry.directory);
-        if (!path.empty())
-          all_resolved_headers.insert(path);
+    if (fs::exists(cc_path)) {
+      std::cerr << "[Info] Analyzing Compile Commands: " << cc_path << "\n";
+      auto cc = load_compile_commands(cc_path);
+      for (const auto &entry : cc) {
+        auto incs = extract_include_paths(entry.command);
+        std::vector<std::string> inc_vec(incs.begin(), incs.end());
+        auto raw = scan_includes(entry.file);
+        for (const auto &r : raw) {
+          std::string path = resolve_header(r, inc_vec, entry.directory);
+          if (!path.empty())
+            all_resolved_headers.insert(path);
+        }
       }
+      std::cerr << "   -> " << all_resolved_headers.size()
+                << " header files identified.\n";
+    } else {
+      std::cerr << "[Info] Skip Compile Commands analysis (file not found: "
+                << cc_path << ")\n";
     }
-    std::cerr << "   -> " << all_resolved_headers.size()
-              << " header files identified.\n";
 
     if (!binary_path.empty()) {
       std::cerr << "[Info] Scanning binary (ELF): " << binary_path << "\n";
@@ -561,8 +712,10 @@ int main(int argc, char **argv) {
 
   } catch (const std::exception &ex) {
     std::cerr << "Error: " << ex.what() << "\n";
+    curl_global_cleanup();
     return 1;
   }
 
+  curl_global_cleanup();
   return 0;
 }

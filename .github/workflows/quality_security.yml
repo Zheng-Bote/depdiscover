@@ -26,7 +26,13 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev libcurl4-openssl-dev git
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.9.*"
+          host: "linux"
 
       - name: Build with CMake
         run: |
@@ -49,11 +55,17 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.9.*"
+          host: "linux"
 
       - name: Configure CMake (generate compile_commands.json)
         run: |
-          cmake -S . -B build-cppcheck -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          cmake -S . -B build-cppcheck -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_COMPILER=g++-14
           cp build-cppcheck/compile_commands.json . 2>/dev/null || true
 
       - name: Debug - Check compile_commands.json
@@ -144,10 +156,15 @@ jobs:
       - name: Install Clang & Tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang clang-tidy nlohmann-json3-dev \
-            libcurl4-openssl-dev wget pipx cmake ninja-build build-essential \
-            gcc-14 g++-14 libboost-dev libboost-system-dev libboost-date-time-dev \
-            libboost-regex-dev libboost-test-dev libssl-dev libsqlite3-dev
+          sudo apt-get install -y clang clang-tidy \
+          wget pipx cmake ninja-build build-essential \
+          gcc-14 g++-14 libssl-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.9.*"
+          host: "linux"
 
       - name: Configure CMake (export compile_commands.json)
         run: |
@@ -224,7 +241,13 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.9.*"
+          host: "linux"
 
       - name: Configure CMake (export compile_commands)
         run: |

@@ -1,0 +1,2 @@
+nlohmann_json,https://github.com/nlohmann/json.git,v3.11.3
+gh_update_checker,https://github.com/Zheng-Bote/gh-update-checker.git,v1.0.6

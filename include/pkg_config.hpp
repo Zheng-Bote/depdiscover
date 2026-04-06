@@ -84,8 +84,12 @@ private:
     std::array<char, 256> buffer;
     std::string result;
     // Discard stderr
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(
-        popen((cmd + " 2>/dev/null").c_str(), "r"), pclose);
+    auto deleter = [](FILE *f) {
+      if (f)
+        pclose(f);
+    };
+    std::unique_ptr<FILE, decltype(deleter)> pipe(
+        popen((cmd + " 2>/dev/null").c_str(), "r"), deleter);
     if (!pipe)
       return "";
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {

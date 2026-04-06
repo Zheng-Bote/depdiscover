@@ -1,0 +1,12 @@
+[
+  {
+    "name": "nlohmann_json",
+    "url": "https://github.com/nlohmann/json.git",
+    "version": "v3.11.3"
+  },
+  {
+    "name": "gh_update_checker",
+    "url": "https://github.com/Zheng-Bote/gh-update-checker.git",
+    "version": "v1.0.6"
+  }
+]

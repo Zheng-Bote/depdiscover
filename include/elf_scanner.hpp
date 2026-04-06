@@ -193,8 +193,17 @@ scan_elf_dependencies(const std::string &binary_path) {
     if (dyn.d_tag == DT_NEEDED) {
       // d_val is the index into the String Table
       if (dyn.d_un.d_val < strtab_size) {
-        std::string lib_name = &strtab[dyn.d_un.d_val];
-        dependencies.push_back(lib_name);
+        // Safe string extraction: find the null-terminator within the remaining buffer
+        const char *start = &strtab[dyn.d_un.d_val];
+        size_t max_len = strtab_size - dyn.d_un.d_val;
+        size_t actual_len = 0;
+        while (actual_len < max_len && start[actual_len] != '\0') {
+          actual_len++;
+        }
+        if (actual_len > 0) {
+          std::string lib_name(start, actual_len);
+          dependencies.push_back(lib_name);
+        }
       }
     }
   }
