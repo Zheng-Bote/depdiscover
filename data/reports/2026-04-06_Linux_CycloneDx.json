@@ -1,0 +1,3809 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:generic/fmt@unknown",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "fmt",
+      "purl": "pkg:generic/fmt@unknown",
+      "type": "library",
+      "version": "unknown"
+    },
+    {
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "openssl",
+      "purl": "pkg:generic/openssl@3.0.13",
+      "type": "library",
+      "version": "3.0.13"
+    },
+    {
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "curl"
+          }
+        }
+      ],
+      "name": "libcurl",
+      "purl": "pkg:generic/libcurl@8.5.0",
+      "type": "library",
+      "version": "8.5.0"
+    },
+    {
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "exiv2",
+      "purl": "pkg:generic/exiv2@1.00.0.8",
+      "type": "library",
+      "version": "1.00.0.8"
+    },
+    {
+      "bom-ref": "pkg:generic/fmt@10.1.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "fmt",
+      "purl": "pkg:generic/fmt@10.1.1",
+      "type": "library",
+      "version": "10.1.1"
+    },
+    {
+      "bom-ref": "pkg:generic/nlohmann_json@3.11.3",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "nlohmann_json",
+      "purl": "pkg:generic/nlohmann_json@3.11.3",
+      "type": "library",
+      "version": "3.11.3"
+    },
+    {
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "curl"
+          }
+        }
+      ],
+      "name": "libcurl",
+      "purl": "pkg:generic/libcurl@8.5.0",
+      "type": "library",
+      "version": "8.5.0"
+    },
+    {
+      "bom-ref": "pkg:generic/RustFly@2.0.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "RustFly",
+      "purl": "pkg:generic/RustFly@2.0.0",
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "spip",
+      "purl": "pkg:generic/spip@4.4.8",
+      "type": "library",
+      "version": "4.4.8"
+    },
+    {
+      "bom-ref": "pkg:generic/myCred@2.8.7",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "myCred",
+      "purl": "pkg:generic/myCred@2.8.7",
+      "type": "library",
+      "version": "2.8.7"
+    },
+    {
+      "bom-ref": "pkg:generic/bardwp@1.6",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "bardwp",
+      "purl": "pkg:generic/bardwp@1.6",
+      "type": "library",
+      "version": "1.6"
+    },
+    {
+      "bom-ref": "pkg:generic/LMS@3.6.27",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "LMS",
+      "purl": "pkg:generic/LMS@3.6.27",
+      "type": "library",
+      "version": "3.6.27"
+    },
+    {
+      "bom-ref": "pkg:generic/VSS@3.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "See file: COPYING"
+          }
+        }
+      ],
+      "name": "VSS",
+      "purl": "pkg:generic/VSS@3.1",
+      "type": "library",
+      "version": "3.1"
+    },
+    {
+      "bom-ref": "pkg:generic/libzip@1.10.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "libzip",
+      "purl": "pkg:generic/libzip@1.10.1",
+      "type": "library",
+      "version": "1.10.1"
+    },
+    {
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "openssl",
+      "purl": "pkg:generic/openssl@3.0.13",
+      "type": "library",
+      "version": "3.0.13"
+    },
+    {
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "liblouis",
+      "purl": "pkg:generic/liblouis@3.24.0",
+      "type": "library",
+      "version": "3.24.0"
+    },
+    {
+      "bom-ref": "pkg:generic/my-lib@1.2.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "my-lib",
+      "purl": "pkg:generic/my-lib@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "pkg:generic/spdlog@1.12.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "spdlog",
+      "purl": "pkg:generic/spdlog@1.12.0",
+      "type": "library",
+      "version": "1.12.0"
+    },
+    {
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "licenses": [
+        {
+          "license": {
+            "id": "Zlib"
+          }
+        }
+      ],
+      "name": "zlib",
+      "purl": "pkg:generic/zlib@1.3",
+      "type": "library",
+      "version": "1.3"
+    },
+    {
+      "bom-ref": "pkg:generic/gh_update_checker@v1.0.6",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "gh_update_checker",
+      "purl": "pkg:generic/gh_update_checker@v1.0.6",
+      "type": "library",
+      "version": "v1.0.6"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "\"AI",
+      "type": "application"
+    },
+    "timestamp": "2026-04-06T14:13:07Z",
+    "tools": [
+      {
+        "name": "depdiscover",
+        "vendor": "ZHENG Bote",
+        "version": "1.4.0"
+      }
+    ]
+  },
+  "serialNumber": "urn:uuid:f846cf3d-e522-4a54-8145-fd10dcca0e50",
+  "specVersion": "1.4",
+  "version": 1,
+  "vulnerabilities": [
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-5678"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Generating excessively long X9.42 DH keys or checking excessively long X9.42 DH keys or parameters may be very slow.  Impact summary...",
+      "id": "DEBIAN-CVE-2023-5678",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-6129"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: The POLY1305 MAC (message authentication code) implementation contains a bug that might corrupt the internal state of applications r...",
+      "id": "DEBIAN-CVE-2023-6129",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-6237"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Checking excessively long invalid RSA public keys may take a long time.  Impact summary: Applications that use the function EVP_PKEY...",
+      "id": "DEBIAN-CVE-2023-6237",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-0727"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Processing a maliciously formatted PKCS12 file may lead OpenSSL to crash leading to a potential Denial of Service attack  Impact sum...",
+      "id": "DEBIAN-CVE-2024-0727",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-12797"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Clients using RFC7250 Raw Public Keys (RPKs) to authenticate a server may fail to notice that the server was not authenticated, beca...",
+      "id": "DEBIAN-CVE-2024-12797",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-13176"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A timing side-channel which could potentially allow recovering the private key exists in the ECDSA signature computation.  Impact su...",
+      "id": "DEBIAN-CVE-2024-13176",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2511"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions  Impact summary: An at...",
+      "id": "DEBIAN-CVE-2024-2511",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-4603"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Checking excessively long DSA keys or parameters may be very slow.  Impact summary: Applications that use the functions EVP_PKEY_par...",
+      "id": "DEBIAN-CVE-2024-4603",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-4741"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling the OpenSSL API function SSL_free_buffers may cause memory to be accessed that was previously freed in some situations  Impa...",
+      "id": "DEBIAN-CVE-2024-4741",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-5535"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling the OpenSSL API function SSL_select_next_proto with an empty supported client protocols buffer may cause a crash or memory c...",
+      "id": "DEBIAN-CVE-2024-5535",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6119"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Applications performing certificate name checks (e.g., TLS clients checking server certificates) may attempt to read an invalid memo...",
+      "id": "DEBIAN-CVE-2024-6119",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-9143"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Use of the low-level GF(2^m) elliptic curve APIs with untrusted explicit values for the field polynomial can lead to out-of-bounds m...",
+      "id": "DEBIAN-CVE-2024-9143",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-11187"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p...",
+      "id": "DEBIAN-CVE-2025-11187",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15467"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Parsing CMS AuthEnvelopedData or EnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow....",
+      "id": "DEBIAN-CVE-2025-15467",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15468"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the...",
+      "id": "DEBIAN-CVE-2025-15468",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15469"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes...",
+      "id": "DEBIAN-CVE-2025-15469",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-27587"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m...",
+      "id": "DEBIAN-CVE-2025-27587",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-4575"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Use of -addreject option with the openssl x509 application adds a trusted use instead of a rejected use for a certificate.  Impact s...",
+      "id": "DEBIAN-CVE-2025-4575",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-66199"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag...",
+      "id": "DEBIAN-CVE-2025-66199",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-68160"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg...",
+      "id": "DEBIAN-CVE-2025-68160",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69418"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult...",
+      "id": "DEBIAN-CVE-2025-69418",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69419"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin...",
+      "id": "DEBIAN-CVE-2025-69419",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69420"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou...",
+      "id": "DEBIAN-CVE-2025-69420",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69421"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum...",
+      "id": "DEBIAN-CVE-2025-69421",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9230"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write....",
+      "id": "DEBIAN-CVE-2025-9230",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9231"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on...",
+      "id": "DEBIAN-CVE-2025-9231",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9232"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ...",
+      "id": "DEBIAN-CVE-2025-9232",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22795"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica...",
+      "id": "DEBIAN-CVE-2026-22795",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22796"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse...",
+      "id": "DEBIAN-CVE-2026-22796",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-2673"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An OpenSSL TLS 1.3 server may fail to negotiate the expected preferred key exchange group when its key exchange group configuration ...",
+      "id": "DEBIAN-CVE-2026-2673",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-5764-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-5764-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6015-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-6015-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6113-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-6113-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th...",
+      "id": "DEBIAN-CVE-2021-22922",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s...",
+      "id": "DEBIAN-CVE-2021-22923",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H...",
+      "id": "DEBIAN-CVE-2022-42916",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru...",
+      "id": "DEBIAN-CVE-2022-43551",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs...",
+      "id": "DEBIAN-CVE-2023-23914",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w...",
+      "id": "DEBIAN-CVE-2023-23915",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ...",
+      "id": "DEBIAN-CVE-2023-28320",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-46218"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "This flaw allows a malicious HTTP server to set \"super cookies\" in curl that are then passed back to more origins than what is otherwise allowed or...",
+      "id": "DEBIAN-CVE-2023-46218",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware...",
+      "id": "DEBIAN-CVE-2023-46219",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-0853"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl inadvertently kept the SSL session ID for connections in its cache even when the verify status (*OCSP stapling*) test failed. A subsequent tra...",
+      "id": "DEBIAN-CVE-2024-0853",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-11053"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo...",
+      "id": "DEBIAN-CVE-2024-11053",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2004"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ...",
+      "id": "DEBIAN-CVE-2024-2004",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad...",
+      "id": "DEBIAN-CVE-2024-2379",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2398"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow...",
+      "id": "DEBIAN-CVE-2024-2398",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2466"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul...",
+      "id": "DEBIAN-CVE-2024-2466",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6197"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor...",
+      "id": "DEBIAN-CVE-2024-6197",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6874"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co...",
+      "id": "DEBIAN-CVE-2024-6874",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-7264"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi...",
+      "id": "DEBIAN-CVE-2024-7264",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-8096"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is...",
+      "id": "DEBIAN-CVE-2024-8096",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o...",
+      "id": "DEBIAN-CVE-2024-9681",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0167"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol...",
+      "id": "DEBIAN-CVE-2025-0167",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0665"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res...",
+      "id": "DEBIAN-CVE-2025-0665",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ...",
+      "id": "DEBIAN-CVE-2025-0725",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t...",
+      "id": "DEBIAN-CVE-2025-10148",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ...",
+      "id": "DEBIAN-CVE-2025-10966",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "URLs containing percent-encoded slashes (`/` or `\\`) can trick wcurl into saving the output file outside of the current directory without the user ...",
+      "id": "DEBIAN-CVE-2025-11563",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert...",
+      "id": "DEBIAN-CVE-2025-13034",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally...",
+      "id": "DEBIAN-CVE-2025-14017",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP...",
+      "id": "DEBIAN-CVE-2025-14524",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall...",
+      "id": "DEBIAN-CVE-2025-14819",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host...",
+      "id": "DEBIAN-CVE-2025-15079",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u...",
+      "id": "DEBIAN-CVE-2025-15224",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-4947"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There...",
+      "id": "DEBIAN-CVE-2025-4947",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-5025"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin...",
+      "id": "DEBIAN-CVE-2025-5025",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle...",
+      "id": "DEBIAN-CVE-2025-5399",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same...",
+      "id": "DEBIAN-CVE-2025-9086",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-1965"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl can in some circumstances reuse the wrong connection when asked to do an Negotiate-authenticated HTTP or HTTPS request.  libcurl features a...",
+      "id": "DEBIAN-CVE-2026-1965",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3783"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a redirect to a second URL, curl could leak that token to t...",
+      "id": "DEBIAN-CVE-2026-3783",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3784"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a server, even if the new request uses different credentials for the HT...",
+      "id": "DEBIAN-CVE-2026-3784",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3805"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing a second SMB request to the same host again, curl would wrongly use a data pointer pointing into already freed memory.",
+      "id": "DEBIAN-CVE-2026-3805",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2018-14338"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "samples/geotag.cpp in the example code of Exiv2 0.26 misuses the realpath function on POSIX platforms (other than Apple platforms) where glibc is n...",
+      "id": "DEBIAN-CVE-2018-14338",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2020-18773"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "An invalid memory access in the decode function in iptc.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a crafted ti...",
+      "id": "DEBIAN-CVE-2020-18773",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2020-18774"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "A float point exception in the printLong function in tags_int.cpp of Exiv2 0.27.99.0 allows attackers to cause a denial of service (DOS) via a craf...",
+      "id": "DEBIAN-CVE-2020-18774",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2020-18898"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "A stack exhaustion issue in the printIFDStructure function of Exiv2 0.27 allows remote attackers to cause a denial of service (DOS) via a crafted f...",
+      "id": "DEBIAN-CVE-2020-18898",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-32617"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An inefficient algorithm...",
+      "id": "DEBIAN-CVE-2021-32617",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-24826"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. An out-of-bounds read wa...",
+      "id": "DEBIAN-CVE-2024-24826",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-25112"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a command-line utility and C++ library for reading, writing, deleting, and modifying the metadata of image files. A denial-of-service was ...",
+      "id": "DEBIAN-CVE-2024-25112",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-54080"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. An out-of-bounds read w...",
+      "id": "DEBIAN-CVE-2025-54080",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-55304"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. A denial-of-service was...",
+      "id": "DEBIAN-CVE-2025-55304",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-25884"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. Prior to version 0.28.8...",
+      "id": "DEBIAN-CVE-2026-25884",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27596"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. Prior to version 0.28.8...",
+      "id": "DEBIAN-CVE-2026-27596",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27631"
+        }
+      ],
+      "bom-ref": "pkg:generic/exiv2@1.00.0.8",
+      "description": "Exiv2 is a C++ library and a command-line utility to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata. Prior to version 0.28.8...",
+      "id": "DEBIAN-CVE-2026-27631",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th...",
+      "id": "DEBIAN-CVE-2021-22922",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s...",
+      "id": "DEBIAN-CVE-2021-22923",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H...",
+      "id": "DEBIAN-CVE-2022-42916",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru...",
+      "id": "DEBIAN-CVE-2022-43551",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs...",
+      "id": "DEBIAN-CVE-2023-23914",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w...",
+      "id": "DEBIAN-CVE-2023-23915",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ...",
+      "id": "DEBIAN-CVE-2023-28320",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-46218"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "This flaw allows a malicious HTTP server to set \"super cookies\" in curl that are then passed back to more origins than what is otherwise allowed or...",
+      "id": "DEBIAN-CVE-2023-46218",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware...",
+      "id": "DEBIAN-CVE-2023-46219",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-0853"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl inadvertently kept the SSL session ID for connections in its cache even when the verify status (*OCSP stapling*) test failed. A subsequent tra...",
+      "id": "DEBIAN-CVE-2024-0853",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-11053"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When asked to both use a `.netrc` file for credentials and to follow HTTP redirects, curl could leak the password used for the first host to the fo...",
+      "id": "DEBIAN-CVE-2024-11053",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2004"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When a protocol selection parameter option disables all protocols without adding any then the default set of protocols would remain in the allowed ...",
+      "id": "DEBIAN-CVE-2024-2004",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad...",
+      "id": "DEBIAN-CVE-2024-2379",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2398"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an application tells libcurl it wants to allow HTTP/2 server push, and the amount of received headers for the push surpasses the maximum allow...",
+      "id": "DEBIAN-CVE-2024-2398",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2466"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl did not check the server certificate of TLS connections done to a host specified as an IP address, when built to use mbedTLS.  libcurl woul...",
+      "id": "DEBIAN-CVE-2024-2466",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6197"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's ASN1 parser has this utf8asn1str() function used for parsing an ASN.1 UTF-8 string. Itcan detect an invalid field and return error. Unfor...",
+      "id": "DEBIAN-CVE-2024-6197",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6874"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's URL API function [curl_url_get()](https://curl.se/libcurl/c/curl_url_get.html) offers punycode conversions, to and from IDN. Asking to co...",
+      "id": "DEBIAN-CVE-2024-6874",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-7264"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an ASN.1 Generalized Time field. If given an syntactically incorrect fi...",
+      "id": "DEBIAN-CVE-2024-7264",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-8096"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is told to use the Certificate Status Request TLS extension, often referred to as OCSP stapling, to verify that the server certificate is...",
+      "id": "DEBIAN-CVE-2024-8096",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o...",
+      "id": "DEBIAN-CVE-2024-9681",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0167"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP redirects, curl could leak the password used for the first host to the fol...",
+      "id": "DEBIAN-CVE-2025-0167",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0665"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl would wrongly close the same eventfd file descriptor twice when taking down a connection channel after having completed a threaded name res...",
+      "id": "DEBIAN-CVE-2025-0665",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ...",
+      "id": "DEBIAN-CVE-2025-0725",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t...",
+      "id": "DEBIAN-CVE-2025-10148",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ...",
+      "id": "DEBIAN-CVE-2025-10966",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "URLs containing percent-encoded slashes (`/` or `\\`) can trick wcurl into saving the output file outside of the current directory without the user ...",
+      "id": "DEBIAN-CVE-2025-11563",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert...",
+      "id": "DEBIAN-CVE-2025-13034",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally...",
+      "id": "DEBIAN-CVE-2025-14017",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP...",
+      "id": "DEBIAN-CVE-2025-14524",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall...",
+      "id": "DEBIAN-CVE-2025-14819",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host...",
+      "id": "DEBIAN-CVE-2025-15079",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u...",
+      "id": "DEBIAN-CVE-2025-15224",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-4947"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl accidentally skips the certificate verification for QUIC connections when connecting to a host specified as an IP address in the URL. There...",
+      "id": "DEBIAN-CVE-2025-4947",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-5025"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl supports *pinning* of the server certificate public key for HTTPS transfers. Due to an omission, this check is not performed when connectin...",
+      "id": "DEBIAN-CVE-2025-5025",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle...",
+      "id": "DEBIAN-CVE-2025-5399",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same...",
+      "id": "DEBIAN-CVE-2025-9086",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-1965"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "libcurl can in some circumstances reuse the wrong connection when asked to do an Negotiate-authenticated HTTP or HTTPS request.  libcurl features a...",
+      "id": "DEBIAN-CVE-2026-1965",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3783"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a redirect to a second URL, curl could leak that token to t...",
+      "id": "DEBIAN-CVE-2026-3783",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3784"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a server, even if the new request uses different credentials for the HT...",
+      "id": "DEBIAN-CVE-2026-3784",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3805"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.5.0",
+      "description": "When doing a second SMB request to the same host again, curl would wrongly use a data pointer pointing into already freed memory.",
+      "id": "DEBIAN-CVE-2026-3805",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-53900"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "Spip 4.1.10 contains a file upload vulnerability that allows attackers to upload malicious SVG files with embedded external links. Attackers can tr...",
+      "id": "DEBIAN-CVE-2023-53900",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-71240"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.2.15 allows Cross-Site Scripting (XSS) via crafted content in HTML code tags. The application does not properly verify JavaScript wit...",
+      "id": "DEBIAN-CVE-2025-71240",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-71241"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows Cross-Site Scripting (XSS) in the private area. The content of the error message displayed by the 'tra...",
+      "id": "DEBIAN-CVE-2025-71241",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-71242"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.3.6, 4.2.17, and 4.1.20 allows unauthorized content disclosure in the private area. The application does not properly check authoriza...",
+      "id": "DEBIAN-CVE-2025-71242",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-71244"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.5 and 4.3.9 allows an Open Redirect via the login form when used in AJAX mode. An attacker can craft a malicious URL that, when vis...",
+      "id": "DEBIAN-CVE-2025-71244",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22205"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP versions prior to 4.4.10 contain an authentication bypass vulnerability caused by PHP type juggling that allows unauthenticated attackers to a...",
+      "id": "DEBIAN-CVE-2026-22205",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22206"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP versions prior to 4.4.10 contain a SQL injection vulnerability that allows authenticated low-privilege users to execute arbitrary SQL queries ...",
+      "id": "DEBIAN-CVE-2026-22206",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-26223"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.8 allows cross-site scripting (XSS) in the private area via malicious iframe tags. The application does not properly sandbox or esc...",
+      "id": "DEBIAN-CVE-2026-26223",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-26345"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.8 contains a stored cross-site scripting (XSS) vulnerability in the public area triggered in certain edge-case usage patterns. The ...",
+      "id": "DEBIAN-CVE-2026-26345",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27472"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.9 allows Blind Server-Side Request Forgery (SSRF) via syndicated sites in the private area. When editing a syndicated site, the app...",
+      "id": "DEBIAN-CVE-2026-27472",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27473"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.9 allows Stored Cross-Site Scripting (XSS) via syndicated sites in the private area. The #URL_SYNDIC output is not properly sanitiz...",
+      "id": "DEBIAN-CVE-2026-27473",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27474"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.9 allows Cross-Site Scripting (XSS) in the private area, complementing an incomplete fix from SPIP 4.4.8. The echappe_anti_xss() fu...",
+      "id": "DEBIAN-CVE-2026-27474",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27475"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP before 4.4.9 allows Insecure Deserialization in the public area through the table_valeur filter and the DATA iterator, which accept serialized...",
+      "id": "DEBIAN-CVE-2026-27475",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-33549"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "SPIP 4.4.10 through 4.4.12 before 4.4.13 allows unintended privilege assignment (of administrator privileges) during the editing of an author data ...",
+      "id": "DEBIAN-CVE-2026-33549",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6155-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "spip - security update",
+      "id": "DSA-6155-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6174-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/spip@4.4.8",
+      "description": "spip - security update",
+      "id": "DSA-6174-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-5678"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Generating excessively long X9.42 DH keys or checking excessively long X9.42 DH keys or parameters may be very slow.  Impact summary...",
+      "id": "DEBIAN-CVE-2023-5678",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-6129"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: The POLY1305 MAC (message authentication code) implementation contains a bug that might corrupt the internal state of applications r...",
+      "id": "DEBIAN-CVE-2023-6129",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-6237"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Checking excessively long invalid RSA public keys may take a long time.  Impact summary: Applications that use the function EVP_PKEY...",
+      "id": "DEBIAN-CVE-2023-6237",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-0727"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Processing a maliciously formatted PKCS12 file may lead OpenSSL to crash leading to a potential Denial of Service attack  Impact sum...",
+      "id": "DEBIAN-CVE-2024-0727",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-12797"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Clients using RFC7250 Raw Public Keys (RPKs) to authenticate a server may fail to notice that the server was not authenticated, beca...",
+      "id": "DEBIAN-CVE-2024-12797",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-13176"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A timing side-channel which could potentially allow recovering the private key exists in the ECDSA signature computation.  Impact su...",
+      "id": "DEBIAN-CVE-2024-13176",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2511"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions  Impact summary: An at...",
+      "id": "DEBIAN-CVE-2024-2511",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-4603"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Checking excessively long DSA keys or parameters may be very slow.  Impact summary: Applications that use the functions EVP_PKEY_par...",
+      "id": "DEBIAN-CVE-2024-4603",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-4741"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling the OpenSSL API function SSL_free_buffers may cause memory to be accessed that was previously freed in some situations  Impa...",
+      "id": "DEBIAN-CVE-2024-4741",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-5535"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling the OpenSSL API function SSL_select_next_proto with an empty supported client protocols buffer may cause a crash or memory c...",
+      "id": "DEBIAN-CVE-2024-5535",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-6119"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Applications performing certificate name checks (e.g., TLS clients checking server certificates) may attempt to read an invalid memo...",
+      "id": "DEBIAN-CVE-2024-6119",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-9143"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Use of the low-level GF(2^m) elliptic curve APIs with untrusted explicit values for the field polynomial can lead to out-of-bounds m...",
+      "id": "DEBIAN-CVE-2024-9143",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-11187"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: PBMAC1 parameters in PKCS#12 files are missing validation which can trigger a stack-based buffer overflow, invalid pointer or NULL p...",
+      "id": "DEBIAN-CVE-2025-11187",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15467"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Parsing CMS AuthEnvelopedData or EnvelopedData message with maliciously crafted AEAD parameters can trigger a stack buffer overflow....",
+      "id": "DEBIAN-CVE-2025-15467",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15468"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: If an application using the SSL_CIPHER_find() function in a QUIC protocol client or server receives an unknown cipher suite from the...",
+      "id": "DEBIAN-CVE-2025-15468",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15469"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: The 'openssl dgst' command-line tool silently truncates input data to 16MB when using one-shot signing algorithms and reports succes...",
+      "id": "DEBIAN-CVE-2025-15469",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-27587"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "OpenSSL 3.0.0 through 3.3.2 on the PowerPC architecture is vulnerable to a Minerva attack, exploitable by measuring the time of signing of random m...",
+      "id": "DEBIAN-CVE-2025-27587",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-4575"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Use of -addreject option with the openssl x509 application adds a trusted use instead of a rejected use for a certificate.  Impact s...",
+      "id": "DEBIAN-CVE-2025-4575",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-66199"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A TLS 1.3 connection using certificate compression can be forced to allocate a large buffer before decompression without checking ag...",
+      "id": "DEBIAN-CVE-2025-66199",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-68160"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Writing large, newline-free data into a BIO chain using the line-buffering filter where the next BIO performs short writes can trigg...",
+      "id": "DEBIAN-CVE-2025-68160",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69418"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: When using the low-level OCB API directly with AES-NI or<br>other hardware-accelerated code paths, inputs whose length is not a mult...",
+      "id": "DEBIAN-CVE-2025-69418",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69419"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Calling PKCS12_get_friendlyname() function on a maliciously crafted PKCS#12 file with a BMPString (UTF-16BE) friendly name containin...",
+      "id": "DEBIAN-CVE-2025-69419",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69420"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A type confusion vulnerability exists in the TimeStamp Response verification code where an ASN1_TYPE union member is accessed withou...",
+      "id": "DEBIAN-CVE-2025-69420",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-69421"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: Processing a malformed PKCS#12 file can trigger a NULL pointer dereference in the PKCS12_item_decrypt_d2i_ex() function.  Impact sum...",
+      "id": "DEBIAN-CVE-2025-69421",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9230"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An application trying to decrypt CMS messages encrypted using password based encryption can trigger an out-of-bounds read and write....",
+      "id": "DEBIAN-CVE-2025-9230",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9231"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A timing side-channel which could potentially allow remote recovery of the private key exists in the SM2 algorithm implementation on...",
+      "id": "DEBIAN-CVE-2025-9231",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9232"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An application using the OpenSSL HTTP client API functions may trigger an out-of-bounds read if the 'no_proxy' environment variable ...",
+      "id": "DEBIAN-CVE-2025-9232",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22795"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An invalid or NULL pointer dereference can happen in an application processing a malformed PKCS#12 file.  Impact summary: An applica...",
+      "id": "DEBIAN-CVE-2026-22795",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22796"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: A type confusion vulnerability exists in the signature verification of signed PKCS#7 data where an ASN1_TYPE union member is accesse...",
+      "id": "DEBIAN-CVE-2026-22796",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-2673"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "Issue summary: An OpenSSL TLS 1.3 server may fail to negotiate the expected preferred key exchange group when its key exchange group configuration ...",
+      "id": "DEBIAN-CVE-2026-2673",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-5764-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-5764-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6015-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-6015-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-6113-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/openssl@3.0.13",
+      "description": "openssl - security update",
+      "id": "DSA-6113-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-26981"
+        }
+      ],
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "description": "Liblouis through 3.21.0 has a buffer overflow in compilePassOpcode in compileTranslationTable.c (called, indirectly, by tools/lou_checktable.c).",
+      "id": "DEBIAN-CVE-2022-26981",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-31783"
+        }
+      ],
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "description": "Liblouis 3.21.0 has an out-of-bounds write in compileRule in compileTranslationTable.c, as demonstrated by lou_trace.",
+      "id": "DEBIAN-CVE-2022-31783",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-26767"
+        }
+      ],
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "description": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the lou_logFile function at logg...",
+      "id": "DEBIAN-CVE-2023-26767",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-26768"
+        }
+      ],
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "description": "Buffer Overflow vulnerability found in Liblouis v.3.24.0 allows a remote attacker to cause a denial of service via the compileTranslationTable.c an...",
+      "id": "DEBIAN-CVE-2023-26768",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-26769"
+        }
+      ],
+      "bom-ref": "pkg:generic/liblouis@3.24.0",
+      "description": "Buffer Overflow vulnerability found in Liblouis Lou_Trace v.3.24.0 allows a remote attacker to cause a denial of service via the resolveSubtable fu...",
+      "id": "DEBIAN-CVE-2023-26769",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-6140"
+        }
+      ],
+      "bom-ref": "pkg:generic/spdlog@1.12.0",
+      "description": "A vulnerability, which was classified as problematic, was found in spdlog up to 1.15.1. This affects the function scoped_padder in the library incl...",
+      "id": "DEBIAN-CVE-2025-6140",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2003-0107"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "Buffer overflow in the gzprintf function in zlib 1.1.4, when zlib is compiled without vsnprintf or when long inputs are truncated using vsnprintf, ...",
+      "id": "DEBIAN-CVE-2003-0107",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2004-0797"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "The error handling in the (1) inflate and (2) inflateBack functions in ZLib compression library 1.2.x allows local users to cause a denial of servi...",
+      "id": "DEBIAN-CVE-2004-0797",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2005-1849"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "inftrees.h in zlib 1.2.2 allows remote attackers to cause a denial of service (application crash) via an invalid file that causes a large dynamic t...",
+      "id": "DEBIAN-CVE-2005-1849",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2005-2096"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib 1.2 and later versions allows remote attackers to cause a denial of service (crash) via a crafted compressed stream with an incomplete code de...",
+      "id": "DEBIAN-CVE-2005-2096",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2016-9840"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.",
+      "id": "DEBIAN-CVE-2016-9840",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2016-9841"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "inffast.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.",
+      "id": "DEBIAN-CVE-2016-9841",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2016-9842"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "The inflateMark function in inflate.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving left s...",
+      "id": "DEBIAN-CVE-2016-9842",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2016-9843"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "The crc32_big function in crc32.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact via vectors involving big-endian...",
+      "id": "DEBIAN-CVE-2016-9843",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2018-25032"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.",
+      "id": "DEBIAN-CVE-2018-25032",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-37434"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib through 1.2.12 has a heap-based buffer over-read or buffer overflow in inflate in inflate.c via a large gzip header extra field. NOTE: only ap...",
+      "id": "DEBIAN-CVE-2022-37434",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-45853"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "MiniZip in zlib through 1.3 has an integer overflow and resultant heap-based buffer overflow in zipOpenNewFileInZip4_64 via a long filename, commen...",
+      "id": "DEBIAN-CVE-2023-45853",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-22184"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib versions up to and including 1.3.1.2 include a global buffer overflow in the untgz utility located under contrib/untgz. The vulnerability is l...",
+      "id": "DEBIAN-CVE-2026-22184",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-27171"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no ...",
+      "id": "DEBIAN-CVE-2026-27171",
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DLA-2085-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - security update",
+      "id": "DLA-2085-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DLA-2968-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - security update",
+      "id": "DLA-2968-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DLA-3103-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - security update",
+      "id": "DLA-3103-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-5111-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - security update",
+      "id": "DSA-5111-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-5218-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - security update",
+      "id": "DSA-5218-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-740-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - buffer overflow",
+      "id": "DSA-740-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DSA-763-1"
+        }
+      ],
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "description": "zlib - buffer overflow",
+      "id": "DSA-763-1",
+      "source": {
+        "name": "OSV.dev"
+      }
+    }
+  ]
+}
