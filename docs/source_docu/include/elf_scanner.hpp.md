@@ -17,6 +17,16 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`struct Elf64_Ehdr `](#struct-elf64_ehdr-)
+  - [`struct Elf64_Phdr `](#struct-elf64_phdr-)
+  - [`struct Elf64_Dyn `](#struct-elf64_dyn-)
+  - [`inline uint64_t vaddr_to_offset(Elf64_Addr vaddr,`](#inline-uint64_t-vaddr_to_offsetelf64_addr-vaddr)
+  - [`inline std::vector<std::string>`](#inline-stdvectorstdstring)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

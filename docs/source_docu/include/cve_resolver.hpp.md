@@ -17,6 +17,15 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`static size_t curl_write_callback(void *contents, size_t size, size_t nmemb,`](#static-size_t-curl_write_callbackvoid-contents-size_t-size-size_t-nmemb)
+  - [`inline std::string get_current_date() `](#inline-stdstring-get_current_date-)
+  - [`inline std::string perform_curl_post(const std::string &url,`](#inline-stdstring-perform_curl_postconst-stdstring-url)
+  - [`inline std::vector<CVE> query_cves(const std::string &name,`](#inline-stdvectorcve-query_cvesconst-stdstring-name)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

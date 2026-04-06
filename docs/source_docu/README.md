@@ -3,6 +3,12 @@
 This directory contains the automatically generated documentation for the project.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [include Files](#include-files)
+- [src Files](#src-files)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## [include Files](include/)
