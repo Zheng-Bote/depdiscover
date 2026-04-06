@@ -17,6 +17,13 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`inline std::vector<std::string> scan_includes(const std::string &source_file) `](#inline-stdvectorstdstring-scan_includesconst-stdstring-source_file-)
+  - [`inline std::string resolve_header(const std::string &header_name,`](#inline-stdstring-resolve_headerconst-stdstring-header_name)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

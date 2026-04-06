@@ -16,7 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - [Changed](#changed)
   - [Fixed](#fixed)
 - [[1.2.1] - 2026-03-02](#121---2026-03-02)
-...
+  - [Fixed](#fixed-1)
+  - [Changed](#changed-1)
+- [[1.2.0] - 2026-02-22](#120---2026-02-22)
+  - [Added](#added-1)
+  - [Changed](#changed-2)
+- [[1.1.0] - 2026-01-15](#110---2026-01-15)
+  - [Added](#added-2)
+  - [Changed](#changed-3)
+- [[1.0.0] - 2026-01-01](#100---2026-01-01)
+  - [Added](#added-3)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---

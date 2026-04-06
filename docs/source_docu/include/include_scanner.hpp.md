@@ -17,6 +17,13 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`inline std::vector<std::string> extract_include_paths(const std::string &cmd) `](#inline-stdvectorstdstring-extract_include_pathsconst-stdstring-cmd-)
+  - [`inline std::vector<std::string> extract_libraries(const std::string &cmd) `](#inline-stdvectorstdstring-extract_librariesconst-stdstring-cmd-)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

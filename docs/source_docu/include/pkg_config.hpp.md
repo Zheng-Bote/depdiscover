@@ -17,6 +17,16 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`struct PkgInfo `](#struct-pkginfo-)
+  - [`class PkgConfig `](#class-pkgconfig-)
+  - [`static PkgInfo query(const std::string &package_name) `](#static-pkginfo-queryconst-stdstring-package_name-)
+  - [`static std::string exec(const std::string &cmd) `](#static-stdstring-execconst-stdstring-cmd-)
+  - [`static std::vector<std::string> parse_flags(const std::string &input,`](#static-stdvectorstdstring-parse_flagsconst-stdstring-input)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation
