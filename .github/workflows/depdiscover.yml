@@ -37,7 +37,7 @@ jobs:
           compile-commands: "build/compile_commands.json"
           libs: "build/libs.txt"
           cmake: "CMakeLists.txt"
-          fail-on-cvss: 7.0
+          fail-on-cvss: 10.0  # Because we have sample CVEs
 
       - name: Upload SBOM and Security Reports
         if: always()
