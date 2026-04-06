@@ -26,7 +26,7 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -55,7 +55,7 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -158,7 +158,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y clang clang-tidy \
           wget pipx cmake ninja-build build-essential \
-          gcc-14 g++-14 libssl-dev
+          gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -241,7 +241,7 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
