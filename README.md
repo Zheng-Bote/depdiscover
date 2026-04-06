@@ -11,27 +11,30 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [Description](#description)
-- [🚀 Key Features](#-key-features)
-- [Screenshots](#screenshots)
-- [🏗 Architecture](#-architecture)
-- [🛠 Prerequisites](#-prerequisites)
-  - [Runtime Requirements](#runtime-requirements)
-- [📦 Build Instructions](#-build-instructions)
-- [💻 Usage](#-usage)
-  - [Basic Command](#basic-command)
-  - [Full Example](#full-example)
-  - [Options](#options)
-  - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-  - [📄 Output Example](#-output-example)
-- [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
-- [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
-- [📜 License](#-license)
-- [📄 Changelog](#-changelog)
-- [Author](#author)
-- [Code Contributors](#code-contributors)
+- [depdiscover](#depdiscover)
+  - [Description](#description)
+  - [🚀 Key Features](#-key-features)
+  - [Screenshots](#screenshots)
+  - [🏗 Architecture](#-architecture)
+  - [🛠 Prerequisites](#-prerequisites)
+    - [Runtime Requirements](#runtime-requirements)
+  - [📦 Build Instructions](#-build-instructions)
+  - [💻 Usage](#-usage)
+    - [Basic Command](#basic-command)
+    - [Full Example](#full-example)
+    - [Options](#options)
+    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
+    - [📄 Output Example](#-output-example)
+  - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
+  - [🐙 GitHub Action](#-github-action)
+  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
+  - [📜 License](#-license)
+  - [📄 Changelog](#-changelog)
+  - [Author](#author)
+  - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -62,7 +65,7 @@
   - Generates an industry-standard **CycloneDX 1.4 SBOM** in JSON format.
   - Generates an interactive **HTML Dashboard** featuring CVSS color-coding and detailed vulnerability links.
   - Automatically exports GitHub-managed dependencies to `gh-libs.csv` and `gh-libs.json`.
-- **Smart Reports**: Automatically saves results to a `./data/` directory with a `<YYYY-MM-DD>_<Platform>_` prefix if no output path is specified.
+- **Smart Reports**: Automatically saves results to a `./data/reports/` directory with a `<YYYY-MM-DD>_<Platform>_` prefix if no output path is specified.
 
 > [!TIP]
 > see also the Desktop App [qt_depdiscover_ui](https://github.com/Zheng-Bote/qt_depdiscover_ui)
@@ -228,10 +231,12 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -H   | --html             | Path for the generated HTML report (Optional).                           |
 | -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).                    |
 | -s   | --suppressions     | Path to JSON file with suppressed CVEs (Optional).                       |
+|      | --check-version    | Checks for updates of depdiscover.                                       |
+|      | --version          | Show current version.                                                    |
 | -h   | --help             | Show help message.                                                       |
 
 > [!NOTE]
-> If -o, -H, or -x are not specified, depdiscover will automatically save them to the `./data/` folder using the prefix `<YYYY-MM-DD>_<Platform>_`.
+> If -o, -H, or -x are not specified, depdiscover will automatically save them to the `./data/reports/` folder using the prefix `<YYYY-MM-DD>_<Platform>_`.
 
 ### 💡 Generating libs.txt (CMake Integration)
 
@@ -300,7 +305,7 @@ The easiest way to integrate **depdiscover** into your GitHub repository is by u
 
 ```yaml
 - name: Run depdiscover Scan
-  uses: Zheng-Bote/depdiscover@v1.3.0
+  uses: Zheng-Bote/depdiscover@v1
   with:
     project-name: "MyAwesomeProject"
     fail-on-cvss: 7.0

@@ -60,7 +60,7 @@ runs:
       shell: bash
       run: |
         # Note: In a real scenario, you might want to pin the version or use a specific release
-        wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.3.0/depdiscover-x86_64.AppImage
+        wget -q https://github.com/Zheng-Bote/depdiscover/releases/latest/download/depdiscover-x86_64.AppImage
         chmod +x depdiscover-x86_64.AppImage
 
     - name: Run depdiscover

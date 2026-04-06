@@ -1,0 +1,62 @@
+name: Dependency Scan (depdiscover)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev libvalijson-dev
+
+      - name: Build Project
+        # Ensure compile_commands.json and libs.txt are generated
+        run: |
+          # mkdir build && cd build
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          cmake --build build --parallel
+
+      - name: Run depdiscover Action
+        uses: Zheng-Bote/depdiscover@v1
+        with:
+          project-name: "AI plugin-system"
+          compile-commands: "build/compile_commands.json"
+          libs: "build/libs.txt"
+          cmake: "CMakeLists.txt"
+          fail-on-cvss: 7.0
+
+      - name: Upload SBOM and Security Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: depdiscover-reports
+          path: data/reports/
+
+      - name: Commit depdiscover reports
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Reports hinzufügen
+          git add data/reports || true
+
+          # Nur committen, wenn es Änderungen gibt
+          if ! git diff --cached --quiet; then
+            git commit -m "Add depdiscover reports [skip ci]"
+            git push
+          else
+            echo "No changes to commit."
+          fi

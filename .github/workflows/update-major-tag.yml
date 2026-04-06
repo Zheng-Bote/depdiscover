@@ -1,0 +1,32 @@
+name: Update major tag
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  update-major-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # wichtig: alle Tags holen
+
+      - name: Update v1 tag to latest release
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          echo "Latest release tag: $TAG"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # v1 auf das neue Release zeigen lassen
+          git tag -f v1 "$TAG"
+          git push -f origin v1
+
+          echo "Updated v1 → $TAG"

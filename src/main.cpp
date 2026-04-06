@@ -101,18 +101,18 @@ bool path_starts_with(const std::string &path, const std::string &prefix) {
 
 /**
  * @brief Identifies the current OS platform.
- * 
+ *
  * @return std::string "Windows", "macOS", "Linux" or "Unknown".
  */
 std::string get_platform_name() {
 #if defined(_WIN32) || defined(_WIN64)
-    return "Windows";
+  return "Windows";
 #elif defined(__APPLE__) || defined(__MACH__)
-    return "macOS";
+  return "macOS";
 #elif defined(__linux__)
-    return "Linux";
+  return "Linux";
 #else
-    return "Unknown";
+  return "Unknown";
 #endif
 }
 
@@ -172,7 +172,8 @@ bool fuzzy_match_lib(const std::string &lib_filename,
 /**
  * @brief Extracts a CVSS score from a severity string.
  *
- * @param severity_str The severity string (e.g., "7.5" or "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H").
+ * @param severity_str The severity string (e.g., "7.5" or
+ * "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H").
  * @return double The extracted CVSS score.
  */
 double extract_cvss_score(const std::string &severity_str) {
@@ -203,6 +204,31 @@ double extract_cvss_score(const std::string &severity_str) {
 }
 
 /**
+ * @brief Checks for updates of depdiscover itself.
+ */
+void check_for_updates() {
+  std::cerr << "[Info] Checking for updates...\n";
+  try {
+    const std::string repo_url(rz::config::PROJECT_HOMEPAGE_URL);
+    const std::string current_version(rz::config::VERSION);
+
+    if (!repo_url.empty() && !current_version.empty()) {
+      auto result = ghupdate::check_github_update(repo_url, current_version);
+      if (result.hasUpdate) {
+        std::println("\n[Update] A new version is available: {} (current: {})",
+                     result.latestVersion, current_version);
+        std::println("[Update] Download: {}\n", repo_url);
+      } else {
+        std::println("\n[Update] {} is up to date.\n",
+                     rz::config::EXECUTABLE_NAME);
+      }
+    }
+  } catch (const std::exception &ex) {
+    std::cerr << "[Error] Update check failed: " << ex.what() << "\n";
+  }
+}
+
+/**
  * @brief Prints the help message to the standard error stream.
  *
  * @param program_name The name of the executable.
@@ -216,10 +242,12 @@ void print_help(const char *program_name) {
       << "  -b, --binary <PATH>            Input: Binary (for ldd analysis)\n"
       << "  -v, --vcpkg <PATH>             Input: vcpkg.json\n"
       << "  -C, --conan <PATH>             Input: conanfile.txt\n"
-      << "  -m, --cmake <PATH>             Input: CMakeLists.txt (to find FetchContent)\n"
+      << "  -m, --cmake <PATH>             Input: CMakeLists.txt (to find "
+         "FetchContent)\n"
       << "  -o, --output <PATH>            Output: JSON file (Default: "
          "depdiscover.json)\n"
-      << "  -n, --name <NAME>              Sets the project name in the report\n"
+      << "  -n, --name <NAME>              Sets the project name in the "
+         "report\n"
       << "  -e, --ecosystem <NAME>         OSV Ecosystem for CVE checks "
          "(Default: Debian)\n"
       << "  -H, --html <PATH>              Output: Generate HTML report "
@@ -230,6 +258,8 @@ void print_help(const char *program_name) {
          "CVSS-Score >= SCORE (e.g., 7.0)\n"
       << "  -s, --suppressions <PATH>      Input: Path to JSON file with "
          "suppressed CVEs (Optional)\n"
+      << "  --check-version                Checks for updates of depdiscover\n"
+      << "  --version                      Shows the current version\n"
       << "  -h, --help                     Shows this help message\n\n"
       << "Info:\n"
       << "  " << rz::config::PROG_LONGNAME << "\n"
@@ -248,27 +278,8 @@ int main(int argc, char **argv) {
   // --- Initialize libcurl ---
   curl_global_init(CURL_GLOBAL_DEFAULT);
 
-  // --- Update Check ---
-  std::cerr << "[Info] Checking for updates...\n";
-  try {
-    const std::string repo_url(rz::config::PROJECT_HOMEPAGE_URL);
-    const std::string current_version(rz::config::VERSION);
-
-    if (!repo_url.empty() && !current_version.empty()) {
-      auto result = ghupdate::check_github_update(repo_url, current_version);
-      if (result.hasUpdate) {
-        std::println(
-            "\n[Update] A new version is available: {} (current: {})",
-            result.latestVersion, current_version);
-        std::println("[Update] Download: {}\n", repo_url);
-      } else {
-        std::println("\n[Update] {} is up to date.\n",
-                     rz::config::EXECUTABLE_NAME);
-      }
-    }
-  } catch (const std::exception &ex) {
-    // Silently ignore if no internet or invalid URL
-  }
+  bool only_version = false;
+  bool only_check = false;
 
   std::string cc_path = "compile_commands.json";
   std::string libs_txt_path = "libs.txt";
@@ -293,7 +304,12 @@ int main(int argc, char **argv) {
     std::string arg = argv[i];
     if (arg == "-h" || arg == "--help") {
       print_help(argv[0]);
+      curl_global_cleanup();
       return 0;
+    } else if (arg == "--version") {
+      only_version = true;
+    } else if (arg == "--check-version") {
+      only_check = true;
     } else if (arg == "-c" || arg == "--compile-commands") {
       if (i + 1 < argc)
         cc_path = argv[++i];
@@ -376,7 +392,8 @@ int main(int argc, char **argv) {
         try {
           fail_on_cvss = std::stod(argv[++i]);
         } catch (...) {
-          std::cerr << "Error: --fail-on-cvss requires a valid number (e.g., 7.0).\n";
+          std::cerr
+              << "Error: --fail-on-cvss requires a valid number (e.g., 7.0).\n";
           return 1;
         }
       } else {
@@ -393,36 +410,51 @@ int main(int argc, char **argv) {
     }
   }
 
+  if (only_version) {
+    std::println("{} version {}", rz::config::EXECUTABLE_NAME,
+                 rz::config::VERSION);
+    curl_global_cleanup();
+    return 0;
+  }
+
+  if (only_check) {
+    check_for_updates();
+    curl_global_cleanup();
+    return 0;
+  }
+
   // --- Handle Defaults and Data Directory ---
   std::string date_prefix = get_current_date() + "_" + get_platform_name();
   bool use_data_dir = false;
 
   if (output_path.empty()) {
-      output_path = "data/" + date_prefix + "_depdiscover.json";
-      use_data_dir = true;
+    output_path = "data/reports/" + date_prefix + "_depdiscover.json";
+    use_data_dir = true;
   }
   if (html_path.empty()) {
-      // If user wants HTML (by default or via flag? User says "all file-outputs")
-      // I assume standard paths should be set for all possible outputs if not specified.
-      html_path = "data/" + date_prefix + "_depdiscover.html";
-      use_data_dir = true;
+    // If user wants HTML (by default or via flag? User says "all file-outputs")
+    // I assume standard paths should be set for all possible outputs if not
+    // specified.
+    html_path = "data/reports/" + date_prefix + "_depdiscover.html";
+    use_data_dir = true;
   }
   if (cyclonedx_path.empty()) {
-      cyclonedx_path = "data/" + date_prefix + "_CycloneDx.json";
-      use_data_dir = true;
+    cyclonedx_path = "data/reports/" + date_prefix + "_CycloneDx.json";
+    use_data_dir = true;
   }
 
   if (use_data_dir) {
-      std::error_code ec;
-      if (!fs::exists("data", ec)) {
-          fs::create_directories("data", ec);
-      }
+    std::error_code ec;
+    if (!fs::exists("data/reports", ec)) {
+      fs::create_directories("data/reports", ec);
+    }
   }
 
   try {
     // --- 0. Load Suppressions ---
     if (!suppressions_path.empty() && fs::exists(suppressions_path)) {
-      std::cerr << "[Info] Loading suppressions from: " << suppressions_path << "\n";
+      std::cerr << "[Info] Loading suppressions from: " << suppressions_path
+                << "\n";
       try {
         std::ifstream f(suppressions_path);
         json j;
@@ -431,8 +463,8 @@ int main(int argc, char **argv) {
           suppressions[key] = value.get<std::string>();
         }
       } catch (const std::exception &e) {
-        std::cerr << "[Warning] Error reading suppressions file: "
-                  << e.what() << "\n";
+        std::cerr << "[Warning] Error reading suppressions file: " << e.what()
+                  << "\n";
       }
     }
 
@@ -472,13 +504,15 @@ int main(int argc, char **argv) {
     }
 
     if (fs::exists(cmake_lists_path)) {
-      std::cerr << "[Info] Checking for FetchContent in: " << cmake_lists_path << "\n";
+      std::cerr << "[Info] Checking for FetchContent in: " << cmake_lists_path
+                << "\n";
       auto fetch_deps = parse_cmake_fetch_content(cmake_lists_path);
       for (const auto &info : fetch_deps) {
         bool found = false;
         for (auto &existing : deps) {
           // Case-insensitive match or contains match for FetchContent
-          if (string_contains(existing.name, info.name) || string_contains(info.name, existing.name)) {
+          if (string_contains(existing.name, info.name) ||
+              string_contains(info.name, existing.name)) {
             found = true;
             if (existing.version == "latest" || existing.version == "unknown") {
               existing.version = info.version;
@@ -500,16 +534,19 @@ int main(int argc, char **argv) {
       }
       // Additional Export as requested
       if (!fetch_deps.empty()) {
-          std::string csv_path = "data/" + date_prefix + "_gh-libs.csv";
-          std::string json_path = "data/" + date_prefix + "_gh-libs.json";
-          
-          // Ensure data directory exists (just in case it was only for this output)
-          std::error_code ec;
-          if (!fs::exists("data", ec)) fs::create_directories("data", ec);
-          
-          export_fetch_to_csv(fetch_deps, csv_path);
-          export_fetch_to_json(fetch_deps, json_path);
-          std::cerr << "[Success] Exported FetchContent to " << csv_path << " and " << json_path << "\n";
+        std::string csv_path = "data/reports/" + date_prefix + "_gh-libs.csv";
+        std::string json_path = "data/reports/" + date_prefix + "_gh-libs.json";
+
+        // Ensure data directory exists (just in case it was only for this
+        // output)
+        std::error_code ec;
+        if (!fs::exists("data/reports", ec))
+          fs::create_directories("data/reports", ec);
+
+        export_fetch_to_csv(fetch_deps, csv_path);
+        export_fetch_to_json(fetch_deps, json_path);
+        std::cerr << "[Success] Exported FetchContent to " << csv_path
+                  << " and " << json_path << "\n";
       }
     }
 
@@ -663,21 +700,19 @@ int main(int argc, char **argv) {
       return 1;
     }
     out_file << root.dump(2);
-    std::cerr << "[Success] SBOM report written to: " << output_path
-              << "\n";
+    std::cerr << "[Success] SBOM report written to: " << output_path << "\n";
 
     // Generate HTML Report
     if (!html_path.empty()) {
       generate_html_report(root, html_path);
-      std::cerr << "[Success] HTML report written to: " << html_path
-                << "\n";
+      std::cerr << "[Success] HTML report written to: " << html_path << "\n";
     }
 
     // Generate CycloneDX Report
     if (!cyclonedx_path.empty()) {
       generate_cyclonedx_report(root, cyclonedx_path);
-      std::cerr << "[Success] CycloneDX SBOM written to: "
-                << cyclonedx_path << "\n";
+      std::cerr << "[Success] CycloneDX SBOM written to: " << cyclonedx_path
+                << "\n";
     }
 
     // --- 6. Check Build Breaker Logic ---
@@ -703,10 +738,12 @@ int main(int argc, char **argv) {
       }
 
       if (critical_vuln_found) {
-        std::cerr << "\n[Audit] BUILD FAILED: Critical vulnerabilities found exceeding threshold!\n";
+        std::cerr << "\n[Audit] BUILD FAILED: Critical vulnerabilities found "
+                     "exceeding threshold!\n";
         return 1; // Exit with error code
       } else {
-        std::cerr << "[Audit] BUILD SUCCESS: No critical unresolved vulnerabilities found above threshold.\n";
+        std::cerr << "[Audit] BUILD SUCCESS: No critical unresolved "
+                     "vulnerabilities found above threshold.\n";
       }
     }
 

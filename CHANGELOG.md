@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **CMake FetchContent Parser**: New `cmake_fetch_parser.hpp` to extract `FetchContent_Declare` dependencies (name, URL, version) directly from `CMakeLists.txt`.
 - **Automatic GitHub Libs Export**: Automatically generates `gh-libs.csv` and `gh-libs.json` containing name, URL, and version of FetchContent-managed libraries.
-- **Smart Default Output Paths**: If no output paths are specified, the tool now automatically saves all reports (`.json`, `.html`, `CycloneDx.json`, `gh-libs`) into a `./data/` directory (creating it if necessary).
+- **Smart Default Output Paths**: If no output paths are specified, the tool now automatically saves all reports (`.json`, `.html`, `CycloneDx.json`, `gh-libs`) into a `./data/reports/` directory (creating it if necessary).
 - **Platform-Aware Filenames**: All default output files now feature a `<YYYY-MM-DD>_<Platform>_` prefix (e.g., `2026-04-06_Linux_depdiscover.json`).
 - **New CLI Option**: Added `-m` / `--cmake <PATH>` to specify the location of the main `CMakeLists.txt` file.
 
