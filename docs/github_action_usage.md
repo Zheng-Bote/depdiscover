@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Using depdiscover GitHub Action](#using-depdiscover-github-action)
+  - [Workflow Example](#workflow-example)
+    - [Standard Integration](#standard-integration)
+  - [Inputs](#inputs)
+  - [Advanced: Manual AppImage Usage](#advanced-manual-appimage-usage)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Using depdiscover GitHub Action
 
 This guide explains how to integrate the **depdiscover** GitHub Action into your CI/CD pipeline to automatically generate SBOM reports, scan for vulnerabilities, and track GitHub-managed dependencies.
