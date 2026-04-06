@@ -287,7 +287,7 @@
       "name": "\"AI",
       "type": "application"
     },
-    "timestamp": "2026-04-06T14:13:07Z",
+    "timestamp": "2026-04-06T14:16:29Z",
     "tools": [
       {
         "name": "depdiscover",
@@ -296,7 +296,7 @@
       }
     ]
   },
-  "serialNumber": "urn:uuid:f846cf3d-e522-4a54-8145-fd10dcca0e50",
+  "serialNumber": "urn:uuid:59436469-154f-4b8b-a5d8-d3a3ca57fc77",
   "specVersion": "1.4",
   "version": 1,
   "vulnerabilities": [
