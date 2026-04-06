@@ -77,6 +77,9 @@
 
 _example_ HTML Report (see also `docs/example_report.html`):
 
+> [!NOTE]
+> click on "show details" to expand the details of a dependency with links to the CVE-Report.
+
 ![html_report](docs/img/overview_html-report.png)
 
 _example_ CycloneDX SBOM: see `docs/example_sbom-cyclonedx.json`
@@ -259,7 +262,7 @@ The generated JSON contains a metadata header and a list of dependencies includi
     "scan_date": "2026-04-06",
     "tool": {
       "name": "depdiscover",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     "project": {
       "name": "MyApplication",

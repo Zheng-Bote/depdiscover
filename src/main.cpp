@@ -7,7 +7,7 @@
  *
  * @file main.cpp
  * @brief Main entry point for the Dependency Tracker application.
- * @version 1.3.0
+ * @version 1.4.0
  * @date 2026-04-06
 
  *

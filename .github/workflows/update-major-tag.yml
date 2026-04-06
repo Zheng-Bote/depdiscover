@@ -1,6 +1,8 @@
 name: Update major tag
 
 on:
+  workflow_dispatch:
+  workflow_call:
   release:
     types: [published]
 
