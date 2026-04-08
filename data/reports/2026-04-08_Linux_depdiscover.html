@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBOM Security Report</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 2rem; color: #333; }
+  h1 { border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+  .metadata { background: #f8f9fa; padding: 1rem; border-radius: 5px; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  th, td { text-align: left; padding: 12px 15px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  th { background-color: #343a40; color: white; }
+  .safe { background-color: #d4edda; }
+  .vuln { background-color: #f8d7da; }
+  .warn { background-color: #fff3cd; }
+  .vuln-title { font-weight: bold; color: #721c24; margin-bottom: 5px; display: inline-block; }
+  .badge { display: inline-block; padding: 0.25em 0.4em; font-size: 75%; font-weight: 700; border-radius: 0.25rem; background: #6c757d; color: white; margin-right: 4px; }
+  details { margin-top: 8px; font-size: 0.9em; }
+  summary { cursor: pointer; font-weight: bold; color: #495057; }
+  summary:hover { color: #000; }
+  ul.clean-list { margin-top: 5px; padding-left: 20px; }
+  ul.clean-list li { margin-bottom: 4px; }
+  a.cve-link { color: #0056b3; text-decoration: none; font-weight: bold; }
+  a.cve-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<h1>SBOM Security Report: DepDiscovery</h1>
+<div class="metadata">
+  <strong>Scan Date:</strong> 2026-04-08<br>
+  <strong>Generator Tool:</strong> depdiscover v1.5.0
+</div>
+<table>
+  <thead><tr>
+    <th>Package Name</th>
+    <th>Version</th>
+    <th>Fixed Version</th>
+    <th>Type</th>
+    <th>Licenses</th>
+    <th style="width: 90px;">Max Score</th>
+    <th>Security Status</th>
+  </tr></thead>
+  <tbody>
+    <tr class="safe">
+      <td><strong>nlohmann_json</strong></td>
+      <td>3.12.0</td>
+      <td>-</td>
+      <td>conan</td>
+      <td><span class="badge">MIT</span></td>
+      <td>-</td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="vuln">
+      <td><strong>libcurl</strong></td>
+      <td>8.14.1</td>
+      <td><details><summary>19 Versions</summary><ul class="clean-list"><li><strong>v7.79.1-1</strong></li><li><strong>v7.86.0-1</strong></li><li><strong>v7.86.0-3</strong></li><li><strong>v7.88.1-1</strong></li><li><strong>v7.88.1-10</strong></li><li><strong>v8.11.0-1</strong></li><li><strong>v8.12.0+git20250209.89ed161+ds-1</strong></li><li><strong>v8.14.1-1</strong></li><li><strong>v8.16.0-1</strong></li><li><strong>v8.16.0~rc2-1</strong></li><li><strong>v8.17.0-2</strong></li><li><strong>v8.17.0~rc2-1</strong></li><li><strong>v8.18.0-1</strong></li><li><strong>v8.18.0~rc2-1</strong></li><li><strong>v8.18.0~rc3-1</strong></li><li><strong>v8.19.0-1</strong></li><li><strong>v8.19.0~rc3-1</strong></li><li><strong>v8.5.0-1</strong></li><li><strong>v8.7.1-1</strong></li></ul></details></td>
+      <td>conan</td>
+      <td><span class="badge">curl</span></td>
+      <td><span class="badge" style="background-color:#fd7e14; color:white; font-size: 100%;">7.0</span></td>
+      <td><span class="vuln-title">❌ 26 Vulnerabilities</span>
+<details><summary>Show details</summary>
+<ul class="clean-list">
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922" target="_blank">DEBIAN-CVE-2021-22922</a>: When curl is instructed to download content using the metalink feature, theco...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923" target="_blank">DEBIAN-CVE-2021-22923</a>: When curl is instructed to get content using the metalink feature, and a user...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916" target="_blank">DEBIAN-CVE-2022-42916</a>: In curl before 7.86.0, the HSTS check could be bypassed to trick it into stay...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551" target="_blank">DEBIAN-CVE-2022-43551</a>: A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to t...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914" target="_blank">DEBIAN-CVE-2023-23914</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915" target="_blank">DEBIAN-CVE-2023-23915</a>: A cleartext transmission of sensitive information vulnerability exists in cur...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320" target="_blank">DEBIAN-CVE-2023-28320</a>: A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl p...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219" target="_blank">DEBIAN-CVE-2023-46219</a>: When saving HSTS data to an excessively long file name, curl could end up rem...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379" target="_blank">DEBIAN-CVE-2024-2379</a>: libcurl skips the certificate verification for a QUIC connection under certai...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681" target="_blank">DEBIAN-CVE-2024-9681</a>: When curl is asked to use HSTS, the expiry time for a subdomain might overwri...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725" target="_blank">DEBIAN-CVE-2025-0725</a>: When libcurl is asked to perform automatic gzip decompression of content-enco...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148" target="_blank">DEBIAN-CVE-2025-10148</a>: curl's websocket code did not update the 32 bit mask pattern for each new  ou...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966" target="_blank">DEBIAN-CVE-2025-10966</a>: curl's code for managing SSH connections when SFTP was done using the wolfSSH...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563" target="_blank">DEBIAN-CVE-2025-11563</a>: URLs containing percent-encoded slashes (`/` or `\`) can trick wcurl into sav...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034" target="_blank">DEBIAN-CVE-2025-13034</a>: When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` ...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017" target="_blank">DEBIAN-CVE-2025-14017</a>: When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, chang...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524" target="_blank">DEBIAN-CVE-2025-14524</a>: When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfe...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819" target="_blank">DEBIAN-CVE-2025-14819</a>: When doing TLS related transfers with reused easy or multi handles and alteri...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079" target="_blank">DEBIAN-CVE-2025-15079</a>: When doing SSH-based transfers using either SCP or SFTP, and setting the know...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224" target="_blank">DEBIAN-CVE-2025-15224</a>: When doing SSH-based transfers using either SCP or SFTP, and asked to do publ...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399" target="_blank">DEBIAN-CVE-2025-5399</a>: Due to a mistake in libcurl's WebSocket code, a malicious server can send a p...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086" target="_blank">DEBIAN-CVE-2025-9086</a>: 1. A cookie is set using the `secure` keyword for `https://target`   2. curl ...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-1965" target="_blank">DEBIAN-CVE-2026-1965</a>: libcurl can in some circumstances reuse the wrong connection when asked to do...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-3783" target="_blank">DEBIAN-CVE-2026-3783</a>: When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfe...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-3784" target="_blank">DEBIAN-CVE-2026-3784</a>: curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a...</li>
+  <li style=""><a class="cve-link" href="https://osv.dev/vulnerability/DEBIAN-CVE-2026-3805" target="_blank">DEBIAN-CVE-2026-3805</a>: When doing a second SMB request to the same host again, curl would wrongly us...</li>
+</ul>
+</details></td>
+    </tr>
+    <tr class="safe">
+      <td><strong>gh_update_checker</strong></td>
+      <td>v1.0.6</td>
+      <td>-</td>
+      <td>cmake_target</td>
+      <td><span class="badge">MIT</span></td>
+      <td>-</td>
+      <td>✅ Safe</td>
+    </tr>
+    <tr class="">
+      <td><strong>libc.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>-</td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libgcc_s.so.1</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>-</td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libm.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>-</td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="">
+      <td><strong>libstdc++.so.6</strong></td>
+      <td></td>
+      <td>-</td>
+      <td>system</td>
+      <td><span class="badge">UNKNOWN</span></td>
+      <td>-</td>
+      <td>Unknown</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

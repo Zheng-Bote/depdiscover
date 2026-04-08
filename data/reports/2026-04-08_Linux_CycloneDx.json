@@ -1,0 +1,616 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:generic/nlohmann_json@3.12.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "nlohmann_json",
+      "purl": "pkg:generic/nlohmann_json@3.12.0",
+      "type": "library",
+      "version": "3.12.0"
+    },
+    {
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "curl"
+          }
+        }
+      ],
+      "name": "libcurl",
+      "purl": "pkg:generic/libcurl@8.14.1",
+      "type": "library",
+      "version": "8.14.1"
+    },
+    {
+      "bom-ref": "pkg:generic/gh_update_checker@v1.0.6",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "gh_update_checker",
+      "purl": "pkg:generic/gh_update_checker@v1.0.6",
+      "type": "library",
+      "version": "v1.0.6"
+    },
+    {
+      "bom-ref": "pkg:generic/libc.so.6@",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "libc.so.6",
+      "purl": "pkg:generic/libc.so.6@",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "pkg:generic/libgcc_s.so.1@",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "libgcc_s.so.1",
+      "purl": "pkg:generic/libgcc_s.so.1@",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "pkg:generic/libm.so.6@",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "libm.so.6",
+      "purl": "pkg:generic/libm.so.6@",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "pkg:generic/libstdc++.so.6@",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "libstdc++.so.6",
+      "purl": "pkg:generic/libstdc++.so.6@",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "DepDiscovery",
+      "type": "application"
+    },
+    "timestamp": "2026-04-08T11:15:56Z",
+    "tools": [
+      {
+        "name": "depdiscover",
+        "vendor": "ZHENG Bote",
+        "version": "1.5.0"
+      }
+    ]
+  },
+  "serialNumber": "urn:uuid:558c11a2-3a60-4594-bd97-4af6fae1681b",
+  "specVersion": "1.4",
+  "version": 1,
+  "vulnerabilities": [
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22922"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When curl is instructed to download content using the metalink feature, thecontents is verified against a hash provided in the metalink XML file.Th...",
+      "id": "DEBIAN-CVE-2021-22922",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2021-22923"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When curl is instructed to get content using the metalink feature, and a user name and password are used to download the metalink XML file, those s...",
+      "id": "DEBIAN-CVE-2021-22923",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-42916"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "In curl before 7.86.0, the HSTS check could be bypassed to trick it into staying with HTTP. Using its HSTS support, curl can be instructed to use H...",
+      "id": "DEBIAN-CVE-2022-42916",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2022-43551"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "A vulnerability exists in curl <7.87.0 HSTS check that could be bypassed to trick it to keep using HTTP. Using its HSTS support, curl can be instru...",
+      "id": "DEBIAN-CVE-2022-43551",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23914"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality fail when multiple URLs...",
+      "id": "DEBIAN-CVE-2023-23914",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-23915"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "A cleartext transmission of sensitive information vulnerability exists in curl <v7.88.0 that could cause HSTS functionality to behave incorrectly w...",
+      "id": "DEBIAN-CVE-2023-23915",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-28320"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "A denial of service vulnerability exists in curl <v8.1.0 in the way libcurl provides several different backends for resolving host names, selected ...",
+      "id": "DEBIAN-CVE-2023-28320",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2023-46219"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When saving HSTS data to an excessively long file name, curl could end up removing all contents, making subsequent requests using that file unaware...",
+      "id": "DEBIAN-CVE-2023-46219",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-2379"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "libcurl skips the certificate verification for a QUIC connection under certain conditions, when built to use wolfSSL. If told to use an unknown/bad...",
+      "id": "DEBIAN-CVE-2024-2379",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2024-9681"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When curl is asked to use HSTS, the expiry time for a subdomain might overwrite a parent domain's cache entry, making it end sooner or later than o...",
+      "id": "DEBIAN-CVE-2024-9681",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-0725"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When libcurl is asked to perform automatic gzip decompression of content-encoded HTTP responses with the `CURLOPT_ACCEPT_ENCODING` option, **using ...",
+      "id": "DEBIAN-CVE-2025-0725",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10148"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "curl's websocket code did not update the 32 bit mask pattern for each new  outgoing frame as the specification says. Instead it used a fixed mask t...",
+      "id": "DEBIAN-CVE-2025-10148",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-10966"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH powered backend was flawed and missed host verification mechanisms.  ...",
+      "id": "DEBIAN-CVE-2025-10966",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-11563"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "URLs containing percent-encoded slashes (`/` or `\\`) can trick wcurl into saving the output file outside of the current directory without the user ...",
+      "id": "DEBIAN-CVE-2025-11563",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-13034"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey` with the curl tool,curl should check the public key of the server cert...",
+      "id": "DEBIAN-CVE-2025-13034",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14017"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl, changing TLS options in one thread would inadvertently change them globally...",
+      "id": "DEBIAN-CVE-2025-14017",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14524"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a cross-protocol redirect to a second URL that uses an IMAP...",
+      "id": "DEBIAN-CVE-2025-14524",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-14819"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When doing TLS related transfers with reused easy or multi handles and altering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentall...",
+      "id": "DEBIAN-CVE-2025-14819",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15079"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the known_hosts file, libcurl could still mistakenly accept connecting to host...",
+      "id": "DEBIAN-CVE-2025-15079",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-15224"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do public key authentication, curl would wrongly still ask and authenticate u...",
+      "id": "DEBIAN-CVE-2025-15224",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-5399"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "Due to a mistake in libcurl's WebSocket code, a malicious server can send a particularly crafted packet which makes libcurl get trapped in an endle...",
+      "id": "DEBIAN-CVE-2025-5399",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2025-9086"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "1. A cookie is set using the `secure` keyword for `https://target`   2. curl is redirected to or otherwise made to speak with `http://target` (same...",
+      "id": "DEBIAN-CVE-2025-9086",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-1965"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "libcurl can in some circumstances reuse the wrong connection when asked to do an Negotiate-authenticated HTTP or HTTPS request.  libcurl features a...",
+      "id": "DEBIAN-CVE-2026-1965",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3783"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer performs a redirect to a second URL, curl could leak that token to t...",
+      "id": "DEBIAN-CVE-2026-3783",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3784"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a server, even if the new request uses different credentials for the HT...",
+      "id": "DEBIAN-CVE-2026-3784",
+      "ratings": [
+        {
+          "score": 5.0,
+          "severity": "medium"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    },
+    {
+      "advisories": [
+        {
+          "url": "https://osv.dev/vulnerability/DEBIAN-CVE-2026-3805"
+        }
+      ],
+      "bom-ref": "pkg:generic/libcurl@8.14.1",
+      "description": "When doing a second SMB request to the same host again, curl would wrongly use a data pointer pointing into already freed memory.",
+      "id": "DEBIAN-CVE-2026-3805",
+      "ratings": [
+        {
+          "score": 7.0,
+          "severity": "high"
+        }
+      ],
+      "source": {
+        "name": "OSV.dev"
+      }
+    }
+  ]
+}

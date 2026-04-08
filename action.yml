@@ -51,32 +51,37 @@ inputs:
   project-name:
     description: "Project name to appear in the report header"
     required: false
-    default: "GitHub Action Project"
+    html:
+      description: "Path for the generated HTML report (Optional)"
+      required: false
+    markdown:
+      description: "Path for the generated Markdown report (Optional)"
+      required: false
+    cyclonedx:
+    ...
+      - name: Download depdiscover AppImage
+        shell: bash
+        run: |
+          # Note: In a real scenario, you might want to pin the version or use a specific release
+          wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.5.0/depdiscover-x86_64.AppImage
+          chmod +x depdiscover-x86_64.AppImage
 
-runs:
-  using: "composite"
-  steps:
-    - name: Download depdiscover AppImage
-      shell: bash
-      run: |
-        # Note: In a real scenario, you might want to pin the version or use a specific release
-        wget -q https://github.com/Zheng-Bote/depdiscover/releases/latest/download/depdiscover-x86_64.AppImage
-        chmod +x depdiscover-x86_64.AppImage
 
-    - name: Run depdiscover
-      shell: bash
-      run: |
-        ARGS=""
-        if [ -f "${{ inputs.compile-commands }}" ]; then ARGS="$ARGS -c ${{ inputs.compile-commands }}"; fi
-        if [ -f "${{ inputs.libs }}" ]; then ARGS="$ARGS -l ${{ inputs.libs }}"; fi
-        if [ ! -z "${{ inputs.binary }}" ]; then ARGS="$ARGS -b ${{ inputs.binary }}"; fi
-        if [ -f "${{ inputs.vcpkg }}" ]; then ARGS="$ARGS -v ${{ inputs.vcpkg }}"; fi
-        if [ -f "${{ inputs.conan }}" ]; then ARGS="$ARGS -C ${{ inputs.conan }}"; fi
-        if [ -f "${{ inputs.cmake }}" ]; then ARGS="$ARGS -m ${{ inputs.cmake }}"; fi
-        if [ ! -z "${{ inputs.output }}" ]; then ARGS="$ARGS -o ${{ inputs.output }}"; fi
-        if [ ! -z "${{ inputs.html }}" ]; then ARGS="$ARGS -H ${{ inputs.html }}"; fi
-        if [ ! -z "${{ inputs.cyclonedx }}" ]; then ARGS="$ARGS -x ${{ inputs.cyclonedx }}"; fi
-        if [ ! -z "${{ inputs.ecosystem }}" ]; then ARGS="$ARGS -e ${{ inputs.ecosystem }}"; fi
+      - name: Run depdiscover
+        shell: bash
+        run: |
+          ARGS=""
+          if [ -f "${{ inputs.compile-commands }}" ]; then ARGS="$ARGS -c ${{ inputs.compile-commands }}"; fi
+          if [ -f "${{ inputs.libs }}" ]; then ARGS="$ARGS -l ${{ inputs.libs }}"; fi
+          if [ ! -z "${{ inputs.binary }}" ]; then ARGS="$ARGS -b ${{ inputs.binary }}"; fi
+          if [ -f "${{ inputs.vcpkg }}" ]; then ARGS="$ARGS -v ${{ inputs.vcpkg }}"; fi
+          if [ -f "${{ inputs.conan }}" ]; then ARGS="$ARGS -C ${{ inputs.conan }}"; fi
+          if [ -f "${{ inputs.cmake }}" ]; then ARGS="$ARGS -m ${{ inputs.cmake }}"; fi
+          if [ ! -z "${{ inputs.output }}" ]; then ARGS="$ARGS -o ${{ inputs.output }}"; fi
+          if [ ! -z "${{ inputs.html }}" ]; then ARGS="$ARGS -H ${{ inputs.html }}"; fi
+          if [ ! -z "${{ inputs.markdown }}" ]; then ARGS="$ARGS -M ${{ inputs.markdown }}"; fi
+          if [ ! -z "${{ inputs.cyclonedx }}" ]; then ARGS="$ARGS -x ${{ inputs.cyclonedx }}"; fi
+          if [ ! -z "${{ inputs.ecosystem }}" ]; then ARGS="$ARGS -e ${{ inputs.ecosystem }}"; fi
         if [ ! -z "${{ inputs.fail-on-cvss }}" ]; then ARGS="$ARGS -f ${{ inputs.fail-on-cvss }}"; fi
         if [ ! -z "${{ inputs.suppressions }}" ]; then ARGS="$ARGS -s ${{ inputs.suppressions }}"; fi
         if [ ! -z "${{ inputs.project-name }}" ]; then ARGS="$ARGS -n \"${{ inputs.project-name }}\""; fi

@@ -55,6 +55,7 @@
 #include "cve_resolver.hpp"
 #include "cyclonedx_generator.hpp"
 #include "html_generator.hpp"
+#include "markdown_generator.hpp"
 #include "license_resolver.hpp"
 
 using namespace depdiscover;
@@ -170,40 +171,6 @@ bool fuzzy_match_lib(const std::string &lib_filename,
 }
 
 /**
- * @brief Extracts a CVSS score from a severity string.
- *
- * @param severity_str The severity string (e.g., "7.5" or
- * "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H").
- * @return double The extracted CVSS score.
- */
-double extract_cvss_score(const std::string &severity_str) {
-  if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
-      severity_str.empty())
-    return 0.0;
-
-  try {
-    return std::stod(severity_str);
-  } catch (...) {
-    if (severity_str.find("CVSS:") == 0) {
-      int high_count = 0;
-      if (severity_str.find("C:H") != std::string::npos)
-        high_count++;
-      if (severity_str.find("I:H") != std::string::npos)
-        high_count++;
-      if (severity_str.find("A:H") != std::string::npos)
-        high_count++;
-
-      if (high_count == 3)
-        return 9.0; // Critical
-      if (high_count > 0)
-        return 7.0; // High
-      return 5.0;   // Medium Fallback
-    }
-  }
-  return 0.0;
-}
-
-/**
  * @brief Checks for updates of depdiscover itself.
  */
 void check_for_updates() {
@@ -252,6 +219,8 @@ void print_help(const char *program_name) {
          "(Default: Debian)\n"
       << "  -H, --html <PATH>              Output: Generate HTML report "
          "(Optional)\n"
+      << "  -M, --markdown <PATH>          Output: Generate Markdown report "
+         "(Optional)\n"
       << "  -x, --cyclonedx <PATH>         Output: Generate CycloneDX 1.4 JSON "
          "(Optional)\n"
       << "  -f, --fail-on-cvss <SCORE>     Build Breaker: Exit 1 if "
@@ -292,6 +261,7 @@ int main(int argc, char **argv) {
   std::string project_name = "Unknown Project";
   std::string ecosystem = "Debian";
   std::string html_path = "";
+  std::string markdown_path = "";
   std::string cyclonedx_path = "";
 
   std::string suppressions_path = "";
@@ -380,6 +350,13 @@ int main(int argc, char **argv) {
         std::cerr << "Error: " << arg << " requires a path.\n";
         return 1;
       }
+    } else if (arg == "-M" || arg == "--markdown") {
+      if (i + 1 < argc)
+        markdown_path = argv[++i];
+      else {
+        std::cerr << "Error: " << arg << " requires a path.\n";
+        return 1;
+      }
     } else if (arg == "-x" || arg == "--cyclonedx") {
       if (i + 1 < argc)
         cyclonedx_path = argv[++i];
@@ -436,6 +413,10 @@ int main(int argc, char **argv) {
     // I assume standard paths should be set for all possible outputs if not
     // specified.
     html_path = "data/reports/" + date_prefix + "_depdiscover.html";
+    use_data_dir = true;
+  }
+  if (markdown_path.empty()) {
+    markdown_path = "data/reports/" + date_prefix + "_depdiscover.md";
     use_data_dir = true;
   }
   if (cyclonedx_path.empty()) {
@@ -660,13 +641,35 @@ int main(int argc, char **argv) {
 
     // --- 4. System Libs ---
     for (const auto &lib : all_elf_libs) {
-      Dependency sys;
-      sys.name = lib;
-      sys.type = "system";
-      sys.source = "elf_scan";
-      sys.libraries.push_back(lib);
-      sys.licenses = resolve_licenses(lib);
-      deps.push_back(sys);
+      // Check if this library is already accounted for in any local dependency
+      bool already_present = false;
+      for (const auto &dep : deps) {
+        for (const auto &dl : dep.libraries) {
+          if (dl == lib || dl.find("/" + lib) != std::string::npos ||
+              lib.find("/" + dl) != std::string::npos) {
+            already_present = true;
+            break;
+          }
+        }
+        if (already_present)
+          break;
+
+        // Also check by name fuzzy match
+        if (fuzzy_match_lib(lib, dep.name)) {
+          already_present = true;
+          break;
+        }
+      }
+
+      if (!already_present) {
+        Dependency sys;
+        sys.name = lib;
+        sys.type = "system";
+        sys.source = "elf_scan";
+        sys.libraries.push_back(lib);
+        sys.licenses = resolve_licenses(lib);
+        deps.push_back(sys);
+      }
     }
 
     // --- 5. Generate Output ---
@@ -708,6 +711,12 @@ int main(int argc, char **argv) {
       std::cerr << "[Success] HTML report written to: " << html_path << "\n";
     }
 
+    // Generate Markdown Report
+    if (!markdown_path.empty()) {
+      generate_markdown_report(root, markdown_path);
+      std::cerr << "[Success] Markdown report written to: " << markdown_path << "\n";
+    }
+
     // Generate CycloneDX Report
     if (!cyclonedx_path.empty()) {
       generate_cyclonedx_report(root, cyclonedx_path);
@@ -726,7 +735,7 @@ int main(int argc, char **argv) {
           // Suppressed CVEs are ignored in build breaker
           if (!cve.suppressed && cve.id != "SAFE" && cve.id != "NOT-CHECKED" &&
               cve.id != "CHECK-ERROR") {
-            double score = extract_cvss_score(cve.severity);
+            double score = cve.score;
             if (score >= fail_on_cvss) {
               std::cerr << "  ❌ ERROR: " << dep.name << " v" << dep.version
                         << " has vulnerability " << cve.id << " (Score: ~"

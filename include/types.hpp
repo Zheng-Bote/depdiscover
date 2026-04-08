@@ -19,8 +19,43 @@
 #include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 namespace depdiscover {
+
+/**
+ * @brief Extracts a CVSS score from a severity string.
+ *
+ * @param severity_str The severity string (e.g., "7.5" or
+ * "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H").
+ * @return double The extracted CVSS score.
+ */
+inline double extract_cvss_score(const std::string &severity_str) {
+  if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
+      severity_str.empty())
+    return 0.0;
+
+  try {
+    return std::stod(severity_str);
+  } catch (...) {
+    if (severity_str.find("CVSS:") == 0) {
+      int high_count = 0;
+      if (severity_str.find("C:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("I:H") != std::string::npos)
+        high_count++;
+      if (severity_str.find("A:H") != std::string::npos)
+        high_count++;
+
+      if (high_count == 3)
+        return 9.0; // Critical
+      if (high_count > 0)
+        return 7.0; // High
+      return 5.0;   // Medium Fallback
+    }
+  }
+  return 0.0;
+}
 
 /**
  * @brief Represents a Common Vulnerability and Exposure (CVE).
@@ -29,6 +64,7 @@ struct CVE {
   std::string id;                  ///< The unique ID of the CVE (e.g., CVE-2021-1234).
   std::string summary;             ///< A brief summary of the vulnerability.
   std::string severity;            ///< The severity score (CVSS).
+  double score = 0.0;              ///< The numeric CVSS score.
   std::string fixed_version;       ///< The version where the vulnerability is fixed.
   bool suppressed = false;         ///< True if this vulnerability is manually suppressed.
   std::string suppression_reason;  ///< The reason for suppression.
@@ -44,6 +80,7 @@ inline void to_json(nlohmann::json &j, const CVE &c) {
   j = nlohmann::json{{"id", c.id},
                      {"summary", c.summary},
                      {"severity", c.severity},
+                     {"score", c.score},
                      {"fixed_version", c.fixed_version},
                      {"suppressed", c.suppressed},
                      {"suppression_reason", c.suppression_reason}};

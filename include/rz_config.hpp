@@ -27,9 +27,9 @@ constexpr std::string_view PROJECT_DESCRIPTION = "Dependency Tracker for C++ Pro
 
 constexpr std::string_view EXECUTABLE_NAME = "depdiscover";
 
-constexpr std::string_view VERSION = "1.4.0";
+constexpr std::string_view VERSION = "1.5.0";
 constexpr std::int32_t PROJECT_VERSION_MAJOR { 1 };
-constexpr std::int32_t PROJECT_VERSION_MINOR { 4 };
+constexpr std::int32_t PROJECT_VERSION_MINOR { 5 };
 constexpr std::int32_t PROJECT_VERSION_PATCH { 0 };
 
 constexpr std::string_view PROJECT_HOMEPAGE_URL = "https://github.com/Zheng-Bote/depdiscover";

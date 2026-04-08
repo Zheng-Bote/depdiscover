@@ -11,28 +11,33 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [Description](#description)
-- [🚀 Key Features](#-key-features)
-- [Screenshots](#screenshots)
-- [🏗 Architecture](#-architecture)
-- [🛠 Prerequisites](#-prerequisites)
-  - [Runtime Requirements](#runtime-requirements)
-- [📦 Build Instructions](#-build-instructions)
-- [💻 Usage](#-usage)
-  - [Basic Command](#basic-command)
-  - [Full Example](#full-example)
-  - [Options](#options)
-  - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
-  - [📄 Output Example](#-output-example)
-- [🛡️ CI/CD & Build Breaker](#-cicd--build-breaker)
-- [🐙 GitHub Action](#-github-action)
-- [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
-- [📜 License](#-license)
-- [📄 Changelog](#-changelog)
-- [Author](#author)
-- [Code Contributors](#code-contributors)
+- [depdiscover](#depdiscover)
+  - [Description](#description)
+  - [🚀 Key Features](#-key-features)
+  - [Screenshots](#screenshots)
+  - [🏗 Architecture](#-architecture)
+  - [🛠 Prerequisites](#-prerequisites)
+  - [📦 Build Instructions](#-build-instructions)
+    - [1. Install Dependencies via Conan](#1-install-dependencies-via-conan)
+    - [2. Configure and Build with CMake](#2-configure-and-build-with-cmake)
+    - [3. Installation (Optional)](#3-installation-optional)
+    - [Runtime Requirements](#runtime-requirements)
+  - [💻 Usage](#-usage)
+    - [Basic Command](#basic-command)
+    - [Full Example](#full-example)
+    - [Options](#options)
+    - [💡 Generating libs.txt (CMake Integration)](#-generating-libstxt-cmake-integration)
+    - [📄 Output Example](#-output-example)
+  - [🛡️ CI/CD \& Build Breaker](#️-cicd--build-breaker)
+  - [🐙 GitHub Action](#-github-action)
+  - [🤫 Suppressions (Ignore Vulnerabilities)](#-suppressions-ignore-vulnerabilities)
+  - [📜 License](#-license)
+  - [📄 Changelog](#-changelog)
+  - [Author](#author)
+  - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -62,6 +67,7 @@
   - Generates a detailed custom JSON report including metadata, file paths, licenses, and security status.
   - Generates an industry-standard **CycloneDX 1.4 SBOM** in JSON format.
   - Generates an interactive **HTML Dashboard** featuring CVSS color-coding and detailed vulnerability links.
+  - Generates a tabular **Markdown Report** for GitHub PR comments or simple documentation.
   - Automatically exports GitHub-managed dependencies to `gh-libs.csv` and `gh-libs.json`.
 - **Smart Reports**: Automatically saves results to a `./data/reports/` directory with a `<YYYY-MM-DD>_<Platform>_` prefix if no output path is specified.
 
@@ -161,30 +167,46 @@ To build and run depdiscover, you need:
 
 - **C++ Compiler**: Supporting C++23 (e.g., GCC 13+, Clang 16+, MSVC VS2022 17.6+).
 - **CMake**: Version 3.23 or higher.
-- **Dependencies**:
-- nlohmann_json, gh_update_checker (usually handled via CMake/Vcpkg).
-
-### Runtime Requirements
-
-- libcurl (must be installed in the system PATH for CVE queries).
-- pkg-config (optional, for better system library resolution).
+- **Conan**: Version 2.0 or higher (for dependency management).
+- **libcurl**: Development headers (usually handled via Conan).
 
 ## 📦 Build Instructions
 
+The project uses **Conan 2.0** for modern dependency management.
+
+### 1. Install Dependencies via Conan
+
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-org/depdiscover.git
+# Clone the repository
+git clone https://github.com/Zheng-Bote/depdiscover.git
 cd depdiscover
 
-# 2. Create build directory
-mkdir build && cd build
-
-# 3. Configure (ensure nlohmann_json is found)
-cmake ..
-
-# 4. Build
-cmake --build .
+# Install dependencies (creates build/conan_toolchain.cmake)
+# Note: Ensure C++23 is set, as it is required for depdiscover
+conan install . --output-folder=build --build=missing -s compiler.cppstd=23
 ```
+
+### 2. Configure and Build with CMake
+
+```bash
+# Configure using the Conan-generated toolchain
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+
+# Build the project
+cmake --build build -j"$(nproc)"
+```
+
+### 3. Installation (Optional)
+
+```bash
+sudo cmake --install build
+```
+
+### Runtime Requirements
+
+- **pkg-config**: (Optional) for better system library resolution.
+- **libcurl**: Required for live CVE queries (OSV.dev).
+- **Internet Access**: Required for CVE queries and update checks.
 
 ## 💻 Usage
 
@@ -230,6 +252,7 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -e   | --ecosystem        | OSV Ecosystem for CVE checks (Default: Debian).                          |
 | -f   | --fail-on-cvss     | Build Breaker: Exit 1 if CVSS-Score greater or equal to SCORE (e.g. 7.0) |
 | -H   | --html             | Path for the generated HTML report (Optional).                           |
+| -M   | --markdown         | Path for the generated Markdown report (Optional).                       |
 | -x   | --cyclonedx        | Path for the generated CycloneDX 1.4 SBOM (Optional).                    |
 | -s   | --suppressions     | Path to JSON file with suppressed CVEs (Optional).                       |
 |      | --check-version    | Checks for updates of depdiscover.                                       |
@@ -237,7 +260,7 @@ To get the most comprehensive report, provide as many inputs as possible:
 | -h   | --help             | Show help message.                                                       |
 
 > [!NOTE]
-> If -o, -H, or -x are not specified, depdiscover will automatically save them to the `./data/reports/` folder using the prefix `<YYYY-MM-DD>_<Platform>_`.
+> If -o, -H, -M, or -x are not specified, depdiscover will automatically save them to the `./data/reports/` folder using the prefix `<YYYY-MM-DD>_<Platform>_`.
 
 ### 💡 Generating libs.txt (CMake Integration)
 
@@ -260,7 +283,7 @@ The generated JSON contains a metadata header and a list of dependencies includi
     "scan_date": "2026-04-06",
     "tool": {
       "name": "depdiscover",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     "project": {
       "name": "MyApplication",
@@ -279,8 +302,9 @@ The generated JSON contains a metadata header and a list of dependencies includi
       "cves": [
         {
           "id": "SAFE",
-          "severity": "NONE",
           "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-02-22",
+          "severity": "NONE",
+          "score": 0.0,
           "fixed_version": "",
           "suppressed": false,
           "suppression_reason": ""
@@ -306,11 +330,11 @@ The easiest way to integrate **depdiscover** into your GitHub repository is by u
 
 ```yaml
 - name: Run depdiscover Scan
-  uses: Zheng-Bote/depdiscover@v1
+  uses: Zheng-Bote/depdiscover@v1.5.0
   with:
     project-name: "MyAwesomeProject"
     fail-on-cvss: 7.0
-    html: "data/report.html"
+    html: "data/reports/report.html"
 ```
 
 For more details and full workflow examples, see the [GitHub Action Usage Guide](docs/github_action_usage.md).

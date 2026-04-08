@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 project(depdiscover 
-          VERSION 1.4.0
+          VERSION 1.5.0
           DESCRIPTION "Dependency Tracker for C++ Projects"
 
           HOMEPAGE_URL "https://github.com/Zheng-Bote/depdiscover"
@@ -33,16 +33,13 @@ if(APPLE)
 endif()
 
 # --- Find dependencies ---
+# Prioritize Conan or system packages
+find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 
 # --- 1. Dependencies via FetchContent ---
+set(FETCHCONTENT_TRY_FIND_PACKAGE_MODE ALWAYS)
 include(FetchContent)
-
-FetchContent_Declare(
-  nlohmann_json
-  GIT_REPOSITORY https://github.com/nlohmann/json.git
-  GIT_TAG        v3.11.3
-)
 
 FetchContent_Declare(
   gh_update_checker
@@ -50,7 +47,7 @@ FetchContent_Declare(
   GIT_TAG        v1.0.6
 )
 
-FetchContent_MakeAvailable(nlohmann_json gh_update_checker)
+FetchContent_MakeAvailable(gh_update_checker)
 
 
 add_executable(depdiscover src/main.cpp)

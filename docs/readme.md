@@ -39,6 +39,10 @@ The tool allows for manual suppression of specific CVEs with a provided reason, 
 
 ![Suppressing Vulnerabilities](img/suppressing_html-report.png)
 
+### Markdown Report
+
+For quick reviews or GitHub PR comments, a compact Markdown report can be generated using the `--markdown` option. It provides a tabular overview of all dependencies and their security status.
+
 ### Build Breaker (Fail on CVSS)
 
 Integrate depdiscover into your CI/CD pipeline. You can configure the tool to fail the build if vulnerabilities above a certain CVSS threshold are found.

@@ -160,12 +160,25 @@ inline void generate_cyclonedx_report(const json &internal_root,
           if (!summary.empty())
             vuln["description"] = summary;
 
-          // Note: OSV provides scores as strings ("UNKNOWN", "7.5", etc.).
           // Ratings require a mapping to enums (low, medium, high, critical).
-          std::string severity = cve.value("severity", "UNKNOWN");
-          if (severity != "UNKNOWN" && severity != "NONE") {
+          std::string severity_str = cve.value("severity", "UNKNOWN");
+          double score = cve.value("score", 0.0);
+
+          if (severity_str != "UNKNOWN" && severity_str != "NONE") {
             json rating;
-            rating["severity"] = "unknown"; 
+            rating["score"] = score;
+            
+            // Map numeric score to CycloneDX severity levels
+            if (score >= 9.0) rating["severity"] = "critical";
+            else if (score >= 7.0) rating["severity"] = "high";
+            else if (score >= 4.0) rating["severity"] = "medium";
+            else if (score >= 0.1) rating["severity"] = "low";
+            else if (severity_str == "CRITICAL" || severity_str == "critical") rating["severity"] = "critical";
+            else if (severity_str == "HIGH" || severity_str == "high") rating["severity"] = "high";
+            else if (severity_str == "MEDIUM" || severity_str == "medium") rating["severity"] = "medium";
+            else if (severity_str == "LOW" || severity_str == "low") rating["severity"] = "low";
+            else rating["severity"] = "unknown";
+
             vuln["ratings"] = json::array({rating});
           }
 

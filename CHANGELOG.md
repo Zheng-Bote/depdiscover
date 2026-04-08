@@ -11,28 +11,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [[1.4.0] - 2026-04-06](#140---2026-04-06)
+- [[1.5.0] - 2026-04-08](#150---2026-04-08)
   - [Added](#added)
   - [Changed](#changed)
-- [[1.3.0] - 2026-04-06](#130---2026-04-06)
+  - [Fixed](#fixed)
+- [[1.4.0] - 2026-04-06](#140---2026-04-06)
   - [Added](#added-1)
   - [Changed](#changed-1)
+- [[1.3.0] - 2026-04-06](#130---2026-04-06)
+  - [Added](#added-2)
+  - [Changed](#changed-2)
   - [Fixed](#fixed)
 - [[1.2.1] - 2026-03-02](#121---2026-03-02)
   - [Fixed](#fixed-1)
-  - [Changed](#changed-2)
-- [[1.2.0] - 2026-02-22](#120---2026-02-22)
-  - [Added](#added-2)
   - [Changed](#changed-3)
-- [[1.1.0] - 2026-01-15](#110---2026-01-15)
+- [[1.2.0] - 2026-02-22](#120---2026-02-22)
   - [Added](#added-3)
   - [Changed](#changed-4)
-- [[1.0.0] - 2026-01-01](#100---2026-01-01)
+- [[1.1.0] - 2026-01-15](#110---2026-01-15)
   - [Added](#added-4)
+  - [Changed](#changed-5)
+- [[1.0.0] - 2026-01-01](#100---2026-01-01)
+  - [Added](#added-5)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
+
+## [1.5.0] - 2026-04-08
+
+### Added
+- **Markdown Report**: Added a new tabular Markdown report generator (`-M` / `--markdown`) for easier integration into GitHub PR comments.
+- **Vulnerability Scores**: Added a numeric `score` field (CVSS) to the `CVE` structure, `depdiscover.json`, and `CycloneDx.json` (ratings).
+- **Conan Integration**: Improved support for Conan by using it as the primary dependency provider for `nlohmann_json` and `libcurl`.
+
+### Changed
+- **Dependency Prioritization**: Local dependencies (Vcpkg, Conan, CMake FetchContent) now have absolute priority over system-installed libraries.
+- **Improved Reporting**: The Markdown report now correctly shows `❓ UNKNOWN` or `⚠️ ERROR` status for dependencies that couldn't be fully verified.
+- **HTML Report**: Updated to use pre-calculated scores directly from the JSON model.
+
+### Fixed
+- **CycloneDX Severity**: Fixed a bug where vulnerability severity was hardcoded to "unknown" in the CycloneDX output. It now correctly maps CVSS scores to CycloneDX severity levels.
 
 ## [1.4.0] - 2026-04-06
 

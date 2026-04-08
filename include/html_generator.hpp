@@ -23,43 +23,13 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include "types.hpp"
 
 namespace depdiscover {
 
 /**
- * @brief Helper function to extract a CVSS score from a severity string for HTML display.
- *
- * @param severity_str The severity string.
- * @return double The extracted score.
- */
-inline double extract_score_for_html(const std::string &severity_str) {
-  if (severity_str == "UNKNOWN" || severity_str == "NONE" ||
-      severity_str.empty())
-    return 0.0;
-  try {
-    return std::stod(severity_str);
-  } catch (...) {
-    if (severity_str.find("CVSS:") == 0) {
-      int high_count = 0;
-      if (severity_str.find("C:H") != std::string::npos)
-        high_count++;
-      if (severity_str.find("I:H") != std::string::npos)
-        high_count++;
-      if (severity_str.find("A:H") != std::string::npos)
-        high_count++;
-      if (high_count == 3)
-        return 9.0; // Critical
-      if (high_count > 0)
-        return 7.0; // High
-      return 5.0;   // Medium Fallback
-    }
-  }
-  return 0.0;
-}
+ * @brief Generates an HTML security report from the internal JSON representation.
 
-/**
- * @brief Generates an HTML report from the internal JSON representation.
- *
  * @param root The root of the internal JSON data.
  * @param filepath The path where the report will be saved.
  */
@@ -175,7 +145,7 @@ inline void generate_html_report(const nlohmann::json &root,
               suppressed_vulns++;
             } else {
               active_vulns++;
-              double s = extract_score_for_html(cve.value("severity", ""));
+              double s = cve.value("score", 0.0);
               if (s > max_score)
                 max_score = s;
             }

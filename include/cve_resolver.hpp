@@ -118,7 +118,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       version == "latest") {
     results.push_back({"NOT-CHECKED",
                        "Version unknown or latest, cannot query OSV", "UNKNOWN",
-                       "", false, ""});
+                       0.0, "", false, ""});
     return results;
   }
 
@@ -139,7 +139,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
     std::cerr << "Failed (Network Error)\n";
     results.push_back(
         {"CHECK-ERROR", "Network request failed or no output from curl",
-         "UNKNOWN", "", false, ""});
+         "UNKNOWN", 0.0, "", false, ""});
     return results;
   }
 
@@ -150,7 +150,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
       std::string error_msg = doc["message"].get<std::string>();
       std::cerr << "API Error (" << error_msg << ")\n";
       results.push_back({"CHECK-ERROR", "OSV API Error: " + error_msg,
-                         "UNKNOWN", "", false,
+                         "UNKNOWN", 0.0, "", false,
                          ""});
       return results;
     }
@@ -188,8 +188,10 @@ inline std::vector<CVE> query_cves(const std::string &name,
         if (item.contains("severity") && item["severity"].is_array() &&
             !item["severity"].empty()) {
           cve.severity = item["severity"][0].value("score", "UNKNOWN");
+          cve.score = extract_cvss_score(cve.severity);
         } else {
           cve.severity = "UNKNOWN";
+          cve.score = 0.0;
         }
 
         // Fixed Version
@@ -231,7 +233,7 @@ inline std::vector<CVE> query_cves(const std::string &name,
     std::cerr << "JSON Error: " << e.what() << "\n";
     results.push_back({"CHECK-ERROR",
                        std::string("JSON parse error: ") + e.what(), "UNKNOWN",
-                       "", false, ""});
+                       0.0, "", false, ""});
   }
 
   return results;

@@ -54,6 +54,7 @@ graph TD
     subgraph Output
         JSON["depdiscover.json <br> (Detailed SBOM)"]
         HTML["report.html <br> (Interactive HTML)"]
+        MD["report.md <br> (Markdown Table)"]
         CDX["bom.cdx.json <br> (CycloneDX 1.4)"]
     end
 
@@ -74,6 +75,7 @@ graph TD
 
     P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
     JSON --> HTML
+    JSON --> MD
     JSON --> CDX
 ```
 
@@ -86,6 +88,7 @@ graph TD
     subgraph External
         GH[GitHub API]
         OSV[OSV.dev API]
+        CN[Conan Center]
     end
 
     subgraph Inputs
@@ -116,10 +119,12 @@ graph TD
     subgraph Output
         JSON["depdiscover.json <br> (SBOM)"]
         HTML["report.html <br> (Interactive)"]
+        MD["report.md <br> (Markdown)"]
         CDX["sbom-cyclonedx.json <br> (CycloneDX 1.4)"]
     end
 
     GH <--> UC
+    CN <--> P_MAN
     CC --> P_CC
     LIBS --> P_CMAKE
     MAN --> P_MAN
@@ -139,6 +144,7 @@ graph TD
     P_CC & P_CMAKE & P_MAN & S_ELF & R_HEAD & R_LIC & R_CVE --> JSON
     JSON --> BB
     JSON --> HTML
+    JSON --> MD
     JSON --> CDX
 ```
 
@@ -155,7 +161,7 @@ sequenceDiagram
     participant Scanners as Binary/Include Scanners
     participant Resolvers as Resolvers (License/CVE/PkgConfig)
     participant OSV as OSV.dev API
-    participant Output as Output (JSON/HTML/CDX)
+    participant Output as Output (JSON/HTML/MD/CDX)
 
     User->>Main: Execute with options
     Main->>GH: check_github_update()
@@ -174,6 +180,7 @@ sequenceDiagram
     OSV-->>Resolvers: Vulnerabilities
     Main->>Output: JSON report
     Main->>Output: generate_html_report()
+    Main->>Output: generate_markdown_report()
     Main->>Output: generate_cyclonedx_report()
     Main->>Main: Build Breaker Check (-f)
     Note over Main: Exit 1 if critical<br>vulnerabilities found
@@ -201,6 +208,7 @@ classDiagram
         +string id
         +string summary
         +string severity
+        +double score
         +string fixed_version
         +bool suppressed
         +string suppression_reason

@@ -1,5 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Using depdiscover GitHub Action](#using-depdiscover-github-action)
@@ -41,20 +42,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install build dependencies
+      - name: Install build dependencies (Conan)
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev libvalijson-dev
+          sudo apt-get install -y wget pipx cmake ninja-build build-essential
+          pipx install conan
+          conan profile detect --force
 
       - name: Build Project
-        # Ensure compile_commands.json and libs.txt are generated
+        # Ensure compile_commands.json and libs.txt are generated using Conan
         run: |
-          mkdir build && cd build
-          cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-          cmake --build .
+          conan install . --output-folder=build --build=missing
+          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          cmake --build build
 
       - name: Run depdiscover Action
-        uses: Zheng-Bote/depdiscover@v1
+        uses: Zheng-Bote/depdiscover@v1.5.0
         with:
           project-name: "MyProject"
           compile-commands: "build/compile_commands.json"
@@ -117,7 +120,7 @@ If you prefer not to use the composite action, you can run the AppImage manually
 ```yaml
 - name: Download and Run AppImage
   run: |
-    wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.3.0/depdiscover-x86_64.AppImage
+    wget -q https://github.com/Zheng-Bote/depdiscover/releases/download/v1.5.0/depdiscover-x86_64.AppImage
     chmod +x depdiscover-x86_64.AppImage
     ./depdiscover-x86_64.AppImage --appimage-extract-and-run -c build/compile_commands.json -f 7.0
 ```

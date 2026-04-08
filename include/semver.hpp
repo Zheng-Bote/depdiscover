@@ -53,4 +53,45 @@ inline std::string clean_version(const std::string &raw_version) {
   return raw_version;
 }
 
+/**
+ * @brief Simple version comparison (not perfect semver, but enough for most cases).
+ * 
+ * @param v1 First version string.
+ * @param v2 Second version string.
+ * @return int 1 if v1 > v2, -1 if v1 < v2, 0 if equal.
+ */
+inline int compare_versions(const std::string &v1, const std::string &v2) {
+  if (v1 == v2) return 0;
+  if (v1.empty()) return -1;
+  if (v2.empty()) return 1;
+
+  std::string c1 = clean_version(v1);
+  std::string c2 = clean_version(v2);
+
+  std::stringstream ss1(c1), ss2(c2);
+  std::string segment1, segment2;
+
+  while (true) {
+    bool has1 = (bool)std::getline(ss1, segment1, '.');
+    bool has2 = (bool)std::getline(ss2, segment2, '.');
+
+    if (!has1 && !has2) break;
+
+    int n1 = 0, n2 = 0;
+    try {
+      if (has1) n1 = std::stoi(segment1);
+      if (has2) n2 = std::stoi(segment2);
+    } catch (...) {
+      // If we can't parse as int, do string comparison for the segment
+      if (segment1 > segment2) return 1;
+      if (segment1 < segment2) return -1;
+    }
+
+    if (n1 > n2) return 1;
+    if (n1 < n2) return -1;
+  }
+
+  return 0;
+}
+
 } // namespace depdiscover
