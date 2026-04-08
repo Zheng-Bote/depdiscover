@@ -51,14 +51,11 @@ inputs:
   project-name:
     description: "Project name to appear in the report header"
     required: false
-    html:
-      description: "Path for the generated HTML report (Optional)"
-      required: false
-    markdown:
-      description: "Path for the generated Markdown report (Optional)"
-      required: false
-    cyclonedx:
-    ...
+    default: "GitHub Project"
+
+runs:
+  using: "composite"
+  steps:
       - name: Download depdiscover AppImage
         shell: bash
         run: |
