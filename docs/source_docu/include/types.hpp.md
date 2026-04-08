@@ -17,6 +17,16 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`inline double extract_cvss_score(const std::string &severity_str) `](#inline-double-extract_cvss_scoreconst-stdstring-severity_str-)
+  - [`struct CVE `](#struct-cve-)
+  - [`inline void to_json(nlohmann::json &j, const CVE &c) `](#inline-void-to_jsonnlohmannjson-j-const-cve-c-)
+  - [`struct Dependency `](#struct-dependency-)
+  - [`inline void to_json(nlohmann::json &j, const Dependency &d) `](#inline-void-to_jsonnlohmannjson-j-const-dependency-d-)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation
