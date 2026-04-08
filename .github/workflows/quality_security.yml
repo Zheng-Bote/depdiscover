@@ -28,12 +28,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.9.*"
-          host: "linux"
-
       - name: Build with CMake
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_COMPILER=g++-14
@@ -56,12 +50,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.9.*"
-          host: "linux"
 
       - name: Configure CMake (generate compile_commands.json)
         run: |
@@ -160,12 +148,6 @@ jobs:
           wget pipx cmake ninja-build build-essential \
           gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.9.*"
-          host: "linux"
-
       - name: Configure CMake (export compile_commands.json)
         run: |
           cmake -S . -B build-clangtidy \
@@ -242,12 +224,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget pipx cmake ninja-build build-essential gcc-14 g++-14 libssl-dev nlohmann-json3-dev libcurl4-openssl-dev
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.9.*"
-          host: "linux"
 
       - name: Configure CMake (export compile_commands)
         run: |
