@@ -17,6 +17,20 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`constexpr auto SCHEMA_VERSION = "1.2"`](#constexpr-auto-schema_version--12)
+  - [`bool string_contains(const std::string &haystack, const std::string &needle) `](#bool-string_containsconst-stdstring-haystack-const-stdstring-needle-)
+  - [`bool path_starts_with(const std::string &path, const std::string &prefix) `](#bool-path_starts_withconst-stdstring-path-const-stdstring-prefix-)
+  - [`std::string get_platform_name() `](#stdstring-get_platform_name-)
+  - [`bool fuzzy_match_header(const std::string &header_path,`](#bool-fuzzy_match_headerconst-stdstring-header_path)
+  - [`bool fuzzy_match_lib(const std::string &lib_filename,`](#bool-fuzzy_match_libconst-stdstring-lib_filename)
+  - [`void check_for_updates() `](#void-check_for_updates-)
+  - [`void print_help(const char *program_name) `](#void-print_helpconst-char-program_name-)
+  - [`int main(int argc, char **argv) `](#int-mainint-argc-char-argv-)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

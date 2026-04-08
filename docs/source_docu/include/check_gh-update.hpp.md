@@ -17,6 +17,21 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`namespace ghupdate `](#namespace-ghupdate-)
+  - [`struct SemVer `](#struct-semver-)
+  - [`static SemVer parse(std::string_view v) `](#static-semver-parsestdstring_view-v-)
+  - [`auto operator<=>(const SemVer&) const = default`](#auto-operatorconst-semver-const--default)
+  - [`static size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp) `](#static-size_t-write_callbackvoid-contents-size_t-size-size_t-nmemb-void-userp-)
+  - [`inline std::string http_get(std::string_view url) `](#inline-stdstring-http_getstdstring_view-url-)
+  - [`inline std::string to_github_api_url(std::string_view url) `](#inline-stdstring-to_github_api_urlstdstring_view-url-)
+  - [`struct UpdateInfo `](#struct-updateinfo-)
+  - [`inline UpdateInfo check_github_update(`](#inline-updateinfo-check_github_update)
+  - [`inline std::future<UpdateInfo> check_github_update_async(`](#inline-stdfutureupdateinfo-check_github_update_async)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

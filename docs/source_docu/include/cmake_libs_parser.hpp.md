@@ -17,6 +17,14 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [API Documentation](#api-documentation)
+  - [`inline std::string read_header_version(const fs::path &path,`](#inline-stdstring-read_header_versionconst-fspath-path)
+  - [`inline std::pair<std::string, std::string>`](#inline-stdpairstdstring-stdstring)
+  - [`inline std::vector<Dependency>`](#inline-stdvectordependency)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation
