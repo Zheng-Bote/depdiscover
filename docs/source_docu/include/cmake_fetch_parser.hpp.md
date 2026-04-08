@@ -17,15 +17,6 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [API Documentation](#api-documentation)
-  - [`struct FetchContentInfo `](#struct-fetchcontentinfo-)
-  - [`inline std::vector<FetchContentInfo> parse_cmake_fetch_content(const std::string &cmake_path) `](#inline-stdvectorfetchcontentinfo-parse_cmake_fetch_contentconst-stdstring-cmake_path-)
-  - [`inline void export_fetch_to_csv(const std::vector<FetchContentInfo>& deps, const std::string& filename) `](#inline-void-export_fetch_to_csvconst-stdvectorfetchcontentinfo-deps-const-stdstring-filename-)
-  - [`inline void export_fetch_to_json(const std::vector<FetchContentInfo>& deps, const std::string& filename) `](#inline-void-export_fetch_to_jsonconst-stdvectorfetchcontentinfo-deps-const-stdstring-filename-)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation

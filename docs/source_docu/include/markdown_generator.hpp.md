@@ -1,17 +1,17 @@
-# vcpkg_parser.hpp
+# markdown_generator.hpp
 
 ## File Header Information
 
 | Field | Value |
 | :--- | :--- |
-| **SPDX Comment** | Vcpkg Manifest Parser |
+| **SPDX Comment** | Markdown Report Generator |
 | **SPDX Type** | SOURCE |
 | **Contributor** | ZHENG Robert |
 | **License ID** | MIT |
-| **File** | `vcpkg_parser.hpp` |
-| **Description** | Parses vcpkg.json manifests to extract dependencies. |
+| **File** | `markdown_generator.hpp` |
+| **Description** | Generates a tabular Markdown security report. |
 | **Version** | 1.0.0 |
-| **Date** | 2026-02-18 |
+| **Date** | 2026-04-06 |
 | **Author** | ZHENG Robert (robert@hase-zheng.net) |
 | **Copyright** | Copyright (c) 2026 ZHENG Robert |
 | **License** | MIT License |
@@ -21,15 +21,14 @@
 
 ## API Documentation
 
-### `inline std::vector<Dependency>`
+### `inline void generate_markdown_report(const json &root,`
 
-> Parses a vcpkg.json manifest file.
+> Generates a tabular Markdown security report from internal JSON data.
 
 | Parameter | Description |
 | --- | --- |
-| `manifest_path` | Path to the vcpkg.json file. |
-
-**Returns:** std::vector<Dependency> List of extracted dependencies.
+| `root` | The root of the internal JSON data. |
+| `filepath` | The path where the report will be saved. |
 
 ---
 

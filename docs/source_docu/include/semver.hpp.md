@@ -17,12 +17,6 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [API Documentation](#api-documentation)
-  - [`inline std::string clean_version(const std::string &raw_version) `](#inline-stdstring-clean_versionconst-stdstring-raw_version-)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation
@@ -36,6 +30,19 @@
 | `raw_version` | The raw version string. |
 
 **Returns:** std::string The cleaned version string, or original if no pattern matched.
+
+---
+
+### `inline int compare_versions(const std::string &v1, const std::string &v2) `
+
+> Simple version comparison (not perfect semver, but enough for most cases).
+
+| Parameter | Description |
+| --- | --- |
+| `v1` | First version string. |
+| `v2` | Second version string. |
+
+**Returns:** int 1 if v1 > v2, -1 if v1 < v2, 0 if equal.
 
 ---
 

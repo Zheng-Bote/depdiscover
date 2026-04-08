@@ -3,12 +3,6 @@
 This directory contains the automatically generated documentation for the project.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [include Files](#include-files)
-- [src Files](#src-files)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## [include Files](include/)
@@ -25,6 +19,7 @@ This directory contains the automatically generated documentation for the projec
 - [html_generator.hpp.md](include/html_generator.hpp.md) - Generates a user-friendly HTML report from the SBOM JSON data.
 - [include_scanner.hpp.md](include/include_scanner.hpp.md) - Scans compiler flags for include paths and library names.
 - [license_resolver.hpp.md](include/license_resolver.hpp.md) - Resolves licenses for dependencies using heuristics and file scanning.
+- [markdown_generator.hpp.md](include/markdown_generator.hpp.md) - Generates a tabular Markdown security report.
 - [pkg_config.hpp.md](include/pkg_config.hpp.md) - Wrapper class for querying pkg-config.
 - [rz_config.hpp.md](include/rz_config.hpp.md) - Configuration template for CMake.
 - [semver.hpp.md](include/semver.hpp.md) - Utilities for cleaning and parsing semantic version strings.

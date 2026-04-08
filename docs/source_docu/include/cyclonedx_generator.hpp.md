@@ -17,14 +17,6 @@
 | **License** | MIT License |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [API Documentation](#api-documentation)
-  - [`inline std::string get_iso8601_timestamp() `](#inline-stdstring-get_iso8601_timestamp-)
-  - [`inline std::string generate_uuid_v4() `](#inline-stdstring-generate_uuid_v4-)
-  - [`inline void generate_cyclonedx_report(const json &internal_root,`](#inline-void-generate_cyclonedx_reportconst-json-internal_root)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## API Documentation
