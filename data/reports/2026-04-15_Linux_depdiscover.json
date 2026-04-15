@@ -7,7 +7,7 @@
           "id": "SAFE",
           "score": 0.0,
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-04-08",
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-04-15",
           "suppressed": false,
           "suppression_reason": ""
         }
@@ -261,19 +261,7 @@
           "suppression_reason": ""
         }
       ],
-      "headers": [
-        "/usr/include/x86_64-linux-gnu/openssl/opensslconf.h",
-        "/usr/include/x86_64-linux-gnu/sys/ioctl.h",
-        "/usr/include/x86_64-linux-gnu/sys/param.h",
-        "/usr/include/x86_64-linux-gnu/sys/poll.h",
-        "/usr/include/x86_64-linux-gnu/sys/resource.h",
-        "/usr/include/x86_64-linux-gnu/sys/select.h",
-        "/usr/include/x86_64-linux-gnu/sys/socket.h",
-        "/usr/include/x86_64-linux-gnu/sys/stat.h",
-        "/usr/include/x86_64-linux-gnu/sys/types.h",
-        "/usr/include/x86_64-linux-gnu/sys/un.h",
-        "/usr/include/x86_64-linux-gnu/sys/wait.h"
-      ],
+      "headers": [],
       "libraries": [],
       "licenses": [
         "curl"
@@ -290,19 +278,17 @@
           "id": "SAFE",
           "score": 0.0,
           "severity": "NONE",
-          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-04-08",
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-04-15",
           "suppressed": false,
           "suppression_reason": ""
         }
       ],
-      "headers": [
-        "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover/build/_deps/gh_update_checker-src/include/check_gh-update.hpp"
-      ],
+      "headers": [],
       "libraries": [],
       "licenses": [
-        "MIT"
+        "UNKNOWN"
       ],
-      "name": "gh_update_checker",
+      "name": "gh_update_checker::gh_update_checker",
       "source": "cmake_target",
       "type": "cmake_target",
       "version": "v1.0.6"
@@ -369,14 +355,14 @@
       "name": "DepDiscovery",
       "workspace_root": "/home/zb_bamboo/DEV/__NEW__/CPP/Dependency_Tracker_2/depdiscover"
     },
-    "scan_date": "2026-04-08",
+    "scan_date": "2026-04-15",
     "schema_version": "1.2",
     "tool": {
       "author": "ZHENG Bote",
       "description": "Native C++ Dependency Scanner & SBOM Generator",
       "homepage": "https://github.com/Zheng-Bote/depdiscover",
       "name": "depdiscover",
-      "version": "1.5.0"
+      "version": "1.5.2"
     }
   }
 }

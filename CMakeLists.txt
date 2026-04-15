@@ -49,13 +49,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(gh_update_checker)
 
+# Ensure gh_update_checker::gh_update_checker is available (for both FetchContent and find_package)
+if(TARGET gh_update_checker AND NOT TARGET gh_update_checker::gh_update_checker)
+    add_library(gh_update_checker::gh_update_checker ALIAS gh_update_checker)
+endif()
 
 add_executable(depdiscover src/main.cpp)
 
 target_include_directories(depdiscover PRIVATE "${CMAKE_SOURCE_DIR}/include")
 target_link_libraries(depdiscover PRIVATE 
     nlohmann_json::nlohmann_json
-    gh_update_checker
+    gh_update_checker::gh_update_checker
     CURL::libcurl
 )
 

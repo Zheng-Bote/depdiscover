@@ -1,21 +1,13 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [SBOM Security Report: DepDiscovery](#sbom-security-report-depdiscovery)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # SBOM Security Report: DepDiscovery
 
-- **Scan Date:** 2026-04-08
-- **Generator Tool:** depdiscover v1.5.0
+- **Scan Date:** 2026-04-15
+- **Generator Tool:** depdiscover v1.5.2
 
 | Package Name | Version | Fixed Version | Type | Licenses | Security Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | nlohmann_json | 3.12.0 | - | conan | MIT | ✅ SAFE |
 | libcurl | 8.14.1 | 8.19.0~rc3-1 | conan | curl | ❌ 26 Vulnerabilities |
-| gh_update_checker | v1.0.6 | - | cmake_target | MIT | ✅ SAFE |
+| gh_update_checker::gh_update_checker | v1.0.6 | - | cmake_target | UNKNOWN | ✅ SAFE |
 | libc.so.6 |  | - | system | UNKNOWN | ✅ SAFE |
 | libgcc_s.so.1 |  | - | system | UNKNOWN | ✅ SAFE |
 | libm.so.6 |  | - | system | UNKNOWN | ✅ SAFE |

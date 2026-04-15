@@ -1,0 +1,27 @@
+depdiscover
+Copyright (c) 2024-2026 ZHENG Robert (robert@hase-zheng.net)
+
+This product includes software developed by ZHENG Robert.
+
+--------------------------------------------------------------------------------
+This product includes the following third-party software:
+
+1. nlohmann/json
+   Copyright (c) 2013-2024 Niels Lohmann <https://nlohmann.me>
+   Licensed under the MIT License.
+
+2. libcurl
+   Copyright (c) 1996 - 2024, Daniel Stenberg, <daniel@haxx.se>, and many contributors.
+   Licensed under the curl license (MIT/X derivative).
+
+3. gh-update-checker
+   Copyright (c) 2024-2026 ZHENG Robert
+   Licensed under the MIT License.
+
+4. OpenSSL
+   Copyright (c) 1998-2024 The OpenSSL Project.
+   Licensed under the Apache License 2.0.
+
+5. zlib
+   Copyright (C) 1995-2024 Jean-loup Gailly and Mark Adler.
+   Licensed under the zlib License.

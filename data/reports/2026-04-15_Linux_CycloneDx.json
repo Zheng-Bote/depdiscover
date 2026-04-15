@@ -30,16 +30,16 @@
       "version": "8.14.1"
     },
     {
-      "bom-ref": "pkg:generic/gh_update_checker@v1.0.6",
+      "bom-ref": "pkg:generic/gh_update_checker::gh_update_checker@v1.0.6",
       "licenses": [
         {
           "license": {
-            "id": "MIT"
+            "name": "UNKNOWN"
           }
         }
       ],
-      "name": "gh_update_checker",
-      "purl": "pkg:generic/gh_update_checker@v1.0.6",
+      "name": "gh_update_checker::gh_update_checker",
+      "purl": "pkg:generic/gh_update_checker::gh_update_checker@v1.0.6",
       "type": "library",
       "version": "v1.0.6"
     },
@@ -105,16 +105,16 @@
       "name": "DepDiscovery",
       "type": "application"
     },
-    "timestamp": "2026-04-08T11:15:56Z",
+    "timestamp": "2026-04-15T09:29:06Z",
     "tools": [
       {
         "name": "depdiscover",
         "vendor": "ZHENG Bote",
-        "version": "1.5.0"
+        "version": "1.5.2"
       }
     ]
   },
-  "serialNumber": "urn:uuid:558c11a2-3a60-4594-bd97-4af6fae1681b",
+  "serialNumber": "urn:uuid:cdc22204-9ca7-4e14-82f9-a398ce02e55f",
   "specVersion": "1.4",
   "version": 1,
   "vulnerabilities": [
