@@ -10,12 +10,8 @@ APP_DIR="$BUILD_DIR/AppDir"
 ICON_SOURCE="$PROJECT_DIR/resources/app_icon.png"
 DESKTOP_FILE="$PROJECT_DIR/resources/$APP_NAME.desktop"
 
-# QMake (wird für das Plugin benötigt, um Qt-Pfade zu finden)
-#export QMAKE="qmake6"
-#export QMAKE="${QMAKE:-qmake6}"
-
 # Check Voraussetzungen
-for tool in patchelf file conan; do
+for tool in patchelf file conan wget cmake; do
     if ! command -v $tool &> /dev/null; then
         echo "FEHLER: '$tool' wurde nicht gefunden. Bitte installieren."
         exit 1
@@ -74,17 +70,24 @@ fi
 # 4. APPDIR STRUKTUR VORBEREITEN
 # =============================================================================
 echo "--- Installiere in AppDir ---"
-cmake --install . --prefix="/usr" --destdir="$APP_DIR"
+# CMake installiert alles nach AppDir/usr/...
+DESTDIR="$APP_DIR" cmake --install .
 
 # Ordnerstruktur sicherstellen
 mkdir -p "$APP_DIR/usr/share/applications"
 mkdir -p "$APP_DIR/usr/share/icons/hicolor/256x256/apps"
 mkdir -p "$APP_DIR/usr/bin"
 
-# Metadaten & Bin kopieren
+# Metadaten & Bin kopieren (falls install nicht alles erwischt hat)
 cp "$DESKTOP_FILE" "$APP_DIR/usr/share/applications/"
 cp "$ICON_SOURCE" "$APP_DIR/usr/share/icons/hicolor/256x256/apps/$APP_NAME.png"
-cp "$PROJECT_DIR/build/$APP_NAME" "$APP_DIR/usr/bin/"
+
+# Falls cmake --install die Binary nicht in usr/bin abgelegt hat (z.B. fehlendes install-Target)
+if [ ! -f "$APP_DIR/usr/bin/$APP_NAME" ]; then
+    if [ -f "$APP_NAME" ]; then
+        cp "$APP_NAME" "$APP_DIR/usr/bin/"
+    fi
+fi
 
 # Optional: Bereinigen von Conan-Metadaten im AppDir, falls diese mitinstalliert wurden
 find "$APP_DIR" -name "*.cmake" -delete
@@ -95,27 +98,24 @@ find "$APP_DIR" -name "*.pc" -delete
 # =============================================================================
 # Basis-Tool
 if [ ! -f "linuxdeploy-x86_64.AppImage" ]; then
-    wget -q "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+    echo "--- Lade linuxdeploy herunter ---"
+    wget --no-check-certificate -c "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+    if [ $? -ne 0 ]; then
+        echo "FEHLER: Download von linuxdeploy fehlgeschlagen!"
+        exit 1
+    fi
     chmod +x linuxdeploy-x86_64.AppImage
 fi
 
-# Qt-Plugin
-#if [ ! -f "linuxdeploy-plugin-qt-x86_64.AppImage" ]; then
-#    wget -q "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
-#    chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
-#fi
-
 # =============================================================================
-# 5. APPIMAGE GENERIEREN
+# 6. APPIMAGE GENERIEREN
 # =============================================================================
 echo "--- Generiere AppImage ---"
 
-# Environment Variablen für das Qt Plugin setzen
+# Environment Variablen setzen
 export LD_LIBRARY_PATH="$APP_DIR/usr/lib:$LD_LIBRARY_PATH"
 
 # Das Tool aufrufen
-# --appdir: Wo liegt die App?
-# --output appimage: Erstelle am Ende die fertige Datei
 ./linuxdeploy-x86_64.AppImage \
     --appdir "$APP_DIR" \
     --executable "$APP_DIR/usr/bin/$APP_NAME" \
