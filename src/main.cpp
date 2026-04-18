@@ -567,25 +567,37 @@ int main(int argc, char **argv) {
     for (auto &dep : deps) {
       PkgInfo pkg = PkgConfig::query(dep.name);
       if (pkg.found) {
-        dep.version = pkg.version;
-        dep.source = "pkgconfig";
-        for (const auto &dir : pkg.include_paths) {
-          for (auto it = all_resolved_headers.begin();
-               it != all_resolved_headers.end();) {
-            if (path_starts_with(*it, dir)) {
-              dep.headers.push_back(*it);
-              it = all_resolved_headers.erase(it);
-            } else
-              ++it;
-          }
+        // PRIORITIZATION: Only overwrite version if it's not already known from a local source
+        if (dep.version == "unknown" || dep.version == "latest" ||
+            dep.version.empty()) {
+          dep.version = pkg.version;
+          dep.source = "pkgconfig";
         }
-        for (const auto &l_name : pkg.lib_names) {
-          for (auto it = all_elf_libs.begin(); it != all_elf_libs.end();) {
-            if (it->find("lib" + l_name) != std::string::npos) {
-              dep.libraries.push_back(*it);
-              it = all_elf_libs.erase(it);
-            } else
-              ++it;
+
+        // Only use headers/libraries from pkg-config if it's NOT a local dependency
+        // or if the versions match (indicating pkg-config might point to our local install)
+        bool is_local = (dep.type == "vcpkg" || dep.type == "conan" ||
+                         dep.type == "cmake_fetch" || dep.type == "cmake_target");
+
+        if (!is_local || dep.version == pkg.version) {
+          for (const auto &dir : pkg.include_paths) {
+            for (auto it = all_resolved_headers.begin();
+                 it != all_resolved_headers.end();) {
+              if (path_starts_with(*it, dir)) {
+                dep.headers.push_back(*it);
+                it = all_resolved_headers.erase(it);
+              } else
+                ++it;
+            }
+          }
+          for (const auto &l_name : pkg.lib_names) {
+            for (auto it = all_elf_libs.begin(); it != all_elf_libs.end();) {
+              if (it->find("lib" + l_name) != std::string::npos) {
+                dep.libraries.push_back(*it);
+                it = all_elf_libs.erase(it);
+              } else
+                ++it;
+            }
           }
         }
       }

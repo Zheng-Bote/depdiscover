@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 project(depdiscover 
-          VERSION 1.5.2
+          VERSION 1.5.3
           DESCRIPTION "Dependency Tracker for C++ Projects"
 
           HOMEPAGE_URL "https://github.com/Zheng-Bote/depdiscover"

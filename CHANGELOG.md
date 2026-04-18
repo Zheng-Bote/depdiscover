@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [[1.5.3] - 2026-04-18](#153---2026-04-18)
 - [[1.5.0] - 2026-04-08](#150---2026-04-08)
   - [Added](#added)
   - [Changed](#changed)
@@ -37,6 +38,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
+
+## [1.5.3] - 2026-04-18
+
+### Fixed
+- **Dependency Versioning**: Fixed a bug where `pkg-config` would overwrite versions of local dependencies (Conan, Vcpkg, FetchContent) with system versions.
+- **Header/Library Resolution**: Improved mapping logic to ensure local dependencies only use `pkg-config` metadata if the versions match, preventing incorrect system path reports for local installs.
 
 ## [1.5.0] - 2026-04-08
 
